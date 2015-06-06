@@ -48,7 +48,10 @@ final class Calendar {
 
         if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
             for event in matchingEvents {
-                self.events.append(Event(title: event.title ?? "(No title)"))
+                if event.startDate == nil || event.endDate == nil {
+                    continue
+                }
+                self.events.append(Event.fromEKEvent(event as! EKEvent))
             }
         }
     }
