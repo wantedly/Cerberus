@@ -6,7 +6,7 @@ class SyncScroller {
 
     private var views: Array<UIScrollView>
 
-    private init() {
+    private init() {
         self.views = []
     }
 
