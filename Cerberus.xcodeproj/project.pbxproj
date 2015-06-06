@@ -14,6 +14,9 @@
 		4B3BBA8E1B22954C002211E5 /* CerberusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA8D1B22954C002211E5 /* CerberusTests.swift */; };
 		4B3BBA9B1B229634002211E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA991B229634002211E5 /* AppDelegate.swift */; };
 		4B3BBA9C1B229634002211E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA9A1B229634002211E5 /* ViewController.swift */; };
+		AEDC9A941B22B64E00A2EEE9 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A931B22B64E00A2EEE9 /* Calendar.swift */; };
+		AEDC9A961B22B67500A2EEE9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A951B22B67500A2EEE9 /* Event.swift */; };
+		AEDC9A981B22B7F900A2EEE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A971B22B7F900A2EEE9 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,9 @@
 		4B3BBA991B229634002211E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3BBA9A1B229634002211E5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AEDC9A8D1B229BFC00A2EEE9 /* Cerberus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cerberus-Bridging-Header.h"; sourceTree = "<group>"; };
+		AEDC9A931B22B64E00A2EEE9 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		AEDC9A951B22B67500A2EEE9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		AEDC9A971B22B7F900A2EEE9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F134A80837B4E0235401AA61 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F984EBD5C988CB0F02B0642C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +126,7 @@
 		4B3BBA971B229606002211E5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AEDC9A901B22B59600A2EEE9 /* Models */,
 				4B3BBA991B229634002211E5 /* AppDelegate.swift */,
 				4B3BBA9A1B229634002211E5 /* ViewController.swift */,
 				AEDC9A8D1B229BFC00A2EEE9 /* Cerberus-Bridging-Header.h */,
@@ -152,6 +159,16 @@
 				F134A80837B4E0235401AA61 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AEDC9A901B22B59600A2EEE9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AEDC9A931B22B64E00A2EEE9 /* Calendar.swift */,
+				AEDC9A951B22B67500A2EEE9 /* Event.swift */,
+				AEDC9A971B22B7F900A2EEE9 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +306,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEDC9A961B22B67500A2EEE9 /* Event.swift in Sources */,
 				4B3BBA9C1B229634002211E5 /* ViewController.swift in Sources */,
+				AEDC9A941B22B64E00A2EEE9 /* Calendar.swift in Sources */,
+				AEDC9A981B22B7F900A2EEE9 /* User.swift in Sources */,
 				4B3BBA9B1B229634002211E5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
