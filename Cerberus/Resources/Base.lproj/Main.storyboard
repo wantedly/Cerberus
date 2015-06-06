@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="chf-9x-46w">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Navigation Controller-->
+        <scene sceneID="Yjk-Mt-ABd">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="chf-9x-46w" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xsq-QL-eOW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="N01-TQ-I0d" kind="relationship" relationship="rootViewController" id="TuY-Jd-ekn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TXg-r8-uWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-11" y="471"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yDp-cd-yDP">
+            <objects>
+                <viewController id="N01-TQ-I0d" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="IRP-Wg-f02"/>
+                        <viewControllerLayoutGuide type="bottom" id="uvZ-wf-2Xm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="uAH-9q-JER">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chF-4Y-vTV">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWf-jj-sgM">
+                                <rect key="frame" x="300" y="0.0" width="300" height="600"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="chF-4Y-vTV" firstAttribute="top" secondItem="uAH-9q-JER" secondAttribute="top" id="2F4-ht-Rpu"/>
+                            <constraint firstItem="uWf-jj-sgM" firstAttribute="top" secondItem="uAH-9q-JER" secondAttribute="top" id="7Ru-ev-wfk"/>
+                            <constraint firstAttribute="width" secondItem="chF-4Y-vTV" secondAttribute="width" multiplier="2:1" id="B1O-mR-ua1"/>
+                            <constraint firstItem="uvZ-wf-2Xm" firstAttribute="top" secondItem="uWf-jj-sgM" secondAttribute="bottom" id="DhD-4T-6oQ"/>
+                            <constraint firstAttribute="width" secondItem="chF-4Y-vTV" secondAttribute="width" multiplier="1:2" constant="1" id="EvK-0m-QMm"/>
+                            <constraint firstAttribute="trailing" secondItem="uWf-jj-sgM" secondAttribute="trailing" id="SKG-ax-7b8"/>
+                            <constraint firstItem="uvZ-wf-2Xm" firstAttribute="top" secondItem="chF-4Y-vTV" secondAttribute="bottom" id="eOg-d3-wE4"/>
+                            <constraint firstItem="chF-4Y-vTV" firstAttribute="leading" secondItem="uAH-9q-JER" secondAttribute="leading" id="eby-JE-cAA"/>
+                            <constraint firstItem="uWf-jj-sgM" firstAttribute="leading" secondItem="chF-4Y-vTV" secondAttribute="trailing" id="qqc-3p-vJf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EvK-0m-QMm"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="5Xq-xw-KZi"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwQ-zx-AvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="827" y="471"/>
         </scene>
     </scenes>
 </document>
