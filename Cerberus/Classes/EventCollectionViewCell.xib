@@ -16,14 +16,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gnx-zN-lPi">
                         <rect key="frame" x="8" y="8" width="408" height="300"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
                                 <rect key="frame" x="13" y="43" width="403" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="ZSG-Ih-Huw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
-                                <rect key="frame" x="13" y="11" width="403" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
+                                <rect key="frame" x="13" y="14" width="403" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -31,7 +34,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="a4b-UU-6P7" secondAttribute="leading" id="RYJ-2Y-EUi"/>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" id="WCw-cW-cOu"/>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="Gnx-zN-lPi" secondAttribute="leading" constant="13" id="YQg-Gp-rRn"/>
                             <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="a4b-UU-6P7" secondAttribute="bottom" constant="5" id="hoy-Rb-cKJ"/>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="Gnx-zN-lPi" secondAttribute="top" constant="43" id="iqf-oY-yDK"/>
+                            <constraint firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" constant="-8" id="uwa-dd-gLu"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
