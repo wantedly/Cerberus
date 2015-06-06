@@ -13,6 +13,8 @@ class TimelineCollectionViewController: UICollectionViewController {
             timeArray.append(date.stringFromFormat("HH:mm"))
         }
         timeArray.append("24:00")
+        collectionView?.showsVerticalScrollIndicator = false
+
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
