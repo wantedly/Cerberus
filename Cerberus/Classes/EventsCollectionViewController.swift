@@ -1,5 +1,6 @@
 import UIKit
 import Async
+import Timepiece
 
 class EventsCollectionViewController: UICollectionViewController {
 
@@ -45,23 +46,25 @@ class EventsCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.calendar.todaysEvents(NSDate()).count
+        return self.calendar.events.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
-        cell.eventModel = self.calendar.todaysEvents(NSDate())[indexPath.row]
+        cell.eventModel = self.calendar.events[indexPath.row]
         return cell
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let minuteHeight: CGFloat = 2;
 
-        let event = self.calendar.todaysEvents(NSDate())[indexPath.row]
+        let event = self.calendar.events[indexPath.row]
         var end = event.endDate.hour * 60 + event.endDate.minute
+        
         if end == 0 {
             end = 24 * 60
         }
+
         let start = event.startDate.hour * 60 + event.startDate.minute
         let span = end - start
         let width: CGFloat = collectionView.bounds.width
