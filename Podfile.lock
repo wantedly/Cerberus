@@ -4,12 +4,14 @@ PODS:
   - Realm (0.93.1):
     - Realm/Headers (= 0.93.1)
   - Realm/Headers (0.93.1)
+  - RealmSwift (0.93.1):
+    - Realm (= 0.93.1)
   - Timepiece (0.3.3)
 
 DEPENDENCIES:
   - Async (from `https://github.com/duemunk/Async.git`)
   - Keys (from `Pods/CocoaPodsKeys/`)
-  - Realm
+  - RealmSwift
   - Timepiece
 
 EXTERNAL SOURCES:
@@ -27,6 +29,7 @@ SPEC CHECKSUMS:
   Async: d9ee6fc9c415d44fcb892f4c289d1e79ce8ae92d
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   Realm: 694b93846a0772c904f9e0cc3559d1bc856d931e
+  RealmSwift: feeac2930716d9a04ba45637add4abe994fa05fd
   Timepiece: 30ef04f74337fcb1bef2ff91cfe964184d894d12
 
 COCOAPODS: 0.37.2

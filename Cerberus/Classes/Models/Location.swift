@@ -1,38 +1,37 @@
 import Foundation
-import Realm
+import RealmSwift
 
-final class Location : RLMObject {
+final class Location : Object {
     dynamic var name: String = ""
 
-    init(name: String) {
-        super.init()
-        self.name = name
+    /*
+    override class func primaryKey() -> String {
+        return "name"
     }
+    */
 
     class func find(name: String) -> Location? {
-        if let locations = Location.objectsWithPredicate(NSPredicate(format: "name = %@", name)) {
-            return locations.firstObject() as? Location
-        }
-
-        return nil
+        let locations = Realm().objects(Location).filter(NSPredicate(format: "name = %@", name))
+        return locations.first
     }
 
     class func findOrCreate(name: String) -> Location! {
         if let location = find(name) {
             return location
         } else {
-            let location = Location(name: name)
+            let location = Location()
+            location.name = name
             location.save()
             return location
         }
     }
 
     func save() {
-        let realm = RLMRealm.defaultRealm()
+        let realm = Realm()
 
-        realm.transactionWithBlock { [weak self] in
+        realm.write { [weak self] in
             if let strongSelf = self {
-                realm.addObject(strongSelf)
+                realm.add(strongSelf)
             }
         }
     }
