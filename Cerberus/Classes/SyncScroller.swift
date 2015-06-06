@@ -15,12 +15,12 @@ class SyncScroller {
     }
 
     func register(scrollView: UIScrollView) {
-        //self.views.append(scrollView)
+        self.views.append(scrollView)
     }
 
     func unregister(scrollView: UIScrollView) {
         if let index = find(views, scrollView) {
-            //views.removeAtIndex(index)
+            views.removeAtIndex(index)
         }
     }
 
