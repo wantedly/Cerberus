@@ -1,7 +1,7 @@
 import Foundation
 import Realm
 
-class Location : RLMObject {
+final class Location : RLMObject {
     dynamic var name: String = ""
 
     init(name: String) {
