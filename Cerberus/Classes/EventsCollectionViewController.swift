@@ -3,10 +3,12 @@ import Async
 
 class EventsCollectionViewController: UICollectionViewController {
 
-    var calendar: Calendar!
     let reuseIdentifier = "EventCell"
+    var syncScroller: SyncScroller!
+    var calendar: Calendar!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.calendar = Calendar()
 
         self.calendar.authorize { status in
@@ -29,8 +31,15 @@ class EventsCollectionViewController: UICollectionViewController {
                 println("Authorized")
             }
         }
+        syncScroller = SyncScroller.get()
+        syncScroller.register(collectionView!)
     }
-    
+
+    override func viewWillDisappear(animated: Bool) {
+        syncScroller.unregister(collectionView!)
+        super.viewWillDisappear(animated)
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,5 +63,10 @@ class EventsCollectionViewController: UICollectionViewController {
         let height: CGFloat = minuteHeight * CGFloat(span)
 
         return CGSizeMake(width, height)
+    }
+
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        syncScroller.scroll(scrollView)
     }
 }
