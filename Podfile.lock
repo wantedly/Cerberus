@@ -1,10 +1,17 @@
 PODS:
+  - Keys (1.0.0)
   - Timepiece (0.3.3)
 
 DEPENDENCIES:
+  - Keys (from `Pods/CocoaPodsKeys/`)
   - Timepiece
 
+EXTERNAL SOURCES:
+  Keys:
+    :path: Pods/CocoaPodsKeys/
+
 SPEC CHECKSUMS:
+  Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   Timepiece: 30ef04f74337fcb1bef2ff91cfe964184d894d12
 
 COCOAPODS: 0.37.2
