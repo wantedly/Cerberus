@@ -1,5 +1,6 @@
 import Foundation
 import EventKit
+import Timepiece
 
 enum CalendarAuthorizationStatus {
     case Success
@@ -45,7 +46,7 @@ final class Calendar {
     func todaysEvents(date: NSDate) -> [Event] {
         var res: [Event] = []
         var cur = date.beginningOfDay
-        let endOfDay = cur.change(day: 1)
+        var endOfDay = cur + 1.day
         for event in self.events {
             let start = event.startDate, end = event.endDate
             if start < cur {
