@@ -3,6 +3,18 @@ import UIKit
 class EventsCollectionViewController: UICollectionViewController {
     
     let reuseIdentifier = "EventCell"
+    var notificationCenter = NSNotificationCenter.defaultCenter()
+
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        // Listen scroll event of TimelineCollectionView
+        notificationCenter.addObserver(self, selector: "receiveScrollNotification:", name: "scrolled", object: nil)
+    }
+
+    func receiveScrollNotification(notification: NSNotification) {
+        let timelineView = notification.object as! UIScrollView
+        collectionView?.contentOffset = timelineView.contentOffset
+    }
 
     // MARK: UICollectionViewDataSource
 
