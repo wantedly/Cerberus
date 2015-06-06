@@ -11,13 +11,14 @@ import EventKit
 
 final class Calendar {
     var events: [Event]!
-    
+
     var eventStore: EKEventStore!
-    var targetCalendar: EKCalendar!
-    
+    var calendar: NSCalendar!
+
     init() {
         self.events = []
         self.eventStore = EKEventStore()
+        self.calendar = NSCalendar.currentCalendar()
     }
     
     func isAuthorized() -> Bool {
@@ -68,32 +69,15 @@ final class Calendar {
     }
     
     private func fetchEvents() {
-        var myCalendar: NSCalendar = NSCalendar.currentCalendar()
-        var myEventCalendars = self.eventStore.calendarsForEntityType(EKEntityTypeEvent)
+        let now       = NSDate()
+        let startDate = self.calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: 30.days.ago, options: nil) // FIXME: ofDate: now
+        let endDate   = self.calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: now, options: nil)
+        let predicate = self.eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
 
-        let oneDayAgoComponents: NSDateComponents = NSDateComponents()
-        oneDayAgoComponents.day = -1
-        
-        let oneDayAgo: NSDate = myCalendar.dateByAddingComponents(oneDayAgoComponents,
-            toDate: NSDate(),
-            options: NSCalendarOptions.allZeros
-        )!
-        
-        let oneDayFromNowComponents: NSDateComponents = NSDateComponents()
-        oneDayFromNowComponents.year = 1
-        
-        let oneDayFromNow: NSDate = myCalendar.dateByAddingComponents(oneDayFromNowComponents,
-            toDate: NSDate(),
-            options: NSCalendarOptions.allZeros
-        )!
-        
-        var predicate = self.eventStore.predicateForEventsWithStartDate(oneDayAgo,
-            endDate: oneDayFromNow,
-            calendars: nil
-        )
-        
-        for event in self.eventStore.eventsMatchingPredicate(predicate) {
-            self.events.append(Event(title: event.title ?? "(No title)"))
+        if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
+            for event in matchingEvents {
+                self.events.append(Event(title: event.title ?? "(No title)"))
+            }
         }
     }
 }
