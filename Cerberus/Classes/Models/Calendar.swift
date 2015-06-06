@@ -25,6 +25,12 @@ final class Calendar {
         self.location = nil  // Retrive from use defaults?
     }
 
+
+    class func onChange() {
+        // EKEventStoreChangedNotification
+        // NSNotificationCenter.defaultCenter()
+    }
+
     func isAuthorized() -> Bool {
         let status: EKAuthorizationStatus = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
 
