@@ -3,7 +3,7 @@ import EventKit
 
 final class Event {
     var title: String = ""
-    var location: String?
+    var location: Location?
     
     var startDate: NSDate
     var endDate: NSDate
@@ -25,6 +25,8 @@ final class Event {
             endDate:   eventOfEventKit.endDate
         )
 
+        event.location = Location.findOrCreate(eventOfEventKit.location)
+
         if let attendees = eventOfEventKit.attendees {
             for attendee in attendees {
                 if let a = attendee as? EKParticipant {
@@ -35,10 +37,6 @@ final class Event {
                                 event.attendees.append(User(name: name, email: email))
                             }
                         }
-
-                    case EKParticipantTypeRoom.value:
-                        // FIXME: a room
-                        println(a.URL)
 
                     default:
                         // just ignore

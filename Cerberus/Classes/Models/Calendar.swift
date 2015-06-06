@@ -13,18 +13,24 @@ final class Calendar {
     var eventStore: EKEventStore!
     var calendar: NSCalendar!
 
-    var date: NSDate! {
-        didSet { fetchEventsSafely() }
-    }
+    var date: NSDate!
+    var location: NSDate!
 
     init() {
         self.events = []
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
 
-        self.date = 4.days.ago  // FIXME: Use `NSDate()` instead
+        self.date     = 4.days.ago  // FIXME: Use `NSDate()` instead
+        self.location = nil  // Retrive from use defaults?
     }
-    
+
+
+    class func onChange() {
+        // EKEventStoreChangedNotification
+        // NSNotificationCenter.defaultCenter()
+    }
+
     func isAuthorized() -> Bool {
         let status: EKAuthorizationStatus = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
 
@@ -49,7 +55,7 @@ final class Calendar {
         })
     }
 
-    private func fetchEventsSafely() {
+    func update() {
         if isAuthorized() {
             fetchEvents()
         }
