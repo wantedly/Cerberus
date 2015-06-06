@@ -5,8 +5,6 @@ class LocationsTableViewController : UITableViewController {
 
     var locations = [Location]()
 
-    private let reuseIdentifier = "LocationCell"
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
