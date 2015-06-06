@@ -13,10 +13,16 @@ final class Calendar {
     var eventStore: EKEventStore!
     var calendar: NSCalendar!
 
+    var date: NSDate! {
+        didSet { fetchEventsSafely() }
+    }
+
     init() {
         self.events = []
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
+
+        self.date = 4.days.ago  // FIXME: Use `NSDate()` instead
     }
     
     func isAuthorized() -> Bool {
@@ -43,11 +49,16 @@ final class Calendar {
         })
     }
 
+    private func fetchEventsSafely() {
+        if isAuthorized() {
+            fetchEvents()
+        }
+    }
+
     private func fetchEvents() {
-        let date         = 4.days.ago
-        let calStartDate = date.beginningOfDay
+        let calStartDate = self.date.beginningOfDay
         let calEndDate   = calStartDate + 1.day
-        let predicate = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: nil)
+        let predicate    = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: nil)
 
         var currentDateOffset = calStartDate
 
