@@ -38,10 +38,6 @@ final class Event {
                             }
                         }
 
-                    case EKParticipantTypeRoom.value:
-                        // FIXME: a room
-                        println(a.URL)
-
                     default:
                         // just ignore
                         println(a.participantType)
