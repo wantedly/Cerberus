@@ -64,6 +64,7 @@ final class Calendar {
             }
             cur = end
         }
+
         if cur < endOfDay {
             res.append(Event(title: "Available", startDate: cur, endDate: endOfDay, available: true))
         }
@@ -72,20 +73,17 @@ final class Calendar {
 
     private func fetchEvents() {
         let now       = NSDate()
-        let predicate = self.eventStore.predicateForEventsWithStartDate(30.days.ago, endDate: 30.days.later, calendars: nil)
+        let startDate = 30.days.ago.beginningOfDay
+        let endDate   = 30.days.later.endOfDay
+        let predicate = self.eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
 
         if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
             for event in matchingEvents {
                 if event.startDate == nil || event.endDate == nil {
-                    continue;
+                    continue
                 }
 
-                self.events.append(
-                    Event(title: event.title ?? "(No title)",
-                          startDate: event.startDate,
-                          endDate:event.endDate
-                    ))
-
+                self.events.append(Event.fromEKEvent(event as! EKEvent))
             }
         }
     }

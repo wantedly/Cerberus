@@ -31,6 +31,8 @@ class EventsCollectionViewController: UICollectionViewController {
                 println("Authorized")
             }
         }
+
+        self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
@@ -47,9 +49,8 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let reuseIdentifier = CollectionViewCellreuseIdentifier.EventCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
-        cell.titleLabel.text = self.calendar.todaysEvents(NSDate())[indexPath.row].title
+        cell.eventModel = self.calendar.todaysEvents(NSDate())[indexPath.row]
         return cell
     }
 
@@ -57,14 +58,17 @@ class EventsCollectionViewController: UICollectionViewController {
         let minuteHeight: CGFloat = 2;
 
         let event = self.calendar.todaysEvents(NSDate())[indexPath.row]
-        let span = event.endDate.hour * 60 + event.endDate.minute -
-            (event.startDate.hour * 60 + event.startDate.minute)
+        var end = event.endDate.hour * 60 + event.endDate.minute
+        if end == 0 {
+            end = 24 * 60
+        }
+        let start = event.startDate.hour * 60 + event.startDate.minute
+        let span = end - start
         let width: CGFloat = collectionView.bounds.width
         let height: CGFloat = minuteHeight * CGFloat(span)
 
         return CGSizeMake(width, height)
     }
-
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         syncScroller.scroll(scrollView)
