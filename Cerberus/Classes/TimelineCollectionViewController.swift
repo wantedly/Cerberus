@@ -31,4 +31,25 @@ class TimelineCollectionViewController: UICollectionViewController {
         cell.timeLabel.text = timeArray[indexPath.row]
         return cell
     }
+    
+    // MARK: UIScrollViewDelegate
+
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrollToCenteredCell()
+    }
+
+    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollToCenteredCell()
+        }
+    }
+
+    // MARK: Private
+
+    private func scrollToCenteredCell() {
+        let point = CGPointMake(collectionView!.center.x, collectionView!.center.y + collectionView!.contentOffset.y)
+        if let centeredIndexPath = collectionView?.indexPathForItemAtPoint(point) {
+            collectionView?.scrollToItemAtIndexPath(centeredIndexPath, atScrollPosition: .CenteredVertically, animated: true)
+        }
+    }
 }
