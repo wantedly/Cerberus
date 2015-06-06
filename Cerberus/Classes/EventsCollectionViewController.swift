@@ -34,6 +34,8 @@ class EventsCollectionViewController: UICollectionViewController {
         }
 
         self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.sectionInset = UIEdgeInsetsMake(50, 0, 0, 0)
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
@@ -56,7 +58,7 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let minuteHeight: CGFloat = 2;
+        let minuteHeight: CGFloat = 100.0 / 30
 
         let event = self.calendar.events[indexPath.row]
         var end = event.endDate.hour * 60 + event.endDate.minute
