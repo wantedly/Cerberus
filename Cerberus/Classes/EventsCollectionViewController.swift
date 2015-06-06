@@ -34,6 +34,10 @@ class EventsCollectionViewController: UICollectionViewController {
         }
 
         self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.sectionInset = UIEdgeInsetsMake(16, 0, 16, 0)
+
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
@@ -52,11 +56,18 @@ class EventsCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellreuseIdentifier.EventCell.rawValue, forIndexPath: indexPath) as! EventCollectionViewCell
         cell.eventModel = self.calendar.events[indexPath.row]
+        if indexPath.row == 0 {
+            cell.topOffsetConstraint.constant = 0
+            cell.bottomOffsetConstraint.constant = 8
+        } else if indexPath.row == self.calendar.events.count - 1 {
+            cell.bottomOffsetConstraint.constant = 0
+            cell.topOffsetConstraint.constant = 8
+        }
         return cell
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let minuteHeight: CGFloat = 2;
+        let minuteHeight: CGFloat = 100.0 / 30
 
         let event = self.calendar.events[indexPath.row]
         var end = event.endDate.hour * 60 + event.endDate.minute
@@ -71,6 +82,10 @@ class EventsCollectionViewController: UICollectionViewController {
         let height: CGFloat = minuteHeight * CGFloat(span)
 
         return CGSizeMake(width, height)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 200, height: 50)
     }
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
