@@ -17,7 +17,8 @@ class TimelineCollectionViewController: UICollectionViewController {
 
     func receiveScrollNotification(notification: NSNotification) {
         let eventView = notification.object as! UIScrollView
-        collectionView?.contentOffset = eventView.contentOffset
+        let offset = eventView.contentOffset
+        collectionView?.contentOffset.y = offset.y
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -40,11 +41,12 @@ class TimelineCollectionViewController: UICollectionViewController {
     }
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if (scrollView.isEqual(self)) {
+        if scrollView.isEqual(self) {
             return
         }
-        if scrollView.dragging {
+        if scrollView.dragging || scrollView.bounces {
             notificationCenter.postNotificationName("scrolled", object: scrollView)
         }
     }
+
 }
