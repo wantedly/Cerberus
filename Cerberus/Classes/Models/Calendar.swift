@@ -1,6 +1,11 @@
 import Foundation
 import EventKit
 
+enum CalendarAuthorizationStatus {
+    case Success
+    case Error
+}
+
 final class Calendar {
     var events: [Event]!
 
@@ -15,41 +20,28 @@ final class Calendar {
     
     func isAuthorized() -> Bool {
         let status: EKAuthorizationStatus = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
-        
-        switch status {
-            case .Authorized:
-                println("Authorized")
-                return true
-            default:
-                println(status)
-                return false
-        }
+
+        return status == .Authorized
     }
 
-    func authorize() {
+    func authorize(completion: ((status: CalendarAuthorizationStatus) -> Void)?) {
         if isAuthorized() {
             fetchEvents()
+            completion?(status: .Success)
             return
         }
         
         self.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: { [weak self] (granted, error) -> Void in
             if granted {
                 self?.fetchEvents()
+                completion?(status: .Success)
                 return
             } else {
-                /* FIXME
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    let alert = UIAlertController(title: "許可されませんでした", message: "Privacy->App->Reminderで変更してください", preferredStyle: UIAlertControllerStyle.Alert)
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-                    
-                    myAlert.addAction(okAction)
-                    self.presentViewController(alert, animated: true, completion: nil)
-                })
-                */
+                completion?(status: .Error)
             }
         })
     }
-    
+
     private func fetchEvents() {
         let now       = NSDate()
         let startDate = self.calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: 30.days.ago, options: nil) // FIXME: ofDate: now
