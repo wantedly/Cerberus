@@ -1,7 +1,7 @@
 import UIKit
 
 class EventsCollectionViewController: UICollectionViewController {
-    
+
     var calendar: Calendar!
     
     let reuseIdentifier = "EventCell"
@@ -18,6 +18,7 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let reuseIdentifier = CollectionViewCellreuseIdentifier.EventCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
         cell.titleLabel.text = self.calendar.events[indexPath.row].title
         return cell
