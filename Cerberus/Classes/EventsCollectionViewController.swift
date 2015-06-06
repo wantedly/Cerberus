@@ -30,6 +30,8 @@ class EventsCollectionViewController: UICollectionViewController {
                 println("Authorized")
             }
         }
+
+        self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     // MARK: UICollectionViewDataSource
@@ -39,7 +41,7 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let reuseIdentifier = CollectionViewCellreuseIdentifier.EventCell.rawValue
+        //let reuseIdentifier = CollectionViewCellreuseIdentifier.EventCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
         cell.titleLabel.text = self.calendar.events[indexPath.row].title
         return cell

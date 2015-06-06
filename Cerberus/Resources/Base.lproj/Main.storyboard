@@ -128,43 +128,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventCell" id="Wfu-SZ-UAY" customClass="EventCollectionViewCell" customModule="Cerberus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="89"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00-00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB2-J3-bMH">
-                                            <rect key="frame" x="15" y="40" width="270" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuT-7z-fGi">
-                                            <rect key="frame" x="15" y="15" width="270" height="24"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="NuT-7z-fGi" firstAttribute="leading" secondItem="Wfu-SZ-UAY" secondAttribute="leading" constant="15" id="Eua-eV-UXH"/>
-                                    <constraint firstItem="qB2-J3-bMH" firstAttribute="leading" secondItem="NuT-7z-fGi" secondAttribute="leading" id="Fv1-Hd-NzF"/>
-                                    <constraint firstItem="qB2-J3-bMH" firstAttribute="top" secondItem="NuT-7z-fGi" secondAttribute="bottom" constant="1" id="IzU-xe-TM9"/>
-                                    <constraint firstItem="NuT-7z-fGi" firstAttribute="top" secondItem="Wfu-SZ-UAY" secondAttribute="top" constant="15" id="Voe-bG-pom"/>
-                                    <constraint firstItem="qB2-J3-bMH" firstAttribute="trailing" secondItem="NuT-7z-fGi" secondAttribute="trailing" id="ZnH-4w-GGA"/>
-                                    <constraint firstAttribute="trailing" secondItem="NuT-7z-fGi" secondAttribute="trailing" constant="15" id="xu4-Gv-M9Z"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="timeLabel" destination="qB2-J3-bMH" id="I2S-bl-dB2"/>
-                                    <outlet property="titleLabel" destination="NuT-7z-fGi" id="mFR-5p-qpa"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="m6y-EW-Ga5" id="6rc-5C-CoB"/>
                             <outlet property="delegate" destination="m6y-EW-Ga5" id="Pp8-D5-qJL"/>

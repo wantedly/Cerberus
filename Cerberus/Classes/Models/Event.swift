@@ -1,4 +1,5 @@
 import Foundation
+import EventKit
 
 final class Event {
     var title: String = ""
