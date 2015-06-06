@@ -54,8 +54,10 @@
             </constraints>
             <size key="customSize" width="338" height="316"/>
             <connections>
+                <outlet property="bottomOffsetConstraint" destination="SmH-U9-Xc1" id="uWb-b2-yA7"/>
                 <outlet property="timeLabel" destination="NC0-h0-9g8" id="EeA-UJ-ai1"/>
                 <outlet property="titleLabel" destination="a4b-UU-6P7" id="QGO-TS-1B2"/>
+                <outlet property="topOffsetConstraint" destination="jP0-cP-GsI" id="psX-t4-O6e"/>
                 <outlet property="wrapperView" destination="Gnx-zN-lPi" id="nIi-6c-YhA"/>
             </connections>
             <point key="canvasLocation" x="443" y="263"/>

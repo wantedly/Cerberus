@@ -54,6 +54,13 @@ class EventsCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
         cell.eventModel = self.calendar.events[indexPath.row]
+        if indexPath.row == 0 {
+            cell.topOffsetConstraint.constant = 0
+            cell.bottomOffsetConstraint.constant = 8
+        } else if indexPath.row == self.calendar.events.count - 1 {
+            cell.bottomOffsetConstraint.constant = 0
+            cell.topOffsetConstraint.constant = 8
+        }
         return cell
     }
 
