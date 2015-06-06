@@ -48,7 +48,9 @@ final class Calendar {
         let endOfDay = cur.change(day: 1)
         for event in self.events {
             let start = event.startDate, end = event.endDate
-            if start >= endOfDay {
+            if start < cur {
+                continue
+            } else if start >= endOfDay {
                 break
             }
             if cur < start {
@@ -62,7 +64,7 @@ final class Calendar {
             cur = end
         }
         if cur < endOfDay {
-
+            res.append(Event(title: "Available", startDate: cur, endDate: endOfDay, available: true))
         }
         return res
     }
