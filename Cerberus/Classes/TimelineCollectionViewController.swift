@@ -3,7 +3,6 @@ import Timepiece
 
 class TimelineCollectionViewController: UICollectionViewController {
     
-    let reuseIdentifier = "TimeCell"
     var timeArray = [String]()
     var notificationCenter = NSNotificationCenter.defaultCenter()
 
@@ -21,6 +20,12 @@ class TimelineCollectionViewController: UICollectionViewController {
         collectionView?.contentOffset = eventView.contentOffset
     }
 
+    override func viewDidAppear(animated: Bool) {
+        let date = NSDate()
+        let newIndex = NSIndexPath(forItem: (date.hour * 60 + date.minute) / 30, inSection: 0)
+        self.collectionView?.scrollToItemAtIndexPath(newIndex, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,6 +33,7 @@ class TimelineCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let reuseIdentifier = CollectionViewCellreuseIdentifier.TimeCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! TimeCollectionViewCell
         cell.timeLabel.text = timeArray[indexPath.row]
         return cell

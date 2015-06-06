@@ -1,7 +1,7 @@
 import UIKit
 
 class EventsCollectionViewController: UICollectionViewController {
-    
+
     let reuseIdentifier = "EventCell"
     var notificationCenter = NSNotificationCenter.defaultCenter()
 
@@ -23,6 +23,7 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let reuseIdentifier = CollectionViewCellreuseIdentifier.EventCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
         return cell
     }
