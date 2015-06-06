@@ -4,9 +4,6 @@ import Async
 class EventsCollectionViewController: UICollectionViewController {
 
     var calendar: Calendar!
-
-    var arr: [[Int]] = [[8*60, 9*60], [11*60+30, 13*60]]
-
     let reuseIdentifier = "EventCell"
 
     override func viewDidLoad() {
