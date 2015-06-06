@@ -2,7 +2,11 @@
 
 public enum CollectionViewCellreuseIdentifier : String {
     case EventCell = "EventCell"
-    case TimeCell = "TimeCell"
+    case TimeCell  = "TimeCell"
+}
+
+public enum TableViewCellreuseIdentifier : String {
+    case LocationCell = "LocationCell"
 }
 
 public enum StoryboardNames : String {

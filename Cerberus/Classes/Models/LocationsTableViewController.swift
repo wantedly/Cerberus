@@ -1,9 +1,29 @@
-//
-//  LocationsTableViewController.swift
-//  Cerberus
-//
-//  Created by Yuki Iwanaga on 6/7/15.
-//  Copyright (c) 2015 Wantedly, Inc. All rights reserved.
-//
+import UIKit
+import RealmSwift
 
-import Foundation
+class LocationsTableViewController : UITableViewController {
+
+    var locations = [Location]()
+
+    private let reuseIdentifier = "LocationCell"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        for location in Realm().objects(Location) {
+            self.locations.append(location as Location)
+        }
+
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: TableViewCellreuseIdentifier.LocationCell.rawValue)
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.locations.count;
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(TableViewCellreuseIdentifier.LocationCell.rawValue, forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel!.text = self.locations[indexPath.row].name
+        return cell
+    }
+}
