@@ -65,7 +65,6 @@ final class Calendar {
             cur = end
         }
 
-        println(cur)
         if cur < endOfDay {
             res.append(Event(title: "Available", startDate: cur, endDate: endOfDay, available: true))
         }

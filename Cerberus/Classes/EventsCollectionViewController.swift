@@ -50,7 +50,7 @@ class EventsCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
-        cell.setEventModel(self.calendar.todaysEvents(NSDate())[indexPath.row])
+        cell.eventModel = self.calendar.todaysEvents(NSDate())[indexPath.row]
         return cell
     }
 
