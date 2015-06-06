@@ -4,10 +4,8 @@ import Async
 class EventsCollectionViewController: UICollectionViewController {
 
     let reuseIdentifier = "EventCell"
-    let syncScroller = SyncScroller.get()
+    var syncScroller: SyncScroller!
     var calendar: Calendar!
-
-    let reuseIdentifier = "EventCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +31,7 @@ class EventsCollectionViewController: UICollectionViewController {
                 println("Authorized")
             }
         }
-
+        syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
 

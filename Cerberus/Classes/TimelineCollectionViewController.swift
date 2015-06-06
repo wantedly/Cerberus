@@ -4,7 +4,7 @@ import Timepiece
 class TimelineCollectionViewController: UICollectionViewController {
 
     var timeArray = [String]()
-    let syncScroller = SyncScroller.get()
+    var syncScroller: SyncScroller!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,6 +12,7 @@ class TimelineCollectionViewController: UICollectionViewController {
         for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
             timeArray.append(date.stringFromFormat("HH:mm"))
         }
+        syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
 
