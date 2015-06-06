@@ -9,7 +9,8 @@
 import UIKit
 
 class SyncScroller {
-    static var scrollers = ["default": SyncScroller()]
+
+    static let sharedScroller = SyncScroller()
 
     private var views: Array<UIScrollView>
 
@@ -17,12 +18,8 @@ class SyncScroller {
         self.views = []
     }
 
-    static func get(key: String = "default") -> SyncScroller {
-        if let scroller = scrollers[key] {
-            return scroller
-        }
-        scrollers[key] = SyncScroller()
-        return scrollers[key]!
+    static func get() -> SyncScroller {
+        return sharedScroller
     }
 
     func register(scrollView: UIScrollView) {
