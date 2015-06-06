@@ -17,7 +17,6 @@ class EventCollectionViewCell: UICollectionViewCell {
 
             self.titleLabel.text = event.title
             self.timeLabel.text  = time
-            self.attendeesLabel.text = "aaa"
         }
     }
 }
