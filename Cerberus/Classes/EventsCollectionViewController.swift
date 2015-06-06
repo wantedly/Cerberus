@@ -1,11 +1,14 @@
 import UIKit
 
-class EventsCollectionViewController: SyncScrollCollectionViewController {
+class EventsCollectionViewController: UICollectionViewController {
 
     let reuseIdentifier = "EventCell"
+    let syncScroller = SyncScroller.get()
 
     override func viewDidLoad() {
         super.viewDidLoad();
+
+        syncScroller.register(collectionView!)
     }
 
     // MARK: UICollectionViewDataSource
@@ -18,5 +21,9 @@ class EventsCollectionViewController: SyncScrollCollectionViewController {
         let reuseIdentifier = CollectionViewCellreuseIdentifier.EventCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
         return cell
+    }
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        syncScroller.scroll(scrollView)
     }
 }
