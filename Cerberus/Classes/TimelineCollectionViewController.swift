@@ -3,7 +3,6 @@ import Timepiece
 
 class TimelineCollectionViewController: UICollectionViewController {
     
-    let reuseIdentifier = "TimeCell"
     var timeArray = [String]()
     
     override func viewDidLoad() {
@@ -21,6 +20,7 @@ class TimelineCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let reuseIdentifier = CollectionViewCellreuseIdentifier.TimeCell.rawValue
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! TimeCollectionViewCell
         cell.timeLabel.text = timeArray[indexPath.row]
         return cell

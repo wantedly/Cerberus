@@ -48,6 +48,7 @@ GEM
     netrc (0.7.8)
     osx_keychain (1.0.1)
       RubyInline (~> 3)
+    sbconstants (1.1.2)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -61,6 +62,4 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   cocoapods-keys
-
-BUNDLED WITH
-   1.10.3
+  sbconstants
