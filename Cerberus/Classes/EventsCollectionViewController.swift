@@ -34,6 +34,10 @@ class EventsCollectionViewController: UICollectionViewController {
         }
 
         self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.sectionInset = UIEdgeInsetsMake(16, 0, 16, 0)
+
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
