@@ -25,20 +25,11 @@ final class Calendar {
         let status: EKAuthorizationStatus = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
         
         switch status {
-            case EKAuthorizationStatus.NotDetermined:
-                println("NotDetermined")
-                return false
-            case EKAuthorizationStatus.Denied:
-                println("Denied")
-                return false
-            case EKAuthorizationStatus.Authorized:
+            case .Authorized:
                 println("Authorized")
                 return true
-            case EKAuthorizationStatus.Restricted:
-                println("Restricted")
-                return false
             default:
-                println("error")
+                println(status)
                 return false
         }
     }
@@ -48,7 +39,6 @@ final class Calendar {
             fetchEvents()
             return
         }
-        
         
         self.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: { [weak self] (granted, error) -> Void in
             if granted {
