@@ -12,6 +12,7 @@ class TimelineCollectionViewController: UICollectionViewController {
         for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
             timeArray.append(date.stringFromFormat("HH:mm"))
         }
+        timeArray.append("24:00")
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
