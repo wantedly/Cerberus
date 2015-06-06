@@ -18,11 +18,11 @@ final class Event {
         self.available = available
     }
 
-    class func fromEKEvent(_event: EKEvent) -> Event {
+    class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
         let event = Event(
-            title:     _event.title ?? "No title",
-            startDate: _event.startDate,
-            endDate:   _event.endDate
+            title:     eventOfEventKit.title ?? "No title",
+            startDate: eventOfEventKit.startDate,
+            endDate:   eventOfEventKit.endDate
         )
 
         return event
