@@ -8,22 +8,57 @@ final class Event {
     var startDate: NSDate
     var endDate: NSDate
 
-    var attendees: [User] = []
+    var attendees: [User]!
     var available = false
 
-    init(title: String, startDate: NSDate, endDate: NSDate, available: Bool = false) {
+    init(title: String, startDate: NSDate, endDate: NSDate, attendees: [User] = []) {
         self.title     = title
         self.startDate = startDate
         self.endDate   = endDate
-        self.available = available
+        self.attendees = attendees
     }
 
     class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
-        let event = Event(
+        let event = self(
             title:     eventOfEventKit.title ?? "No title",
             startDate: eventOfEventKit.startDate,
             endDate:   eventOfEventKit.endDate
         )
+
+        if let attendees = eventOfEventKit.attendees {
+            for attendee in attendees {
+                if let a = attendee as? EKParticipant {
+                    switch a.participantType.value {
+                    case EKParticipantTypePerson.value:
+                        if a.participantStatus.value != EKParticipantStatusDeclined.value {
+                            if let name = a.name, email = a.URL.resourceSpecifier {
+                                event.attendees.append(User(name: name, email: email))
+                            }
+                        }
+
+                    case EKParticipantTypeRoom.value:
+                        // FIXME: a room
+                        println(a.URL)
+
+                    default:
+                        // just ignore
+                        println(a.participantType)
+                    }
+                }
+            }
+        }
+
+        return event
+    }
+
+    class func createEmptyEvent(#startDate: NSDate, endDate: NSDate) -> Event {
+        let event = self(
+            title:     "Available",
+            startDate: startDate,
+            endDate:   endDate
+        )
+
+        event.available = true
 
         return event
     }

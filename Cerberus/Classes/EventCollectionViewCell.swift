@@ -14,10 +14,11 @@ class EventCollectionViewCell: UICollectionViewCell {
     func update() {
         if let event = eventModel {
             let time = join(" - ", [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") })
+            let attendees = join(", ", event.attendees.map { $0.name })
 
             self.titleLabel.text = event.title
             self.timeLabel.text  = time
-            self.attendeesLabel.text = "aaa"
+            self.attendeesLabel.text = attendees
         }
     }
 }
