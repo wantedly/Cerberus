@@ -2,21 +2,29 @@ import UIKit
 import Timepiece
 
 class TimelineCollectionViewController: UICollectionViewController {
-    
+
     var timeArray = [String]()
-    
+    var syncScroller: SyncScroller!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
             timeArray.append(date.stringFromFormat("HH:mm"))
         }
+        syncScroller = SyncScroller.get()
+        syncScroller.register(collectionView!)
     }
 
     override func viewDidAppear(animated: Bool) {
         let date = NSDate()
         let newIndex = NSIndexPath(forItem: (date.hour * 60 + date.minute) / 30, inSection: 0)
         self.collectionView?.scrollToItemAtIndexPath(newIndex, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        syncScroller.unregister(collectionView!)
+        super.viewWillDisappear(animated)
     }
 
     // MARK: UICollectionViewDataSource
@@ -31,7 +39,11 @@ class TimelineCollectionViewController: UICollectionViewController {
         cell.timeLabel.text = timeArray[indexPath.row]
         return cell
     }
-    
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        syncScroller.scroll(scrollView)
+    }
+
     // MARK: UIScrollViewDelegate
 
     override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
