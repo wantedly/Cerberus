@@ -3,7 +3,7 @@ import EventKit
 
 final class Event {
     var title: String = ""
-    var location: String?
+    var location: Location?
     
     var startDate: NSDate
     var endDate: NSDate
@@ -24,6 +24,8 @@ final class Event {
             startDate: eventOfEventKit.startDate,
             endDate:   eventOfEventKit.endDate
         )
+
+        event.location = Location.findOrCreate(eventOfEventKit.location)
 
         if let attendees = eventOfEventKit.attendees {
             for attendee in attendees {
