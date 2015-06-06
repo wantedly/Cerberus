@@ -13,16 +13,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="440" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gnx-zN-lPi">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gnx-zN-lPi">
                         <rect key="frame" x="8" y="8" width="424" height="300"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
                                 <rect key="frame" x="13" y="43" width="403" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
                                 <rect key="frame" x="13" y="11" width="403" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
@@ -31,12 +31,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" constant="15" id="KOc-Ep-OVZ"/>
-                            <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="Gnx-zN-lPi" secondAttribute="leading" constant="15" id="bgf-1E-elz"/>
-                            <constraint firstItem="a4b-UU-6P7" firstAttribute="leading" secondItem="Gnx-zN-lPi" secondAttribute="leading" constant="15" id="dWD-q2-Eea"/>
                             <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="a4b-UU-6P7" secondAttribute="bottom" constant="5" id="hoy-Rb-cKJ"/>
-                            <constraint firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" constant="15" id="lwH-SG-I89"/>
-                            <constraint firstItem="a4b-UU-6P7" firstAttribute="top" secondItem="Gnx-zN-lPi" secondAttribute="top" constant="10" id="uzL-AC-9um"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -52,9 +47,10 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Gnx-zN-lPi" secondAttribute="trailing" constant="8" id="5OS-q8-2cg"/>
-                <constraint firstItem="Gnx-zN-lPi" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" constant="8" id="T19-7o-tzd"/>
-                <constraint firstItem="Gnx-zN-lPi" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="8" id="Vgn-dr-Jj2"/>
+                <constraint firstAttribute="bottom" secondItem="Gnx-zN-lPi" secondAttribute="bottom" id="BcU-JB-yZI"/>
+                <constraint firstItem="Gnx-zN-lPi" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" id="Lo6-tZ-uRm"/>
+                <constraint firstItem="Gnx-zN-lPi" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" id="lbb-SL-ZeA"/>
+                <constraint firstAttribute="trailing" secondItem="Gnx-zN-lPi" secondAttribute="trailing" id="x3y-K7-RaQ"/>
             </constraints>
             <size key="customSize" width="338" height="600"/>
             <connections>
