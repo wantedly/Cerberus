@@ -63,3 +63,6 @@ DEPENDENCIES
   cocoapods
   cocoapods-keys
   sbconstants
+
+BUNDLED WITH
+   1.10.3

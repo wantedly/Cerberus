@@ -1,16 +1,26 @@
 PODS:
+  - Async (1.2.1)
   - Keys (1.0.0)
   - Timepiece (0.3.3)
 
 DEPENDENCIES:
+  - Async (from `https://github.com/duemunk/Async.git`)
   - Keys (from `Pods/CocoaPodsKeys/`)
   - Timepiece
 
 EXTERNAL SOURCES:
+  Async:
+    :git: https://github.com/duemunk/Async.git
   Keys:
     :path: Pods/CocoaPodsKeys/
 
+CHECKOUT OPTIONS:
+  Async:
+    :commit: 7536a4d8059be119fd4a4550d674996f8a1cdd54
+    :git: https://github.com/duemunk/Async.git
+
 SPEC CHECKSUMS:
+  Async: d9ee6fc9c415d44fcb892f4c289d1e79ce8ae92d
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   Timepiece: 30ef04f74337fcb1bef2ff91cfe964184d894d12
 

@@ -20,6 +20,9 @@
 		4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */; };
 		8B4FF22A1B22E9D9003BA39D /* SyncScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */; };
 		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AEDC9A9B1B22BB1800A2EEE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9A1B22BB1800A2EEE9 /* User.swift */; };
+		AEDC9A9D1B22BBDB00A2EEE9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */; };
+		AEDC9A9F1B22BC0000A2EEE9 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9E1B22BC0000A2EEE9 /* Calendar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncScroller.swift; sourceTree = "<group>"; };
+		AEDC9A9A1B22BB1800A2EEE9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; tabWidth = 4; };
+		AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		AEDC9A9E1B22BC0000A2EEE9 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		4B3BBA971B229606002211E5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AEDC9A991B22BAF500A2EEE9 /* Models */,
 				4B3BBA991B229634002211E5 /* AppDelegate.swift */,
 				4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */,
 				4B3BBA9A1B229634002211E5 /* ViewController.swift */,
@@ -184,6 +191,16 @@
 				3DF2DAFFBE44472E4C77EA01 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AEDC9A991B22BAF500A2EEE9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AEDC9A9A1B22BB1800A2EEE9 /* User.swift */,
+				AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */,
+				AEDC9A9E1B22BC0000A2EEE9 /* Calendar.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +354,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEDC9A9D1B22BBDB00A2EEE9 /* Event.swift in Sources */,
+				AEDC9A9F1B22BC0000A2EEE9 /* Calendar.swift in Sources */,
 				4B3BBAAA1B22B6BB002211E5 /* EventsCollectionViewController.swift in Sources */,
 				4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */,
 				4B3BBAAC1B22B748002211E5 /* EventCollectionViewCell.swift in Sources */,
@@ -345,6 +364,7 @@
 				4B3BBAA71B22B076002211E5 /* TimeCollectionViewCell.swift in Sources */,
 				4B3BBA9E1B22A6B9002211E5 /* TimelineCollectionViewController.swift in Sources */,
 				4B3BBA9B1B229634002211E5 /* AppDelegate.swift in Sources */,
+				AEDC9A9B1B22BB1800A2EEE9 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
