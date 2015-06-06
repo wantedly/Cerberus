@@ -22,12 +22,12 @@ class EventCollectionViewCell: UICollectionViewCell {
 
             if event.available {
                 self.timeLabel.text = nil
-                self.wrapperView.backgroundColor = UIColor(red: 108/255.0, green: 198/255.0, blue: 68/255.0, alpha: 0.1)
-                self.wrapperView.layer.borderColor = UIColor(red: 108/255.0, green: 198/255.0, blue: 68/255.0, alpha: 0.7).CGColor
-                self.titleLabel.textColor = UIColor(red: 108/255.0, green: 198/255.0, blue: 68/255.0, alpha: 1.0)
+                self.wrapperView.backgroundColor = UIColor(hex: 0x6cc644, alpha: 0.1)
+                self.wrapperView.layer.borderColor = UIColor(hex: 0x6cc644, alpha: 0.7).CGColor
+                self.titleLabel.textColor = UIColor(hex: 0x6cc644, alpha: 1.0)
             } else {
                 self.timeLabel.text = time
-                wrapperView.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3).CGColor
+                wrapperView.layer.borderColor = UIColor(hex: 0xffffff, alpha: 0.3).CGColor
             }
         }
     }
