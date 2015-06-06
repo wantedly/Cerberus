@@ -34,8 +34,6 @@ class EventsCollectionViewController: UICollectionViewController {
         }
 
         self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.sectionInset = UIEdgeInsetsMake(50, 0, 0, 0)
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
@@ -80,6 +78,10 @@ class EventsCollectionViewController: UICollectionViewController {
         let height: CGFloat = minuteHeight * CGFloat(span)
 
         return CGSizeMake(width, height)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 200, height: 50)
     }
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
