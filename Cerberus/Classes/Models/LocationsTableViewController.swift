@@ -26,4 +26,9 @@ class LocationsTableViewController : UITableViewController {
         cell.textLabel!.text = self.locations[indexPath.row].name
         return cell
     }
+
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        println(indexPath) // Hmm....
+    }
 }
