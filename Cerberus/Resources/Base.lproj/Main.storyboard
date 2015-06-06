@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="chf-9x-46w">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -33,30 +34,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chF-4Y-vTV">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
-                                <connections>
-                                    <segue destination="AXB-VU-ey8" kind="embed" id="IgX-9M-U68"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWf-jj-sgM">
-                                <rect key="frame" x="300" y="0.0" width="300" height="600"/>
+                                <rect key="frame" x="288" y="0.0" width="312" height="600"/>
                                 <connections>
                                     <segue destination="m6y-EW-Ga5" kind="embed" id="etH-Tj-wJs"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chF-4Y-vTV">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="y61-cy-gOD"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="AXB-VU-ey8" kind="embed" id="IgX-9M-U68"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="chF-4Y-vTV" firstAttribute="top" secondItem="uAH-9q-JER" secondAttribute="top" id="2F4-ht-Rpu"/>
-                            <constraint firstItem="uWf-jj-sgM" firstAttribute="top" secondItem="uAH-9q-JER" secondAttribute="top" id="7Ru-ev-wfk"/>
-                            <constraint firstAttribute="width" secondItem="chF-4Y-vTV" secondAttribute="width" multiplier="2:1" id="B1O-mR-ua1"/>
-                            <constraint firstItem="uvZ-wf-2Xm" firstAttribute="top" secondItem="uWf-jj-sgM" secondAttribute="bottom" id="DhD-4T-6oQ"/>
+                            <constraint firstItem="uvZ-wf-2Xm" firstAttribute="top" secondItem="uWf-jj-sgM" secondAttribute="bottom" id="0L5-RM-Iwx"/>
                             <constraint firstAttribute="width" secondItem="chF-4Y-vTV" secondAttribute="width" multiplier="1:2" constant="1" id="EvK-0m-QMm"/>
-                            <constraint firstAttribute="trailing" secondItem="uWf-jj-sgM" secondAttribute="trailing" id="SKG-ax-7b8"/>
-                            <constraint firstItem="uvZ-wf-2Xm" firstAttribute="top" secondItem="chF-4Y-vTV" secondAttribute="bottom" id="eOg-d3-wE4"/>
-                            <constraint firstItem="chF-4Y-vTV" firstAttribute="leading" secondItem="uAH-9q-JER" secondAttribute="leading" id="eby-JE-cAA"/>
-                            <constraint firstItem="uWf-jj-sgM" firstAttribute="leading" secondItem="chF-4Y-vTV" secondAttribute="trailing" id="qqc-3p-vJf"/>
+                            <constraint firstItem="uWf-jj-sgM" firstAttribute="top" secondItem="uAH-9q-JER" secondAttribute="topMargin" id="JaP-Ki-2Lm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uWf-jj-sgM" secondAttribute="trailing" constant="-16" id="Kvc-xB-jhJ"/>
+                            <constraint firstItem="uWf-jj-sgM" firstAttribute="leading" secondItem="chF-4Y-vTV" secondAttribute="trailing" id="cZ6-PK-mW7"/>
+                            <constraint firstItem="chF-4Y-vTV" firstAttribute="top" secondItem="uAH-9q-JER" secondAttribute="topMargin" id="drm-qh-IZD"/>
+                            <constraint firstItem="chF-4Y-vTV" firstAttribute="leading" secondItem="uAH-9q-JER" secondAttribute="leadingMargin" constant="-16" id="oZl-Io-Yoi"/>
+                            <constraint firstItem="uvZ-wf-2Xm" firstAttribute="top" secondItem="chF-4Y-vTV" secondAttribute="bottom" id="q99-8g-QwY"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -75,10 +78,10 @@
             <objects>
                 <collectionViewController id="AXB-VU-ey8" customClass="TimelineCollectionViewController" customModule="Cerberus" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="4TF-3p-8s7">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cj8-vQ-FzX">
-                            <size key="itemSize" width="300" height="92"/>
+                            <size key="itemSize" width="300" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -88,18 +91,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="92"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16:30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10a-C3-rkA">
-                                            <rect key="frame" x="52" y="-4" width="196" height="96"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="80"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="16:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10a-C3-rkA">
+                                            <rect key="frame" x="40" y="10" width="220" height="80"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="80"/>
+                                            <color key="textColor" white="0.40067331414473684" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="10a-C3-rkA" secondAttribute="centerY" id="66M-aa-Om4"/>
+                                    <constraint firstAttribute="centerX" secondItem="10a-C3-rkA" secondAttribute="centerX" id="wBE-Ba-iOu"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="timeLabel" destination="10a-C3-rkA" id="hRU-S2-lnA"/>
                                 </connections>
@@ -120,7 +127,7 @@
             <objects>
                 <collectionViewController id="m6y-EW-Ga5" customClass="EventsCollectionViewController" customModule="Cerberus" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Eub-PV-Ad1">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="312" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o26-rS-jSe">
                             <size key="itemSize" width="300" height="89"/>

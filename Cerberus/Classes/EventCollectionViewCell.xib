@@ -7,49 +7,48 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AgM-dG-oby" customClass="EventCollectionViewCell" customModule="Cerberus" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="440" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <rect key="frame" x="0.0" y="0.0" width="440" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
-                        <rect key="frame" x="15" y="15" width="570" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
+                        <rect key="frame" x="15" y="10" width="410" height="30"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                        <color key="textColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
-                        <rect key="frame" x="15" y="36" width="570" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attendees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqF-6c-oCz">
+                        <rect key="frame" x="15" y="76" width="570" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.43349095394736842" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqF-6c-oCz">
-                        <rect key="frame" x="15" y="57" width="570" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
+                        <rect key="frame" x="15" y="44" width="410" height="21"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.12638774671052633" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="a4b-UU-6P7" secondAttribute="bottom" id="5d3-b5-YZc"/>
-                <constraint firstItem="a4b-UU-6P7" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="15" id="Hug-cU-mHm"/>
-                <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="15" id="NkX-wx-Viu"/>
-                <constraint firstItem="gqF-6c-oCz" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="15" id="Yvt-y8-47O"/>
-                <constraint firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" constant="15" id="djH-Sj-RdN"/>
-                <constraint firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" constant="15" id="xI4-4w-iZi"/>
-                <constraint firstItem="a4b-UU-6P7" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" constant="15" id="yNM-4l-SCm"/>
-                <constraint firstAttribute="trailing" secondItem="gqF-6c-oCz" secondAttribute="trailing" constant="15" id="yPn-FZ-m1N"/>
-                <constraint firstItem="gqF-6c-oCz" firstAttribute="top" secondItem="NC0-h0-9g8" secondAttribute="bottom" id="zIP-6W-Z1W"/>
+                <constraint firstItem="a4b-UU-6P7" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" constant="10" id="3Qb-MA-MoV"/>
+                <constraint firstItem="a4b-UU-6P7" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="15" id="4FV-cZ-GF7"/>
+                <constraint firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" constant="15" id="f4u-PK-JPJ"/>
+                <constraint firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" constant="15" id="tpH-kS-0BR"/>
+                <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="15" id="x1E-Kx-5NR"/>
             </constraints>
-            <size key="customSize" width="498" height="600"/>
+            <size key="customSize" width="338" height="600"/>
             <connections>
                 <outlet property="attendeesLabel" destination="gqF-6c-oCz" id="cxY-f9-gAU"/>
                 <outlet property="timeLabel" destination="NC0-h0-9g8" id="EeA-UJ-ai1"/>
                 <outlet property="titleLabel" destination="a4b-UU-6P7" id="QGO-TS-1B2"/>
             </connections>
-            <point key="canvasLocation" x="523" y="405"/>
+            <point key="canvasLocation" x="443" y="405"/>
         </collectionViewCell>
     </objects>
 </document>
