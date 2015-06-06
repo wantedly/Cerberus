@@ -44,9 +44,7 @@ final class Calendar {
 
     private func fetchEvents() {
         let now       = NSDate()
-        let startDate = self.calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: 30.days.ago, options: nil) // FIXME: ofDate: now
-        let endDate   = self.calendar.dateBySettingHour(23, minute: 59, second: 59, ofDate: now, options: nil)
-        let predicate = self.eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
+        let predicate = self.eventStore.predicateForEventsWithStartDate(30.days.ago, endDate: now, calendars: nil) // FIXME: ofDate: now
 
         if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
             for event in matchingEvents {
