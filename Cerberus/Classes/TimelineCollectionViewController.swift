@@ -1,10 +1,9 @@
 import UIKit
 import Timepiece
 
-let reuseIdentifier = "TimeCell"
-
 class TimelineCollectionViewController: UICollectionViewController {
     
+    let reuseIdentifier = "TimeCell"
     var timeArray = [String]()
     
     override func viewDidLoad() {
