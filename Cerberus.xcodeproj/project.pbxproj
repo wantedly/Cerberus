@@ -12,7 +12,6 @@
     4B3BBA821B22954B002211E5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B3BBA801B22954B002211E5 /* LaunchScreen.xib */; };
     4B3BBA8E1B22954C002211E5 /* CerberusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA8D1B22954C002211E5 /* CerberusTests.swift */; };
     4B3BBA9B1B229634002211E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA991B229634002211E5 /* AppDelegate.swift */; };
-    4B3BBA9C1B229634002211E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA9A1B229634002211E5 /* ViewController.swift */; };
     4B3BBA9E1B22A6B9002211E5 /* TimelineCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBA9D1B22A6B9002211E5 /* TimelineCollectionViewController.swift */; };
     4B3BBAA71B22B076002211E5 /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBAA61B22B076002211E5 /* TimeCollectionViewCell.swift */; };
     4B3BBAAA1B22B6BB002211E5 /* EventsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBAA91B22B6BB002211E5 /* EventsCollectionViewController.swift */; };
@@ -20,7 +19,6 @@
     4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */; };
     8B4FF22A1B22E9D9003BA39D /* SyncScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */; };
     A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-    AE1DCBCF1B22F17B00F179ED /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE1DCBCE1B22F17B00F179ED /* EventCollectionViewCell.xib */; };
     AEDC9A9B1B22BB1800A2EEE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9A1B22BB1800A2EEE9 /* User.swift */; };
     AEDC9A9D1B22BBDB00A2EEE9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */; };
     AEDC9A9F1B22BC0000A2EEE9 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9E1B22BC0000A2EEE9 /* Calendar.swift */; };
@@ -48,14 +46,12 @@
     4B3BBA8C1B22954C002211E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
     4B3BBA8D1B22954C002211E5 /* CerberusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerberusTests.swift; sourceTree = "<group>"; };
     4B3BBA991B229634002211E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-    4B3BBA9A1B229634002211E5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
     4B3BBA9D1B22A6B9002211E5 /* TimelineCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCollectionViewController.swift; sourceTree = "<group>"; };
     4B3BBAA61B22B076002211E5 /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
     4B3BBAA91B22B6BB002211E5 /* EventsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCollectionViewController.swift; sourceTree = "<group>"; };
     4B3BBAAB1B22B748002211E5 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
     4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
     59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-    AE1DCBCE1B22F17B00F179ED /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
     8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncScroller.swift; sourceTree = "<group>"; };
     AEDC9A9A1B22BB1800A2EEE9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; tabWidth = 4; };
     AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -150,7 +146,6 @@
         AEDC9A991B22BAF500A2EEE9 /* Models */,
         4B3BBA991B229634002211E5 /* AppDelegate.swift */,
         4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */,
-        4B3BBA9A1B229634002211E5 /* ViewController.swift */,
         4B3BBAA51B22A886002211E5 /* Timeline */,
         4B3BBAA81B22B551002211E5 /* Events */,
         8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */,
@@ -182,7 +177,6 @@
       children = (
         4B3BBAA91B22B6BB002211E5 /* EventsCollectionViewController.swift */,
         4B3BBAAB1B22B748002211E5 /* EventCollectionViewCell.swift */,
-        AE1DCBCE1B22F17B00F179ED /* EventCollectionViewCell.xib */,
       );
       name = Events;
       sourceTree = "<group>";
@@ -258,6 +252,7 @@
         TargetAttributes = {
           4B3BBA711B22954B002211E5 = {
             CreatedOnToolsVersion = 6.3.2;
+            DevelopmentTeam = 42Z77KT2BJ;
           };
           4B3BBA861B22954C002211E5 = {
             CreatedOnToolsVersion = 6.3.2;
@@ -363,7 +358,6 @@
         4B3BBAAA1B22B6BB002211E5 /* EventsCollectionViewController.swift in Sources */,
         4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */,
         4B3BBAAC1B22B748002211E5 /* EventCollectionViewCell.swift in Sources */,
-        4B3BBA9C1B229634002211E5 /* ViewController.swift in Sources */,
         8B4FF22A1B22E9D9003BA39D /* SyncScroller.swift in Sources */,
         4B3BBAA71B22B076002211E5 /* TimeCollectionViewCell.swift in Sources */,
         4B3BBA9E1B22A6B9002211E5 /* TimelineCollectionViewController.swift in Sources */,
@@ -498,10 +492,13 @@
       baseConfigurationReference = 59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */;
       buildSettings = {
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CODE_SIGN_IDENTITY = "iPhone Developer";
+        "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
         INFOPLIST_FILE = Cerberus/Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 8.0;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         PRODUCT_NAME = "$(TARGET_NAME)";
+        PROVISIONING_PROFILE = "";
       };
       name = Debug;
     };
@@ -510,10 +507,13 @@
       baseConfigurationReference = 3DF2DAFFBE44472E4C77EA01 /* Pods.release.xcconfig */;
       buildSettings = {
         ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        CODE_SIGN_IDENTITY = "iPhone Developer";
+        "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
         INFOPLIST_FILE = Cerberus/Info.plist;
         IPHONEOS_DEPLOYMENT_TARGET = 8.0;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         PRODUCT_NAME = "$(TARGET_NAME)";
+        PROVISIONING_PROFILE = "";
       };
       name = Release;
     };
