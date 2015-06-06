@@ -6,14 +6,19 @@ class TimelineCollectionViewController: UICollectionViewController {
     let reuseIdentifier = "TimeCell"
     var timeArray = [String]()
     var notificationCenter = NSNotificationCenter.defaultCenter()
-    let scrollNotificationLabel = "scrolled"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
             timeArray.append(date.stringFromFormat("HH:mm"))
         }
+        notificationCenter.addObserver(self, selector: "receiveScrollNotification:", name: "scrolled", object: nil)
+    }
+
+    func receiveScrollNotification(notification: NSNotification) {
+        let eventView = notification.object as! UIScrollView
+        collectionView?.contentOffset = eventView.contentOffset
     }
 
     // MARK: UICollectionViewDataSource
@@ -29,6 +34,11 @@ class TimelineCollectionViewController: UICollectionViewController {
     }
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        notificationCenter.postNotificationName(scrollNotificationLabel, object: scrollView)
+        if (scrollView.isEqual(self)) {
+            return
+        }
+        if scrollView.dragging {
+            notificationCenter.postNotificationName("scrolled", object: scrollView)
+        }
     }
 }

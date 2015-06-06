@@ -26,4 +26,13 @@ class EventsCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! EventCollectionViewCell
         return cell
     }
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (scrollView.isEqual(self)) {
+            return
+        }
+        if scrollView.dragging {
+            notificationCenter.postNotificationName("scrolled", object: scrollView)
+        }
+    }
 }
