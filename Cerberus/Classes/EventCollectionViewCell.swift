@@ -1,4 +1,5 @@
 import UIKit
+import Timepiece
 
 class EventCollectionViewCell: UICollectionViewCell {
     
@@ -12,8 +13,10 @@ class EventCollectionViewCell: UICollectionViewCell {
 
     func update() {
         if let event = eventModel {
+            let time = join(" - ", [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") })
+
             self.titleLabel.text = event.title
-            self.timeLabel.text  = join(" - ", [event.startDate.stringFromFormat("HH:mm"), event.endDate.stringFromFormat("HH:mm")])
+            self.timeLabel.text  = time
             self.attendeesLabel.text = "aaa"
         }
     }
