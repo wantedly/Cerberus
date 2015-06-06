@@ -29,6 +29,12 @@ class SyncScroller {
         self.views.append(scrollView)
     }
 
+    func unregister(scrollView: UIScrollView) {
+        if let index = find(views, scrollView) {
+            views.removeAtIndex(index)
+        }
+    }
+
     func scroll(scrollView: UIScrollView) {
         if scrollView.dragging || scrollView.bounces {
             for view in self.views {

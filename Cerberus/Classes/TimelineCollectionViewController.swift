@@ -22,6 +22,11 @@ class TimelineCollectionViewController: UICollectionViewController {
         self.collectionView?.scrollToItemAtIndexPath(newIndex, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        syncScroller.unregister(collectionView!)
+        super.viewWillDisappear(animated)
+    }
+
     // MARK: UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
