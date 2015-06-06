@@ -8,8 +8,8 @@ final class Event {
     var startDate: NSDate
     var endDate: NSDate
 
-    var available: Bool = false
     var attendees: [User] = []
+    var available = false
 
     init(title: String, startDate: NSDate, endDate: NSDate, available: Bool = false) {
         self.title     = title
