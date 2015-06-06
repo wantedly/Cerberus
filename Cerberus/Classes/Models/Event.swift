@@ -16,4 +16,8 @@ final class Event {
     var endAt: NSDate?
     
     var attendees: [User] = []
+
+    init(title: String) {
+        self.title = title
+    }
 }

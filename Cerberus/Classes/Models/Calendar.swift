@@ -18,8 +18,6 @@ final class Calendar {
     init() {
         self.events = []
         self.eventStore = EKEventStore()
-        authorize()
-        fetchEvents()
     }
     
     func isAuthorized() -> Bool {
@@ -46,13 +44,17 @@ final class Calendar {
 
     func authorize() {
         if isAuthorized() {
+            fetchEvents()
             return
         }
         
-        handleCompletion = { (granted , error) -> Void in
+        
+        self.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: { [weak self] (granted, error) -> Void in
             if granted {
+                self?.fetchEvents()
                 return
             } else {
+                /* FIXME
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     let alert = UIAlertController(title: "許可されませんでした", message: "Privacy->App->Reminderで変更してください", preferredStyle: UIAlertControllerStyle.Alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
@@ -60,13 +62,12 @@ final class Calendar {
                     myAlert.addAction(okAction)
                     self.presentViewController(alert, animated: true, completion: nil)
                 })
+                */
             }
-        }
-        
-        myEventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: handleCompletion)
+        })
     }
     
-    func fetchEvents() {
+    private func fetchEvents() {
         var myCalendar: NSCalendar = NSCalendar.currentCalendar()
         var myEventCalendars = self.eventStore.calendarsForEntityType(EKEntityTypeEvent)
 
@@ -75,23 +76,24 @@ final class Calendar {
         
         let oneDayAgo: NSDate = myCalendar.dateByAddingComponents(oneDayAgoComponents,
             toDate: NSDate(),
-            options: NSCalendarOptions.allZeros)!
+            options: NSCalendarOptions.allZeros
+        )!
         
         let oneDayFromNowComponents: NSDateComponents = NSDateComponents()
         oneDayFromNowComponents.year = 1
         
         let oneDayFromNow: NSDate = myCalendar.dateByAddingComponents(oneDayFromNowComponents,
             toDate: NSDate(),
-            options: NSCalendarOptions.allZeros)!
+            options: NSCalendarOptions.allZeros
+        )!
         
-        var predicate = NSPredicate()
-        
-        predicate = self.eventStore.predicateForEventsWithStartDate(oneDayAgo,
+        var predicate = self.eventStore.predicateForEventsWithStartDate(oneDayAgo,
             endDate: oneDayFromNow,
-            calendars: nil)
+            calendars: nil
+        )
         
-        var events = self.eventStore.eventsMatchingPredicate(predicate) as! [EKEvent]
-
-        // TODO
+        for event in self.eventStore.eventsMatchingPredicate(predicate) {
+            self.events.append(Event(title: event.title ?? "(No title)"))
+        }
     }
 }
