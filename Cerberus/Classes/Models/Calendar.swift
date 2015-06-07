@@ -18,7 +18,7 @@ final class Calendar {
 
     var date: NSDate!
 
-    static var calendars: [EKCalendar]! = []
+    static var calendars: [EKCalendar]? = nil
 
     init() {
         self.events = []
@@ -59,42 +59,45 @@ final class Calendar {
     }
 
     private func fetchEvents() {
-        let calStartDate = self.date.beginningOfDay
-        let calEndDate   = calStartDate + 1.day
-        let predicate    = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: Calendar.calendars)
-
-        var currentDateOffset = calStartDate
-
         self.events.removeAll(keepCapacity: true)
 
-        if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
-            for event in matchingEvents {
-                if let startDate = event.startDate, endDate = event.endDate {
-                    if startDate < currentDateOffset {
-                        continue
-                    } else if startDate >= calEndDate {
-                        break
+        let calStartDate = self.date.beginningOfDay
+        let calEndDate   = calStartDate + 1.day
+
+        if let calendars = Calendar.calendars {
+            let predicate = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: calendars)
+
+            var currentDateOffset = calStartDate
+
+            if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
+                for event in matchingEvents {
+                    if let startDate = event.startDate, endDate = event.endDate {
+                        if startDate < currentDateOffset {
+                            continue
+                        } else if startDate >= calEndDate {
+                            break
+                        }
+
+                        if currentDateOffset < startDate {
+                            self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: startDate))
+                        }
+
+                        let event = Event.fromEKEvent(event as! EKEvent)
+
+                        if endDate > calEndDate {
+                            event.endDate = calEndDate
+                        }
+
+                        self.events.append(event)
+
+                        currentDateOffset = endDate
                     }
-
-                    if currentDateOffset < startDate {
-                        self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: startDate))
-                    }
-
-                    let event = Event.fromEKEvent(event as! EKEvent)
-
-                    if endDate > calEndDate {
-                        event.endDate = calEndDate
-                    }
-
-                    self.events.append(event)
-
-                    currentDateOffset = endDate
                 }
             }
-        }
 
-        if currentDateOffset < calEndDate {
-            self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: calEndDate))
+            if currentDateOffset < calEndDate {
+                self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: calEndDate))
+            }
         }
     }
 
