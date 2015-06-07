@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-11" y="471"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="yDp-cd-yDP">
             <objects>
-                <viewController id="N01-TQ-I0d" sceneMemberID="viewController">
+                <viewController id="N01-TQ-I0d" customClass="MainViewController" customModule="Cerberus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IRP-Wg-f02"/>
                         <viewControllerLayoutGuide type="bottom" id="uvZ-wf-2Xm"/>
