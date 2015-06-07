@@ -1,4 +1,5 @@
 import UIKit
+import EventKit
 import Async
 import Timepiece
 
@@ -29,6 +30,7 @@ class EventsCollectionViewController: UICollectionViewController {
 
             case .Success:
                 println("Authorized")
+                self.registerAutoEventFetcher()
             }
         }
 
@@ -42,6 +44,22 @@ class EventsCollectionViewController: UICollectionViewController {
     override func viewWillDisappear(animated: Bool) {
         syncScroller.unregister(collectionView!)
         super.viewWillDisappear(animated)
+        unregisterAutoEventFetcher()
+    }
+
+    // MARK: EKEventStoreChangedNotification
+
+    func registerAutoEventFetcher() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
+    }
+
+    func unregisterAutoEventFetcher() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    func eventStoreChanged(notification: NSNotification) {
+        self.calendar.update()
+        self.collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
