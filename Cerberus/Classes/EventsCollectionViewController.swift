@@ -41,12 +41,15 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
     }
 
     override func viewWillDisappear(animated: Bool) {
-        syncScroller.unregister(collectionView!)
         super.viewWillDisappear(animated)
+
+        syncScroller.unregister(collectionView!)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
