@@ -14,58 +14,72 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gnx-zN-lPi">
-                        <rect key="frame" x="8" y="0.0" width="408" height="316"/>
+                        <rect key="frame" x="15" y="0.0" width="410" height="316"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
-                                <rect key="frame" x="13" y="43" width="403" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="ZSG-Ih-Huw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-UU-6P7">
-                                <rect key="frame" x="13" y="14" width="403" height="24"/>
+                                <rect key="frame" x="15" y="15" width="380" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
+                                <rect key="frame" x="15" y="47" width="380" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="wg6-tC-twk">
+                                <rect key="frame" x="15" y="74" width="380" height="227"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VQG-RH-O96">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="AgM-dG-oby" id="xpe-XL-ND8"/>
+                                    <outlet property="delegate" destination="AgM-dG-oby" id="MAa-yJ-q6W"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wg6-tC-twk" firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" id="367-Y7-QC7"/>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="a4b-UU-6P7" secondAttribute="leading" id="8EJ-59-trw"/>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="a4b-UU-6P7" secondAttribute="bottom" constant="8" id="9gO-S9-JKT"/>
+                            <constraint firstItem="wg6-tC-twk" firstAttribute="top" secondItem="NC0-h0-9g8" secondAttribute="bottom" constant="8" id="JeR-Up-w4y"/>
+                            <constraint firstItem="wg6-tC-twk" firstAttribute="leading" secondItem="NC0-h0-9g8" secondAttribute="leading" id="Nh7-Hr-jaf"/>
                             <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="a4b-UU-6P7" secondAttribute="leading" id="RYJ-2Y-EUi"/>
+                            <constraint firstItem="a4b-UU-6P7" firstAttribute="top" secondItem="Gnx-zN-lPi" secondAttribute="top" constant="15" id="UXf-eB-DqT"/>
+                            <constraint firstItem="a4b-UU-6P7" firstAttribute="leading" secondItem="Gnx-zN-lPi" secondAttribute="leading" constant="15" id="W8g-wD-hkD"/>
                             <constraint firstItem="NC0-h0-9g8" firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" id="WCw-cW-cOu"/>
-                            <constraint firstItem="NC0-h0-9g8" firstAttribute="leading" secondItem="Gnx-zN-lPi" secondAttribute="leading" constant="13" id="YQg-Gp-rRn"/>
-                            <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="a4b-UU-6P7" secondAttribute="bottom" constant="5" id="hoy-Rb-cKJ"/>
-                            <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="Gnx-zN-lPi" secondAttribute="top" constant="43" id="iqf-oY-yDK"/>
-                            <constraint firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" constant="-8" id="uwa-dd-gLu"/>
+                            <constraint firstItem="NC0-h0-9g8" firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" id="b00-De-KXi"/>
+                            <constraint firstAttribute="trailing" secondItem="a4b-UU-6P7" secondAttribute="trailing" constant="15" id="c2Q-Le-4AJ"/>
+                            <constraint firstAttribute="bottom" secondItem="wg6-tC-twk" secondAttribute="bottom" constant="15" id="t2r-HI-eL1"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                <integer key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RYJ-2Y-EUi"/>
+                                <exclude reference="WCw-cW-cOu"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Gnx-zN-lPi" secondAttribute="trailing" constant="24" id="Qe5-NF-EYb"/>
+                <constraint firstAttribute="trailing" secondItem="Gnx-zN-lPi" secondAttribute="trailing" constant="15" id="Qe5-NF-EYb"/>
                 <constraint firstAttribute="bottom" secondItem="Gnx-zN-lPi" secondAttribute="bottom" id="SmH-U9-Xc1"/>
                 <constraint firstItem="Gnx-zN-lPi" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" id="jP0-cP-GsI"/>
-                <constraint firstItem="Gnx-zN-lPi" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="8" id="wbZ-Bj-XwM"/>
+                <constraint firstItem="Gnx-zN-lPi" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="15" id="wbZ-Bj-XwM"/>
             </constraints>
             <size key="customSize" width="338" height="316"/>
             <connections>
-                <outlet property="bottomOffsetConstraint" destination="SmH-U9-Xc1" id="uWb-b2-yA7"/>
                 <outlet property="timeLabel" destination="NC0-h0-9g8" id="EeA-UJ-ai1"/>
                 <outlet property="titleLabel" destination="a4b-UU-6P7" id="QGO-TS-1B2"/>
-                <outlet property="topOffsetConstraint" destination="jP0-cP-GsI" id="psX-t4-O6e"/>
+                <outlet property="userAvatarsCollectionView" destination="wg6-tC-twk" id="rER-g6-gFb"/>
                 <outlet property="wrapperView" destination="Gnx-zN-lPi" id="nIi-6c-YhA"/>
             </connections>
             <point key="canvasLocation" x="443" y="263"/>
