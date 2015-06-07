@@ -22,6 +22,14 @@ class TimelineCollectionViewController: UICollectionViewController {
         syncScroller.register(collectionView!)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navCtrl = self.navigationController {
+            let bgImage = UIImage(named: "background")
+            navCtrl.navigationBar.setBackgroundImage(bgImage, forBarMetrics: UIBarMetrics.Default)
+        }
+    }
+
     override func viewDidAppear(animated: Bool) {
         let date = NSDate()
         let newIndex = NSIndexPath(forItem: (date.hour * 60 + date.minute) / 30, inSection: 0)
