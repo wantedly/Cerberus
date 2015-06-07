@@ -22,7 +22,7 @@ final class Calendar {
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
 
-        self.date     = 4.days.ago  // FIXME: Use `NSDate()` instead
+        self.date     = NSDate()
         self.location = nil  // Retrive from use defaults?
     }
 
