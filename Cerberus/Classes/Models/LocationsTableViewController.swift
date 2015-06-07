@@ -3,7 +3,7 @@ import RealmSwift
 
 class LocationsTableViewController : UITableViewController {
 
-    var locations = [Location]()
+    private var locations = [Location]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
