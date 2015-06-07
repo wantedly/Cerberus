@@ -46,6 +46,13 @@ class TimelineCollectionViewController: UICollectionViewController {
         return cell
     }
 
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+        return CGSizeMake(collectionView.bounds.width, TimelineHeight)
+    }
+
+
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         syncScroller.scroll(scrollView)
     }
