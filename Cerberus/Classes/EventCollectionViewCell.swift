@@ -60,15 +60,4 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
         cell.userModel = self.eventModel?.attendees[indexPath.row]
         return cell
     }
-
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        let eventsCollectionViewFlowLayout = collectionViewLayout as! EventsCollectionViewFlowLayout
-//        let event = self.calendar.events[indexPath.row]
-//        return eventsCollectionViewFlowLayout.sizeForEvent(event)
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: 200, height: 50)
-//    }
-
 }
