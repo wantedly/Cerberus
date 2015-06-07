@@ -27,7 +27,7 @@ final class Calendar {
         self.date = NSDate()
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didChooseCalendarNotification",
+            selector: "didChooseCalendarNotification:",
             name:     NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue,
             object:   nil
         )
@@ -37,6 +37,7 @@ final class Calendar {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    @objc
     func didChooseCalendarNotification(notification: NSNotification) {
         self.selectedCalendars = notification.object as? [EKCalendar]
     }

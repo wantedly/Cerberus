@@ -43,8 +43,8 @@ class EventsCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didChooseCalendarNotification", name: NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged:", name: EKEventStoreChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didChooseCalendarNotification:", name: NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: nil)
 
     }
 
