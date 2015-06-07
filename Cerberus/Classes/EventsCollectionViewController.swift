@@ -36,7 +36,8 @@ class EventsCollectionViewController: UICollectionViewController {
         self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
 
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.sectionInset = UIEdgeInsetsMake(16, 0, 16, 0)
+        flowLayout.minimumLineSpacing = 16.0
+        flowLayout.minimumInteritemSpacing = 16.0
 
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
@@ -56,13 +57,6 @@ class EventsCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellreuseIdentifier.EventCell.rawValue, forIndexPath: indexPath) as! EventCollectionViewCell
         cell.eventModel = self.calendar.events[indexPath.row]
-        if indexPath.row == 0 {
-            cell.topOffsetConstraint.constant = 0
-            cell.bottomOffsetConstraint.constant = 8
-        } else if indexPath.row == self.calendar.events.count - 1 {
-            cell.bottomOffsetConstraint.constant = 0
-            cell.topOffsetConstraint.constant = 8
-        }
         return cell
     }
 
