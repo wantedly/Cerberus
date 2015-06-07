@@ -83,10 +83,6 @@ class EventsCollectionViewController: UICollectionViewController {
         return eventsCollectionViewFlowLayout.sizeForEvent(event)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 200, height: 50)
-    }
-
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         syncScroller.scroll(scrollView)
     }

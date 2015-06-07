@@ -17,7 +17,7 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.wrapperView.layer.cornerRadius = 5
+        self.wrapperView.layer.cornerRadius = 3
         self.wrapperView.layer.borderWidth = 1
 
         let nib = UINib(nibName: XibNames.UserAvatarCollectionViewCell.rawValue, bundle: nil)

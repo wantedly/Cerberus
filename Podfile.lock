@@ -10,7 +10,6 @@ PODS:
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
   - Timepiece (0.3.3)
-  - Toucan (0.2.0)
 
 DEPENDENCIES:
   - Async (from `https://github.com/duemunk/Async.git`)
@@ -18,7 +17,6 @@ DEPENDENCIES:
   - RealmSwift
   - SDWebImage
   - Timepiece
-  - Toucan
 
 EXTERNAL SOURCES:
   Async:
@@ -38,6 +36,5 @@ SPEC CHECKSUMS:
   RealmSwift: feeac2930716d9a04ba45637add4abe994fa05fd
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Timepiece: 30ef04f74337fcb1bef2ff91cfe964184d894d12
-  Toucan: 61d31928e7d75c401e1d51cd2b13d8275a7a579c
 
 COCOAPODS: 0.37.2

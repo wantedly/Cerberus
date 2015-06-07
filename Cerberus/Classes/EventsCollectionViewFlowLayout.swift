@@ -5,12 +5,13 @@ class EventsCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        minimumLineSpacing = 16.0
-        minimumInteritemSpacing = 16.0
+        minimumLineSpacing = EventInterval
+        minimumInteritemSpacing = EventInterval
+        sectionInset = UIEdgeInsetsMake(WrapperTop + TimelineHeight / 2 + EventPadding, 0, WrapperBottom, 0)
     }
 
     func sizeForEvent(event: Event) -> CGSize {
-        let minuteHeight: CGFloat = 100.0 / 30
+        let minuteHeight: CGFloat = TimelineHeight / 30
 
         var end = event.endDate.hour * 60 + event.endDate.minute
 
@@ -30,7 +31,7 @@ class EventsCollectionViewFlowLayout: UICollectionViewFlowLayout {
         */
 
         let width: CGFloat = collectionView!.bounds.width
-        let height: CGFloat = minuteHeight * CGFloat(span)
+        let height: CGFloat = minuteHeight * CGFloat(span) - EventInterval
 
         return CGSizeMake(width, height)
     }

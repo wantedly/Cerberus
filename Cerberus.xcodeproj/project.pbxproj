@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4704B73E1B241FD3006005F4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704B73D1B241FD3006005F4 /* Constants.swift */; };
 		4B3BBA7D1B22954B002211E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B3BBA7B1B22954B002211E5 /* Main.storyboard */; };
 		4B3BBA7F1B22954B002211E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3BBA7E1B22954B002211E5 /* Images.xcassets */; };
 		4B3BBA821B22954B002211E5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B3BBA801B22954B002211E5 /* LaunchScreen.xib */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		2B304EBEE3FD8D6E3DE34819 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF2DAFFBE44472E4C77EA01 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4704B73D1B241FD3006005F4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B3BBA721B22954B002211E5 /* Cerberus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerberus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3BBA761B22954B002211E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B3BBA7C1B22954B002211E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				AEDC9A991B22BAF500A2EEE9 /* Models */,
 				4B3BBA991B229634002211E5 /* AppDelegate.swift */,
 				4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */,
+				4704B73D1B241FD3006005F4 /* Constants.swift */,
 				4B3BBAA51B22A886002211E5 /* Timeline */,
 				4B3BBAA81B22B551002211E5 /* Events */,
 				8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */,
@@ -414,6 +417,7 @@
 				4B3BBA9B1B229634002211E5 /* AppDelegate.swift in Sources */,
 				AE59FB451B2364C200BBCDA0 /* Location.swift in Sources */,
 				AEDC9A9B1B22BB1800A2EEE9 /* User.swift in Sources */,
+				4704B73E1B241FD3006005F4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
