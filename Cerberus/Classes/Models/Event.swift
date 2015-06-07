@@ -6,7 +6,6 @@ final class Event {
     var startDate: NSDate
     var endDate: NSDate
 
-    var location: Location?
     var attendees: [User]! = []
     let available: Bool
 
@@ -32,8 +31,6 @@ final class Event {
             startDate: eventOfEventKit.startDate,
             endDate:   eventOfEventKit.endDate
         )
-
-        event.location = Location.findOrCreate(eventOfEventKit.location)
 
         if let attendees = eventOfEventKit.attendees {
             for attendee in attendees {

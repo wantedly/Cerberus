@@ -15,15 +15,31 @@ final class Calendar {
     var events: [Event]!
 
     var date: NSDate!
-    var location: NSDate!
+
+    var selectedCalendars: [EKCalendar]?
 
     init() {
         self.events = []
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
+        self.selectedCalendars = nil
 
-        self.date     = NSDate()
-        self.location = nil  // Retrive from use defaults?
+        self.date = NSDate()
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "didChooseCalendarNotification:",
+            name:     NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue,
+            object:   nil
+        )
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    @objc
+    func didChooseCalendarNotification(notification: NSNotification) {
+        self.selectedCalendars = notification.object as? [EKCalendar]
     }
 
     func isAuthorized() -> Bool {
@@ -57,40 +73,45 @@ final class Calendar {
     }
 
     private func fetchEvents() {
+        self.events.removeAll(keepCapacity: true)
+
         let calStartDate = self.date.beginningOfDay
         let calEndDate   = calStartDate + 1.day
-        let predicate    = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: nil)
 
-        var currentDateOffset = calStartDate
+        if let calendars = self.selectedCalendars {
+            let predicate = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: calendars)
 
-        if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
-            for event in matchingEvents {
-                if let startDate = event.startDate, endDate = event.endDate {
-                    if startDate < currentDateOffset {
-                        continue
-                    } else if startDate >= calEndDate {
-                        break
+            var currentDateOffset = calStartDate
+
+            if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
+                for event in matchingEvents {
+                    if let startDate = event.startDate, endDate = event.endDate {
+                        if startDate < currentDateOffset {
+                            continue
+                        } else if startDate >= calEndDate {
+                            break
+                        }
+
+                        if currentDateOffset < startDate {
+                            self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: startDate))
+                        }
+
+                        let event = Event.fromEKEvent(event as! EKEvent)
+
+                        if endDate > calEndDate {
+                            event.endDate = calEndDate
+                        }
+
+                        self.events.append(event)
+
+                        currentDateOffset = endDate
                     }
-
-                    if currentDateOffset < startDate {
-                        self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: startDate))
-                    }
-
-                    let event = Event.fromEKEvent(event as! EKEvent)
-
-                    if endDate > calEndDate {
-                        event.endDate = calEndDate
-                    }
-
-                    self.events.append(event)
-
-                    currentDateOffset = endDate
                 }
             }
-        }
 
-        if currentDateOffset < calEndDate {
-            self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: calEndDate))
+            if currentDateOffset < calEndDate {
+                self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: calEndDate))
+            }
         }
     }
 
