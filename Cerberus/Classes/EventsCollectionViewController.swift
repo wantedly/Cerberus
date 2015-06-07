@@ -5,7 +5,6 @@ import Timepiece
 
 class EventsCollectionViewController: UICollectionViewController {
 
-    var syncScroller: SyncScroller!
     var calendar: Calendar!
 
     override func viewDidLoad() {
@@ -36,21 +35,12 @@ class EventsCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: XibNames.EventCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.EventCell.rawValue)
 
-        syncScroller = SyncScroller.get()
-        syncScroller.register(collectionView!)
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged:", name: EKEventStoreChangedNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didChooseCalendarNotification:", name: NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: nil)
     }
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        syncScroller.unregister(collectionView!)
     }
 
     // MARK: Update calendar events
@@ -84,9 +74,5 @@ class EventsCollectionViewController: UICollectionViewController {
         let eventsCollectionViewFlowLayout = collectionViewLayout as! EventsCollectionViewFlowLayout
         let event = self.calendar.events[indexPath.row]
         return eventsCollectionViewFlowLayout.sizeForEvent(event)
-    }
-
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        syncScroller.scroll(scrollView)
     }
 }

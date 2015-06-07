@@ -4,7 +4,6 @@ import Timepiece
 class TimelineCollectionViewController: UICollectionViewController {
 
     var timeArray = [String]()
-    var syncScroller: SyncScroller!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,9 +14,6 @@ class TimelineCollectionViewController: UICollectionViewController {
         timeArray.append("24:00")
         collectionView?.showsVerticalScrollIndicator = false
 
-        syncScroller = SyncScroller.get()
-        syncScroller.register(collectionView!)
-
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
     }
@@ -26,11 +22,6 @@ class TimelineCollectionViewController: UICollectionViewController {
         let date = NSDate()
         let newIndex = NSIndexPath(forItem: (date.hour * 60 + date.minute) / 30, inSection: 0)
         self.collectionView?.scrollToItemAtIndexPath(newIndex, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        syncScroller.unregister(collectionView!)
-        super.viewWillDisappear(animated)
     }
 
     // MARK: UICollectionViewDataSource
@@ -51,11 +42,6 @@ class TimelineCollectionViewController: UICollectionViewController {
         let timelineCollectionViewFlowLayout = collectionViewLayout as! TimelineCollectionViewFlowLayout
 
         return timelineCollectionViewFlowLayout.sizeForTimeline()
-    }
-
-
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        syncScroller.scroll(scrollView)
     }
 
     // MARK: UIScrollViewDelegate
