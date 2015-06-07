@@ -38,21 +38,19 @@ class EventsCollectionViewController: UICollectionViewController {
 
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged:", name: EKEventStoreChangedNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didChooseCalendarNotification:", name: NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: nil)
+    }
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
         syncScroller.unregister(collectionView!)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: Update calendar events
