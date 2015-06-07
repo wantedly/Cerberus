@@ -20,6 +20,8 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         let calendarChooser = EKCalendarChooser(
             selectionStyle: EKCalendarChooserSelectionStyleSingle,
             displayStyle:   EKCalendarChooserDisplayAllCalendars,
