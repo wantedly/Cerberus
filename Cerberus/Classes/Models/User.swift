@@ -9,7 +9,7 @@ final class User {
 
     init(name: String, email: String) {
         self.name = name
-        self.email = name
+        self.email = email
     }
 
     func avatarUrl() -> String {
