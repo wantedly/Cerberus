@@ -11,8 +11,6 @@ class LocationsTableViewController : UITableViewController {
         for location in Realm().objects(Location) {
             self.locations.append(location as Location)
         }
-
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: TableViewCellreuseIdentifier.LocationCell.rawValue)
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
