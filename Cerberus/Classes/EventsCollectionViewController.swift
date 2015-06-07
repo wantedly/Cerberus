@@ -55,11 +55,6 @@ class EventsCollectionViewController: UICollectionViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        self.calendar?.update()
-        self.collectionView?.reloadData()
-    }
-
     // MARK: Update calendar events
 
     func updateCalendarEvents() {
