@@ -12,8 +12,7 @@ class MainViewController: UIViewController {
     }
 
     func setNavbarTitle(date: NSDate = NSDate()) {
-        let title = date.stringFromFormat("EEEE, MMMM d, yyyy")
-        self.title = title
+        self.title = date.stringFromFormat("EEEE, MMMM d, yyyy")
     }
 
 }
