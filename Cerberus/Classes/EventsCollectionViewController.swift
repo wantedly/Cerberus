@@ -77,7 +77,14 @@ class EventsCollectionViewController: UICollectionViewController {
         }
 
         let start = event.startDate.hour * 60 + event.startDate.minute
-        let span = end - start
+        var span = end - start
+
+        if span < 30 {
+            span = 30
+        } else if span > 5 * 30 {
+            span = 5 * 30
+        }
+
         let width: CGFloat = collectionView.bounds.width
         let height: CGFloat = minuteHeight * CGFloat(span)
 
