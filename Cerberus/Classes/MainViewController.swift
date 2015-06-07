@@ -1,6 +1,10 @@
 import UIKit
+import EventKit
+import EventKitUI
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, EKCalendarChooserDelegate {
+
+    var calendarChooser: EKCalendarChooser!
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -15,4 +19,21 @@ class MainViewController: UIViewController {
         self.title = date.stringFromFormat("EEEE, MMMM d, yyyy")
     }
 
+    override func viewDidLoad() {
+        let calendarChooser = EKCalendarChooser(
+            selectionStyle: EKCalendarChooserSelectionStyleSingle,
+            displayStyle:   EKCalendarChooserDisplayAllCalendars,
+            entityType:     EKEntityTypeEvent,
+            eventStore:     EKEventStore()
+        )
+        calendarChooser.delegate = self
+
+        let navigationController = UINavigationController(rootViewController: calendarChooser)
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
+
+    func calendarChooserSelectionDidChange(calendarChooser: EKCalendarChooser!) {
+        println(calendarChooser.selectedCalendars)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
