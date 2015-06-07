@@ -23,6 +23,7 @@
 		4B9D0C121B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D0C111B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib */; };
 		4B9D0C141B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D0C131B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift */; };
 		8B4FF22A1B22E9D9003BA39D /* SyncScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */; };
+		8B79AD0C1B241CC10057A7B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79AD0B1B241CC10057A7B6 /* MainViewController.swift */; };
 		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AE345E931B2392F4000C5284 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE345E921B2392F4000C5284 /* UIColor+Hex.swift */; };
 		AE59FB421B23460800BBCDA0 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59FB411B23460800BBCDA0 /* String+MD5.swift */; };
@@ -68,6 +69,7 @@
 		4B9D0C131B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncScroller.swift; sourceTree = "<group>"; };
+		8B79AD0B1B241CC10057A7B6 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AE345E921B2392F4000C5284 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		AE59FB411B23460800BBCDA0 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		AE59FB431B23465F00BBCDA0 /* Cerberus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cerberus-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				4B3BBAA81B22B551002211E5 /* Events */,
 				8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */,
 				AE59FB431B23465F00BBCDA0 /* Cerberus-Bridging-Header.h */,
+				8B79AD0B1B241CC10057A7B6 /* MainViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */,
 				4B9D0C0E1B23ECF9004FCC34 /* EventsCollectionViewFlowLayout.swift in Sources */,
 				4B3BBAAC1B22B748002211E5 /* EventCollectionViewCell.swift in Sources */,
+				8B79AD0C1B241CC10057A7B6 /* MainViewController.swift in Sources */,
 				AE345E931B2392F4000C5284 /* UIColor+Hex.swift in Sources */,
 				8B4FF22A1B22E9D9003BA39D /* SyncScroller.swift in Sources */,
 				4B3BBAA71B22B076002211E5 /* TimeCollectionViewCell.swift in Sources */,
