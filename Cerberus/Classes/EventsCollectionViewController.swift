@@ -44,6 +44,8 @@ class EventsCollectionViewController: UICollectionViewController {
         super.viewWillAppear(animated)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didChooseCalendarNotification", name: NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: nil)
+
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -58,11 +60,19 @@ class EventsCollectionViewController: UICollectionViewController {
         self.collectionView?.reloadData()
     }
 
-    // MARK: EKEventStoreChangedNotification
+    // MARK: Update calendar events
 
-    func eventStoreChanged(notification: NSNotification) {
+    func updateCalendarEvents() {
         self.calendar?.update()
         self.collectionView?.reloadData()
+    }
+
+    func eventStoreChanged(notification: NSNotification) {
+        updateCalendarEvents()
+    }
+
+    func didChooseCalendarNotification(notification: NSNotification) {
+        updateCalendarEvents()
     }
 
     // MARK: UICollectionViewDataSource

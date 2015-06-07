@@ -16,14 +16,29 @@ final class Calendar {
 
     var date: NSDate!
 
-    static var calendars: [EKCalendar]? = nil
+    var selectedCalendars: [EKCalendar]? = nil
 
     init() {
         self.events = []
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
+        self.selectedCalendars = nil
 
         self.date = NSDate()
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "didChooseCalendarNotification",
+            name:     NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue,
+            object:   nil
+        )
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    func didChooseCalendarNotification(notification: NSNotification) {
+        self.selectedCalendars = notification.object as? [EKCalendar]
     }
 
     func isAuthorized() -> Bool {
@@ -62,7 +77,7 @@ final class Calendar {
         let calStartDate = self.date.beginningOfDay
         let calEndDate   = calStartDate + 1.day
 
-        if let calendars = Calendar.calendars {
+        if let calendars = self.selectedCalendars {
             let predicate = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: calendars)
 
             var currentDateOffset = calStartDate

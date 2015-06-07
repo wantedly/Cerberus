@@ -6,3 +6,7 @@ let WrapperBottom: CGFloat = 16
 let TimelineHeight: CGFloat = 100
 let EventPadding: CGFloat = 5
 let EventInterval: CGFloat = EventPadding * 2
+
+enum NotifictionNames : String {
+    case MainViewControllerDidChooseCalendarNotification = "MainViewControllerDidChooseCalendarNotification"
+}

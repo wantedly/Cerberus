@@ -39,7 +39,7 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
             calendars.append(calendar as! EKCalendar)
         }
 
-        Calendar.calendars = calendars
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: calendars)
 
         self.dismissViewControllerAnimated(true, completion: nil)
     }
