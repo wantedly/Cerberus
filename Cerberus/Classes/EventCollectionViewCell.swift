@@ -43,6 +43,8 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
                 self.titleLabel.textColor = UIColor(hex: 0xffffff, alpha: 1.0)
             }
         }
+
+        self.userAvatarsCollectionView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
