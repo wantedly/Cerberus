@@ -27,7 +27,13 @@ class TimelineCollectionViewController: UICollectionViewController {
         if let navCtrl = self.navigationController {
             let bgImage = UIImage(named: "background")
             navCtrl.navigationBar.setBackgroundImage(bgImage, forBarMetrics: UIBarMetrics.Default)
+            setNavbarTitle()
         }
+    }
+
+    func setNavbarTitle(date: NSDate = NSDate()) {
+        let title = date.stringFromFormat("EEEE, MMMM d, yyyy")
+        self.navigationController?.navigationBar.topItem?.title = title
     }
 
     override func viewDidAppear(animated: Bool) {
