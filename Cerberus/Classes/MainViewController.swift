@@ -23,6 +23,10 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         super.viewDidLoad()
 
         // FIXME: Unbalanced calls to begin/end appearance transitions
+        presentCalendarChooser()
+    }
+
+    func presentCalendarChooser() {
         let calendarChooser = EKCalendarChooser(
             selectionStyle: EKCalendarChooserSelectionStyleSingle,
             displayStyle:   EKCalendarChooserDisplayAllCalendars,
