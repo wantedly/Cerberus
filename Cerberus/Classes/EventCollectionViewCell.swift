@@ -13,6 +13,13 @@ class EventCollectionViewCell: UICollectionViewCell {
         didSet { update() }
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        self.wrapperView.layer.cornerRadius = 5
+        self.wrapperView.layer.borderWidth = 1
+    }
+
     func update() {
         if let event = eventModel {
             let time = join(" - ", [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") })

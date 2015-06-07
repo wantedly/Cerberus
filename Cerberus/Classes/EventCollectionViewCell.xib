@@ -41,14 +41,6 @@
                             <constraint firstItem="NC0-h0-9g8" firstAttribute="top" secondItem="Gnx-zN-lPi" secondAttribute="top" constant="43" id="iqf-oY-yDK"/>
                             <constraint firstAttribute="trailing" secondItem="NC0-h0-9g8" secondAttribute="trailing" constant="-8" id="uwa-dd-gLu"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                <integer key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
