@@ -4,7 +4,6 @@ import Timepiece
 
 class EventsCollectionViewController: UICollectionViewController {
 
-    let reuseIdentifier = "EventCell"
     var syncScroller: SyncScroller!
     var calendar: Calendar!
 
@@ -33,7 +32,8 @@ class EventsCollectionViewController: UICollectionViewController {
             }
         }
 
-        self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        let nib = UINib(nibName: XibNames.EventCollectionViewCell.rawValue, bundle: nil)
+        self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.EventCell.rawValue)
 
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         flowLayout.minimumLineSpacing = 16.0
