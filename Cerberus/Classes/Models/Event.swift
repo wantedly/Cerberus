@@ -17,6 +17,15 @@ final class Event {
         self.available = available
     }
 
+    func span() -> Int {
+        var end = endDate.hour * 60 + endDate.minute
+        if end == 0 {
+            end = 24 * 60
+        }
+        let start = startDate.hour * 60 + startDate.minute
+        return end - start
+    }
+
     class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
         let event = self(
             title:     eventOfEventKit.title ?? "No title",
