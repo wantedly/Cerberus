@@ -13,12 +13,20 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenCerberus" translatesAutoresizingMaskIntoConstraints="NO" id="xEf-WS-9Qi">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="  Copyright (c) 2015年 Wantedly, Inc. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                    <rect key="frame" x="31" y="444" width="441" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="xEf-WS-9Qi" secondAttribute="bottom" id="4bN-ps-djr"/>
                 <constraint firstAttribute="trailing" secondItem="xEf-WS-9Qi" secondAttribute="trailing" id="6MJ-iA-lEV"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="32" id="9V0-Gj-Hs4"/>
                 <constraint firstItem="xEf-WS-9Qi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="A6a-4F-V9Z"/>
+                <constraint firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="32" id="KO9-b3-DBz"/>
                 <constraint firstItem="xEf-WS-9Qi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lwh-1R-0z5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
