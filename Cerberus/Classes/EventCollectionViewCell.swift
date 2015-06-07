@@ -27,7 +27,9 @@ class EventCollectionViewCell: UICollectionViewCell {
                 self.titleLabel.textColor = UIColor(hex: 0x6cc644, alpha: 1.0)
             } else {
                 self.timeLabel.text = time
-                wrapperView.layer.borderColor = UIColor(hex: 0xffffff, alpha: 0.3).CGColor
+                self.wrapperView.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.1)
+                self.wrapperView.layer.borderColor = UIColor(hex: 0xffffff, alpha: 0.3).CGColor
+                self.titleLabel.textColor = UIColor(hex: 0xffffff, alpha: 1.0)
             }
         }
     }

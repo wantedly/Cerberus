@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gnx-zN-lPi">
-                        <rect key="frame" x="8" y="8" width="408" height="300"/>
+                        <rect key="frame" x="8" y="0.0" width="408" height="316"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-h0-9g8">
                                 <rect key="frame" x="13" y="43" width="403" height="21"/>
@@ -56,8 +56,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Gnx-zN-lPi" secondAttribute="trailing" constant="24" id="Qe5-NF-EYb"/>
-                <constraint firstAttribute="bottom" secondItem="Gnx-zN-lPi" secondAttribute="bottom" constant="8" id="SmH-U9-Xc1"/>
-                <constraint firstItem="Gnx-zN-lPi" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" constant="8" id="jP0-cP-GsI"/>
+                <constraint firstAttribute="bottom" secondItem="Gnx-zN-lPi" secondAttribute="bottom" id="SmH-U9-Xc1"/>
+                <constraint firstItem="Gnx-zN-lPi" firstAttribute="top" secondItem="AgM-dG-oby" secondAttribute="top" id="jP0-cP-GsI"/>
                 <constraint firstItem="Gnx-zN-lPi" firstAttribute="leading" secondItem="AgM-dG-oby" secondAttribute="leading" constant="8" id="wbZ-Bj-XwM"/>
             </constraints>
             <size key="customSize" width="338" height="316"/>
