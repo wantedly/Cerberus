@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/paulsamuels/SBConstants.git
+  revision: 0f04238338a0ffcd9a1f07e8601ef60c7a188673
+  branch: hotfix-28-add-xib-support
+  specs:
+    sbconstants (1.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,7 +55,6 @@ GEM
     netrc (0.7.8)
     osx_keychain (1.0.1)
       RubyInline (~> 3)
-    sbconstants (1.1.2)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -62,7 +68,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   cocoapods-keys
-  sbconstants
+  sbconstants!
 
 BUNDLED WITH
    1.10.3

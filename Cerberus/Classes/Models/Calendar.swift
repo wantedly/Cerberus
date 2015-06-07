@@ -8,10 +8,11 @@ enum CalendarAuthorizationStatus {
 }
 
 final class Calendar {
-    var events: [Event]!
 
-    var eventStore: EKEventStore!
-    var calendar: NSCalendar!
+    private let eventStore: EKEventStore!
+    private let calendar: NSCalendar!
+
+    var events: [Event]!
 
     var date: NSDate!
     var location: NSDate!
@@ -21,14 +22,8 @@ final class Calendar {
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
 
-        self.date     = 4.days.ago  // FIXME: Use `NSDate()` instead
+        self.date     = NSDate()
         self.location = nil  // Retrive from use defaults?
-    }
-
-
-    class func onChange() {
-        // EKEventStoreChangedNotification
-        // NSNotificationCenter.defaultCenter()
     }
 
     func isAuthorized() -> Bool {

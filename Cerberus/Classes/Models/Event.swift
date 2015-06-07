@@ -2,20 +2,19 @@ import Foundation
 import EventKit
 
 final class Event {
-    var title: String = ""
-    var location: Location?
-    
+    let title: String
     var startDate: NSDate
     var endDate: NSDate
 
-    var attendees: [User]!
-    var available = false
+    var location: Location?
+    var attendees: [User]! = []
+    let available: Bool
 
-    init(title: String, startDate: NSDate, endDate: NSDate, attendees: [User] = []) {
+    init(title: String, startDate: NSDate, endDate: NSDate, available: Bool = false) {
         self.title     = title
         self.startDate = startDate
         self.endDate   = endDate
-        self.attendees = attendees
+        self.available = available
     }
 
     class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
@@ -53,10 +52,9 @@ final class Event {
         let event = self(
             title:     "Available",
             startDate: startDate,
-            endDate:   endDate
+            endDate:   endDate,
+            available: true
         )
-
-        event.available = true
 
         return event
     }

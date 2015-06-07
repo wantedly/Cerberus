@@ -1,10 +1,10 @@
 import UIKit
+import EventKit
 import Async
 import Timepiece
 
 class EventsCollectionViewController: UICollectionViewController {
 
-    let reuseIdentifier = "EventCell"
     var syncScroller: SyncScroller!
     var calendar: Calendar!
 
@@ -33,18 +33,31 @@ class EventsCollectionViewController: UICollectionViewController {
             }
         }
 
-        self.collectionView?.registerNib(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        flowLayout.sectionInset = UIEdgeInsetsMake(16, 0, 16, 0)
+        let nib = UINib(nibName: XibNames.EventCollectionViewCell.rawValue, bundle: nil)
+        self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.EventCell.rawValue)
 
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
+    }
+
     override func viewWillDisappear(animated: Bool) {
-        syncScroller.unregister(collectionView!)
         super.viewWillDisappear(animated)
+
+        syncScroller.unregister(collectionView!)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    // MARK: EKEventStoreChangedNotification
+
+    func eventStoreChanged(notification: NSNotification) {
+        self.calendar?.update()
+        self.collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -56,32 +69,13 @@ class EventsCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCellreuseIdentifier.EventCell.rawValue, forIndexPath: indexPath) as! EventCollectionViewCell
         cell.eventModel = self.calendar.events[indexPath.row]
-        if indexPath.row == 0 {
-            cell.topOffsetConstraint.constant = 0
-            cell.bottomOffsetConstraint.constant = 8
-        } else if indexPath.row == self.calendar.events.count - 1 {
-            cell.bottomOffsetConstraint.constant = 0
-            cell.topOffsetConstraint.constant = 8
-        }
         return cell
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let minuteHeight: CGFloat = 100.0 / 30
-
+        let eventsCollectionViewFlowLayout = collectionViewLayout as! EventsCollectionViewFlowLayout
         let event = self.calendar.events[indexPath.row]
-        var end = event.endDate.hour * 60 + event.endDate.minute
-        
-        if end == 0 {
-            end = 24 * 60
-        }
-
-        let start = event.startDate.hour * 60 + event.startDate.minute
-        let span = end - start
-        let width: CGFloat = collectionView.bounds.width
-        let height: CGFloat = minuteHeight * CGFloat(span)
-
-        return CGSizeMake(width, height)
+        return eventsCollectionViewFlowLayout.sizeForEvent(event)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

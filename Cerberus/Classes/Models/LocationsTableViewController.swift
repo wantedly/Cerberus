@@ -3,7 +3,7 @@ import RealmSwift
 
 class LocationsTableViewController : UITableViewController {
 
-    var locations = [Location]()
+    private var locations = [Location]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -11,12 +11,10 @@ class LocationsTableViewController : UITableViewController {
         for location in Realm().objects(Location) {
             self.locations.append(location as Location)
         }
-
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: TableViewCellreuseIdentifier.LocationCell.rawValue)
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.locations.count;
+        return self.locations.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
