@@ -1,4 +1,5 @@
 import UIKit
+import EventKit
 import Async
 import Timepiece
 
@@ -39,9 +40,24 @@ class EventsCollectionViewController: UICollectionViewController {
         syncScroller.register(collectionView!)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
+    }
+
     override func viewWillDisappear(animated: Bool) {
-        syncScroller.unregister(collectionView!)
         super.viewWillDisappear(animated)
+
+        syncScroller.unregister(collectionView!)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    // MARK: EKEventStoreChangedNotification
+
+    func eventStoreChanged(notification: NSNotification) {
+        self.calendar?.update()
+        self.collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
