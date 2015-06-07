@@ -12,7 +12,7 @@ final class User {
         self.email = email
     }
 
-    func avatarUrl() -> String {
-        return String(format: gravatarUri, self.email.md5(), avatarSize)
+    func avatarUrl() -> NSURL? {
+        return NSURL(string: String(format: gravatarUri, self.email.md5(), avatarSize))
     }
 }
