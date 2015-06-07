@@ -31,7 +31,7 @@ class EventsCollectionViewFlowLayout: UICollectionViewFlowLayout {
         */
 
         let width: CGFloat = collectionView!.bounds.width
-        let height: CGFloat = minuteHeight * CGFloat(span) - EventPadding
+        let height: CGFloat = minuteHeight * CGFloat(span) - EventInterval
 
         return CGSizeMake(width, height)
     }
