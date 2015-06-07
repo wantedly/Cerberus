@@ -113,7 +113,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="jDK-qs-sG5"/>
-                                <barButtonItem title="Item" systemItem="add" id="dfN-cX-w81"/>
+                                <barButtonItem systemItem="add" id="dfN-cX-w81"/>
                             </items>
                         </toolbar>
                         <prototypes>
