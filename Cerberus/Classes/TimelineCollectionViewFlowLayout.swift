@@ -7,4 +7,8 @@ class TimelineCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         sectionInset = UIEdgeInsetsMake(WrapperTop, 0, WrapperBottom, 0)
     }
+
+    func sizeForTimeline() -> CGSize {
+        return CGSizeMake(collectionView!.bounds.width, TimelineHeight)
+    }
 }

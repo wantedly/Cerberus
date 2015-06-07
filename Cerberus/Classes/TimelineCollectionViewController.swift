@@ -48,8 +48,9 @@ class TimelineCollectionViewController: UICollectionViewController {
 
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let timelineCollectionViewFlowLayout = collectionViewLayout as! TimelineCollectionViewFlowLayout
 
-        return CGSizeMake(collectionView.bounds.width, TimelineHeight)
+        return timelineCollectionViewFlowLayout.sizeForTimeline()
     }
 
 
