@@ -16,4 +16,5 @@ public enum TableViewCellreuseIdentifier : String {
 public enum XibNames : String {
     case EventCollectionViewCell = "EventCollectionViewCell"
     case LaunchScreen = "LaunchScreen"
+    case TimeCollectionViewCell = "TimeCollectionViewCell"
 }

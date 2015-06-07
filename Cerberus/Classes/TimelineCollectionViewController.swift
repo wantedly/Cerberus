@@ -20,6 +20,9 @@ class TimelineCollectionViewController: UICollectionViewController {
 
         syncScroller = SyncScroller.get()
         syncScroller.register(collectionView!)
+
+        let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
+        self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
     }
 
     override func viewDidAppear(animated: Bool) {

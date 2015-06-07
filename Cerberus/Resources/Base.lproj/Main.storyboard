@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="chf-9x-46w">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -150,34 +149,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimeCell" id="ewz-w9-PUl" customClass="TimeCollectionViewCell" customModule="Cerberus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="16:30" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10a-C3-rkA">
-                                            <rect key="frame" x="40" y="10" width="220" height="80"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="80"/>
-                                            <color key="textColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="0.40000000000000002" colorSpace="deviceRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="10a-C3-rkA" secondAttribute="bottom" constant="10" id="4uF-7V-dD5"/>
-                                    <constraint firstAttribute="centerY" secondItem="10a-C3-rkA" secondAttribute="centerY" id="66M-aa-Om4"/>
-                                    <constraint firstItem="10a-C3-rkA" firstAttribute="top" secondItem="ewz-w9-PUl" secondAttribute="topMargin" constant="10" id="CQS-rE-c94"/>
-                                    <constraint firstAttribute="centerX" secondItem="10a-C3-rkA" secondAttribute="centerX" id="wBE-Ba-iOu"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="timeLabel" destination="10a-C3-rkA" id="hRU-S2-lnA"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="AXB-VU-ey8" id="IxV-4w-F1d"/>
                             <outlet property="delegate" destination="AXB-VU-ey8" id="OBK-dP-7jv"/>
