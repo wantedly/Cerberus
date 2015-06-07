@@ -22,6 +22,7 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // FIXME: Unbalanced calls to begin/end appearance transitions
         let calendarChooser = EKCalendarChooser(
             selectionStyle: EKCalendarChooserSelectionStyleSingle,
             displayStyle:   EKCalendarChooserDisplayAllCalendars,
