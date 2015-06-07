@@ -30,7 +30,7 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
         contentView.layoutIfNeeded()
         titleLabel.hidden = titleLabel.bounds.height < 20
         timeLabel.hidden = timeLabel.bounds.height < 16
-        userAvatarsCollectionView.hidden = userAvatarsCollectionView.bounds.height < 40;
+        userAvatarsCollectionView.hidden = userAvatarsCollectionView.bounds.height < 40
 
     }
 
