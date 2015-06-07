@@ -30,7 +30,6 @@ class EventsCollectionViewController: UICollectionViewController {
 
             case .Success:
                 println("Authorized")
-                self.registerAutoEventFetcher()
             }
         }
 
@@ -41,24 +40,20 @@ class EventsCollectionViewController: UICollectionViewController {
         syncScroller.register(collectionView!)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
+    }
+
     override func viewWillDisappear(animated: Bool) {
         syncScroller.unregister(collectionView!)
         super.viewWillDisappear(animated)
-        unregisterAutoEventFetcher()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: EKEventStoreChangedNotification
 
-    func registerAutoEventFetcher() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged", name: EKEventStoreChangedNotification, object: nil)
-    }
-
-    func unregisterAutoEventFetcher() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
     func eventStoreChanged(notification: NSNotification) {
-        self.calendar.update()
+        self.calendar?.update()
         self.collectionView?.reloadData()
     }
 
