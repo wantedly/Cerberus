@@ -19,6 +19,7 @@
 		4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */; };
 		4B9D0C0C1B23EB43004FCC34 /* TimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D0C0B1B23EB43004FCC34 /* TimeCollectionViewCell.xib */; };
 		4B9D0C0E1B23ECF9004FCC34 /* EventsCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D0C0D1B23ECF9004FCC34 /* EventsCollectionViewFlowLayout.swift */; };
+		4B9D0C101B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D0C0F1B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift */; };
 		8B4FF22A1B22E9D9003BA39D /* SyncScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */; };
 		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AE345E931B2392F4000C5284 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE345E921B2392F4000C5284 /* UIColor+Hex.swift */; };
@@ -60,6 +61,7 @@
 		4B3BBAAD1B22BDE9002211E5 /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		4B9D0C0B1B23EB43004FCC34 /* TimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		4B9D0C0D1B23ECF9004FCC34 /* EventsCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		4B9D0C0F1B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8B4FF2291B22E9D9003BA39D /* SyncScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncScroller.swift; sourceTree = "<group>"; };
 		AE345E921B2392F4000C5284 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				4B3BBA9D1B22A6B9002211E5 /* TimelineCollectionViewController.swift */,
+				4B9D0C0F1B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift */,
 				4B3BBAA61B22B076002211E5 /* TimeCollectionViewCell.swift */,
 				4B9D0C0B1B23EB43004FCC34 /* TimeCollectionViewCell.xib */,
 			);
@@ -400,6 +403,7 @@
 				AEDC9A9F1B22BC0000A2EEE9 /* Calendar.swift in Sources */,
 				AE59FB421B23460800BBCDA0 /* String+MD5.swift in Sources */,
 				4B3BBAAA1B22B6BB002211E5 /* EventsCollectionViewController.swift in Sources */,
+				4B9D0C101B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift in Sources */,
 				4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */,
 				4B9D0C0E1B23ECF9004FCC34 /* EventsCollectionViewFlowLayout.swift in Sources */,
 				4B3BBAAC1B22B748002211E5 /* EventCollectionViewCell.swift in Sources */,
