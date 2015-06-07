@@ -53,6 +53,11 @@ class EventsCollectionViewController: UICollectionViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        self.calendar?.update()
+        self.collectionView?.reloadData()
+    }
+
     // MARK: EKEventStoreChangedNotification
 
     func eventStoreChanged(notification: NSNotification) {

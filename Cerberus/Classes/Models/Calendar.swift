@@ -7,6 +7,8 @@ enum CalendarAuthorizationStatus {
     case Error
 }
 
+private let selectedCalendarsKey = "SelectedCalendars"
+
 final class Calendar {
 
     private let eventStore: EKEventStore!
@@ -15,15 +17,15 @@ final class Calendar {
     var events: [Event]!
 
     var date: NSDate!
-    var location: NSDate!
+
+    static var calendars: [EKCalendar]! = []
 
     init() {
         self.events = []
         self.eventStore = EKEventStore()
         self.calendar = NSCalendar.currentCalendar()
 
-        self.date     = NSDate()
-        self.location = nil  // Retrive from use defaults?
+        self.date = NSDate()
     }
 
     func isAuthorized() -> Bool {
@@ -59,9 +61,11 @@ final class Calendar {
     private func fetchEvents() {
         let calStartDate = self.date.beginningOfDay
         let calEndDate   = calStartDate + 1.day
-        let predicate    = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: nil)
+        let predicate    = self.eventStore.predicateForEventsWithStartDate(calStartDate, endDate: calEndDate, calendars: Calendar.calendars)
 
         var currentDateOffset = calStartDate
+
+        self.events.removeAll(keepCapacity: true)
 
         if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
             for event in matchingEvents {

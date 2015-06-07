@@ -33,7 +33,14 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     }
 
     func calendarChooserSelectionDidChange(calendarChooser: EKCalendarChooser!) {
-        println(calendarChooser.selectedCalendars)
+        var calendars: [EKCalendar] = []
+        
+        for calendar in calendarChooser.selectedCalendars {
+            calendars.append(calendar as! EKCalendar)
+        }
+
+        Calendar.calendars = calendars
+
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
