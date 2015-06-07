@@ -16,7 +16,7 @@ final class Calendar {
 
     var date: NSDate!
 
-    var selectedCalendars: [EKCalendar]? = nil
+    var selectedCalendars: [EKCalendar]?
 
     init() {
         self.events = []
