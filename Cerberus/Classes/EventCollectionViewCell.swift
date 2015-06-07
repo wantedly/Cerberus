@@ -24,6 +24,16 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
         self.userAvatarsCollectionView.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.UserAvatarCell.rawValue)
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        contentView.layoutIfNeeded()
+        titleLabel.hidden = titleLabel.bounds.height < 20
+        timeLabel.hidden = timeLabel.bounds.height < 16
+        userAvatarsCollectionView.hidden = userAvatarsCollectionView.bounds.height < 40;
+
+    }
+
     private func update() {
         if let event = eventModel {
             let time = join(" - ", [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") })
