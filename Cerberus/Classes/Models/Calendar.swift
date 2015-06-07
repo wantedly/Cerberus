@@ -7,8 +7,6 @@ enum CalendarAuthorizationStatus {
     case Error
 }
 
-private let selectedCalendarsKey = "SelectedCalendars"
-
 final class Calendar {
 
     private let eventStore: EKEventStore!
