@@ -1,6 +1,5 @@
 PODS:
   - Async (1.2.1)
-  - Keys (1.0.0)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
@@ -8,15 +7,12 @@ PODS:
 
 DEPENDENCIES:
   - Async (from `https://github.com/duemunk/Async.git`)
-  - Keys (from `Pods/CocoaPodsKeys/`)
   - SDWebImage
   - Timepiece
 
 EXTERNAL SOURCES:
   Async:
     :git: https://github.com/duemunk/Async.git
-  Keys:
-    :path: Pods/CocoaPodsKeys/
 
 CHECKOUT OPTIONS:
   Async:
@@ -25,7 +21,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Async: d9ee6fc9c415d44fcb892f4c289d1e79ce8ae92d
-  Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Timepiece: 30ef04f74337fcb1bef2ff91cfe964184d894d12
 
