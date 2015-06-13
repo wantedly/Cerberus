@@ -40,27 +40,28 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         setNavbarTitle()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if self.calendarChooser == nil {
+            presentCalendarChooser()
+        }
+    }
+
     func setNavbarTitle(date: NSDate = NSDate()) {
         self.title = date.stringFromFormat("EEEE, MMMM d, yyyy")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // FIXME: Unbalanced calls to begin/end appearance transitions
-        presentCalendarChooser()
-    }
-
     func presentCalendarChooser() {
-        let calendarChooser = EKCalendarChooser(
+        self.calendarChooser = EKCalendarChooser(
             selectionStyle: EKCalendarChooserSelectionStyleSingle,
             displayStyle:   EKCalendarChooserDisplayAllCalendars,
             entityType:     EKEntityTypeEvent,
             eventStore:     EKEventStore()
         )
-        calendarChooser.delegate = self
+        self.calendarChooser.delegate = self
 
-        let navigationController = UINavigationController(rootViewController: calendarChooser)
+        let navigationController = UINavigationController(rootViewController: self.calendarChooser)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
 
