@@ -94,7 +94,7 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
             return
         }
 
-        if let collectionView = object as? UICollectionView, anotherCollectionView = anotherCollectionViewController?.collectionView {
+        if let anotherCollectionView = anotherCollectionViewController?.collectionView {
             if let point = change["new"] as? NSValue {
                 let y = point.CGPointValue().y
 
