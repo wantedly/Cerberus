@@ -53,11 +53,9 @@ final class Event {
     }
 
     func span() -> Int {
-        var end = endDate.hour * 60 + endDate.minute
-        if end == 0 {
-            end = 24 * 60
-        }
+        let end   = endDate.hour * 60 + endDate.minute
         let start = startDate.hour * 60 + startDate.minute
-        return end - start
+
+        return (end > 0 ? end : 24 * 60) - start
     }
 }
