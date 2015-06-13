@@ -8,7 +8,9 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     weak var eventsCollectionViewController: EventsCollectionViewController?
     var calendarChooser: EKCalendarChooser!
 
-    var KVOContext = "MainViewControllerKVOContext"
+    private var kvoContextForTimelineCollectionViewController = "KVOContext"
+    private var kvoContextForEventsCollectionViewController = "KVOContext"
+
     let contentOffsetKeyPath = "contentOffset"
 
     deinit {
@@ -20,10 +22,10 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         switch segue.destinationViewController {
         case let timelineCollectionViewController as TimelineCollectionViewController:
             self.timelineCollectionViewController = timelineCollectionViewController
-            self.timelineCollectionViewController?.collectionView?.addObserver(self, forKeyPath: contentOffsetKeyPath, options: .New, context: &KVOContext)
+            self.timelineCollectionViewController?.collectionView?.addObserver(self, forKeyPath: contentOffsetKeyPath, options: .New, context: &kvoContextForTimelineCollectionViewController)
         case let eventsCollectionViewController as EventsCollectionViewController:
             self.eventsCollectionViewController = eventsCollectionViewController
-            self.eventsCollectionViewController?.collectionView?.addObserver(self, forKeyPath: contentOffsetKeyPath, options: .New, context: &KVOContext)
+            self.eventsCollectionViewController?.collectionView?.addObserver(self, forKeyPath: contentOffsetKeyPath, options: .New, context: &kvoContextForEventsCollectionViewController)
         default:
             break
         }
@@ -77,19 +79,27 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     // MARK: Key Value Observing
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        if context == &KVOContext && keyPath == contentOffsetKeyPath {
-            if let collectionView = object as? UICollectionView {
-                var anotherCollectionViewController: UICollectionViewController?
-                if collectionView == timelineCollectionViewController?.collectionView {
-                    anotherCollectionViewController = eventsCollectionViewController
-                } else if collectionView == eventsCollectionViewController?.collectionView {
-                    anotherCollectionViewController = timelineCollectionViewController
-                }
+        if keyPath != contentOffsetKeyPath {
+            return
+        }
 
-                if let anotherCollectionView = anotherCollectionViewController?.collectionView {
-                    if anotherCollectionView.contentOffset.y != collectionView.contentOffset.y {
-                        anotherCollectionView.contentOffset = collectionView.contentOffset
-                    }
+        var anotherCollectionViewController: UICollectionViewController?
+
+        switch context {
+        case &kvoContextForEventsCollectionViewController:
+            anotherCollectionViewController = self.timelineCollectionViewController
+        case &kvoContextForTimelineCollectionViewController:
+            anotherCollectionViewController = self.eventsCollectionViewController
+        default:
+            break
+        }
+
+        if let collectionView = object as? UICollectionView, anotherCollectionView = anotherCollectionViewController?.collectionView {
+            if let point = change["new"] as? NSValue {
+                let y = point.CGPointValue().y
+
+                if anotherCollectionView.contentOffset.y != y {
+                    anotherCollectionView.contentOffset.y = y
                 }
             }
         }
