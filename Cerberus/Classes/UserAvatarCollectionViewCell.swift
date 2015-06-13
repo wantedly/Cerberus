@@ -17,7 +17,7 @@ class UserAvatarCollectionViewCell: UICollectionViewCell {
     }
 
     private func roundAvatarImageView() {
-        avatarImageView.layer.cornerRadius = CGRectGetWidth(avatarImageView.bounds)/2
+        avatarImageView.layer.cornerRadius = CGRectGetWidth(avatarImageView.bounds) / 2
         avatarImageView.layer.masksToBounds = true
     }
 }
