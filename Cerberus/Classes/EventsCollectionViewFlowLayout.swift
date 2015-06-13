@@ -7,7 +7,7 @@ class EventsCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         minimumLineSpacing = EventInterval
         minimumInteritemSpacing = EventInterval
-        sectionInset = UIEdgeInsetsMake(WrapperTop + TimelineHeight / 2 + EventPadding, 0, WrapperBottom, 0)
+        sectionInset = UIEdgeInsetsMake(WrapperTop, 0, WrapperBottom, 0)
     }
 
     func sizeForEvent(event: Event) -> CGSize {
