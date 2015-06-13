@@ -7,4 +7,12 @@ class TimeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+
+    func makeLabelBold() {
+        self.timeLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 80.0)
+    }
+
+    func makeLabelNormal() {
+        self.timeLabel.font = UIFont(name: "HelveticaNeue-UltraLight", size: 80.0)
+    }
 }

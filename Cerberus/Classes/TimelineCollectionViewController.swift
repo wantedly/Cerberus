@@ -64,4 +64,50 @@ class TimelineCollectionViewController: UICollectionViewController {
             collectionView?.scrollToItemAtIndexPath(centeredIndexPath, atScrollPosition: .CenteredVertically, animated: true)
         }
     }
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let (visibles, nearestCenter) = getVisibleCellsAndNearestCenterCell()
+
+        let timelineCollectionViewFlowLayout = self.collectionViewLayout as! TimelineCollectionViewFlowLayout
+
+        for cellInfo in visibles {
+            let cell = cellInfo.cell as! TimeCollectionViewCell
+
+            cell.hidden = false
+
+            let time = self.timeArray[cellInfo.row]
+
+            var dy: CGFloat     = 0.0
+            var height: CGFloat = timelineCollectionViewFlowLayout.sizeForTimeline().height
+            var alpha: CGFloat  = 0.0
+
+            if cell == nearestCenter.cell {
+                height += 100
+                alpha = 1.0
+                cell.makeLabelBold()
+            } else {
+                if cellInfo.row < nearestCenter.row {
+                    dy = -50.0
+                } else {
+                    dy = +50.0
+                }
+
+                alpha = 0.5
+                cell.makeLabelNormal()
+            }
+
+            UIView.animateWithDuration(0.6,
+                delay: 0.0,
+                usingSpringWithDamping: 0.5,
+                initialSpringVelocity: 0.0,
+                options: .CurveEaseInOut,
+                animations: { () -> Void in
+                    cell.bounds.size.height = height
+                    cell.transform = CGAffineTransformMakeTranslation(0, dy)
+                    cell.alpha = alpha
+                },
+                completion: nil
+            )
+        }
+    }
+
 }
