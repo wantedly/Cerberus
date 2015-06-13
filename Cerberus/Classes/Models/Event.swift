@@ -22,12 +22,10 @@ final class Event {
         self.available = true
     }
 
-    class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
-        let event = self(
-            title:     eventOfEventKit.title ?? "No title",
-            startDate: eventOfEventKit.startDate,
-            endDate:   eventOfEventKit.endDate
-        )
+    init(fromEKEvent eventOfEventKit: EKEvent) {
+        self.title     = eventOfEventKit.title ?? "No title"
+        self.startDate = eventOfEventKit.startDate
+        self.endDate   = eventOfEventKit.endDate
 
         if let attendees = eventOfEventKit.attendees as? [EKParticipant] {
             for attendee in attendees {
@@ -35,7 +33,7 @@ final class Event {
                 case EKParticipantTypePerson.value:
                     if attendee.participantStatus.value != EKParticipantStatusDeclined.value {
                         if let name = attendee.name, email = attendee.URL.resourceSpecifier {
-                            event.attendees.append(User(name: name, email: email))
+                            self.attendees.append(User(name: name, email: email))
                         }
                     }
 
@@ -44,8 +42,6 @@ final class Event {
                 }
             }
         }
-
-        return event
     }
 
     func isAvailable() -> Bool {

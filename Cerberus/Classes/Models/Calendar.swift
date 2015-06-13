@@ -95,7 +95,7 @@ final class Calendar {
                             self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
                         }
 
-                        let event = Event.fromEKEvent(event)
+                        let event = Event(fromEKEvent: event)
 
                         if endDate > calEndDate {
                             event.endDate = calEndDate
