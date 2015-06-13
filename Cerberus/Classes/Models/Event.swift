@@ -40,8 +40,7 @@ final class Event {
                     }
 
                 default:
-                    // just ignore
-                    println(attendee.participantType)
+                    break
                 }
             }
         }
