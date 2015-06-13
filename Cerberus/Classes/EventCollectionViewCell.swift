@@ -36,18 +36,18 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
 
     private func update() {
         if let event = eventModel {
-            let time = join(" - ", [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") })
-            let attendees = join(", ", event.attendees.map { $0.name })
-
             self.titleLabel.text = event.title
 
-            if event.available {
+            if event.isAvailable() {
                 self.timeLabel.text = nil
+
                 self.wrapperView.backgroundColor = UIColor(hex: 0x6cc644, alpha: 0.1)
                 self.wrapperView.layer.borderColor = UIColor(hex: 0x6cc644, alpha: 0.7).CGColor
                 self.titleLabel.textColor = UIColor(hex: 0x6cc644, alpha: 1.0)
             } else {
-                self.timeLabel.text = time
+                let time = [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") }
+                self.timeLabel.text = join(" - ", time)
+
                 self.wrapperView.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.1)
                 self.wrapperView.layer.borderColor = UIColor(hex: 0xffffff, alpha: 0.3).CGColor
                 self.titleLabel.textColor = UIColor(hex: 0xffffff, alpha: 1.0)

@@ -6,62 +6,52 @@ final class Event {
     var startDate: NSDate
     var endDate: NSDate
 
-    var attendees: [User]! = []
-    let available: Bool
+    var attendees = [User]()
+    private var available = false
 
-    init(title: String, startDate: NSDate, endDate: NSDate, available: Bool = false) {
+    init(title: String, startDate: NSDate, endDate: NSDate) {
         self.title     = title
         self.startDate = startDate
         self.endDate   = endDate
-        self.available = available
     }
 
-    func span() -> Int {
-        var end = endDate.hour * 60 + endDate.minute
-        if end == 0 {
-            end = 24 * 60
-        }
-        let start = startDate.hour * 60 + startDate.minute
-        return end - start
+    init(startDate: NSDate, endDate: NSDate) {
+        self.title     = "Available"
+        self.startDate = startDate
+        self.endDate   = endDate
+        self.available = true
     }
 
-    class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
-        let event = self(
-            title:     eventOfEventKit.title ?? "No title",
-            startDate: eventOfEventKit.startDate,
-            endDate:   eventOfEventKit.endDate
-        )
+    init(fromEKEvent eventOfEventKit: EKEvent) {
+        self.title     = eventOfEventKit.title ?? "No title"
+        self.startDate = eventOfEventKit.startDate
+        self.endDate   = eventOfEventKit.endDate
 
-        if let attendees = eventOfEventKit.attendees {
+        if let attendees = eventOfEventKit.attendees as? [EKParticipant] {
             for attendee in attendees {
-                if let a = attendee as? EKParticipant {
-                    switch a.participantType.value {
-                    case EKParticipantTypePerson.value:
-                        if a.participantStatus.value != EKParticipantStatusDeclined.value {
-                            if let name = a.name, email = a.URL.resourceSpecifier {
-                                event.attendees.append(User(name: name, email: email))
-                            }
+                switch attendee.participantType.value {
+                case EKParticipantTypePerson.value:
+                    if attendee.participantStatus.value != EKParticipantStatusDeclined.value {
+                        if let name = attendee.name, email = attendee.URL.resourceSpecifier {
+                            self.attendees.append(User(name: name, email: email))
                         }
-
-                    default:
-                        // just ignore
-                        println(a.participantType)
                     }
+
+                default:
+                    break
                 }
             }
         }
-
-        return event
     }
 
-    class func createEmptyEvent(#startDate: NSDate, endDate: NSDate) -> Event {
-        let event = self(
-            title:     "Available",
-            startDate: startDate,
-            endDate:   endDate,
-            available: true
-        )
+    func isAvailable() -> Bool {
+        return self.available
+    }
 
-        return event
+    func span() -> Int {
+        let end   = endDate.hour * 60 + endDate.minute
+        let start = startDate.hour * 60 + startDate.minute
+
+        return (end > 0 ? end : 24 * 60) - start
     }
 }
