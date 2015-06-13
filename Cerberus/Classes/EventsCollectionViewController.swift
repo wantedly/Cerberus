@@ -5,7 +5,7 @@ import Timepiece
 
 class EventsCollectionViewController: UICollectionViewController {
 
-    private typealias EventCellInfo = (cell: UICollectionViewCell!, row: Int, height: CGFloat, deviation: CGFloat)
+    private typealias EventCellInfo = (cell: UICollectionViewCell, row: Int, height: CGFloat, deviation: CGFloat)
 
     var calendar: Calendar!
 
@@ -79,32 +79,25 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        var visibleIndexPaths = self.collectionView!.indexPathsForVisibleItems()
-
         let collectionViewHeight = self.collectionView!.bounds.height
         let collectionViewY = self.collectionView!.frame.origin.y
 
         var cellInfos = [EventCellInfo]()
-        var nearestCenter: (row: Int, deviation: CGFloat) = (0, CGFloat.infinity)
+        var nearestCenter: EventCellInfo!
 
-        for indexPath in visibleIndexPaths {
-            let cell = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
+        for indexPath in self.collectionView!.indexPathsForVisibleItems() {
+            let cell     = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
             let cellRect = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
 
-            var y = cellRect.origin.y
             var height = cellRect.height
+            var y      = cellRect.origin.y
 
             if y < collectionViewY {
                 height -= collectionViewY - y
-                y = 0
+                y       = 0
             }
 
             let deviation = (y + height / 2) / collectionViewHeight - 0.5
-
-            if abs(nearestCenter.deviation) > abs(deviation) {
-                nearestCenter.row       = indexPath.row
-                nearestCenter.deviation = deviation
-            }
 
             let cellInfo: EventCellInfo = (
                 cell:      cell,
@@ -112,27 +105,44 @@ class EventsCollectionViewController: UICollectionViewController {
                 height:    height,
                 deviation: deviation
             )
+
             cellInfos.append(cellInfo)
+
+            if abs(nearestCenter?.deviation ?? CGFloat.infinity) > abs(deviation) {
+                nearestCenter = cellInfo
+            }
         }
 
         for cellInfo in cellInfos {
             cellInfo.cell.hidden = false
 
-            if cellInfo.row == nearestCenter.row {
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    // println(nearestCenter.deviation - y)
-                    // cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 100 * (cellInfo.deviation - nearestCenter.deviation))
-                    // cellInfo.cell.contentView.bounds.size.height = cellInfo.height + 100
-                    cellInfo.cell.transform = CGAffineTransformMakeTranslation(20, 0)
-                })
+            var dy: CGFloat     = 0.0
+            var height: CGFloat = cellInfo.cell.frame.height
+            var alpha: CGFloat  = 0.0
+
+            if cellInfo.cell == nearestCenter.cell {
+                height += 100
+                alpha = 1.0
             } else {
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    // println(nearestCenter.deviation - y)
-                    // cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 100 * (cellInfo.deviation - nearestCenter.deviation))
-                    //cellInfo.cell.contentView.bounds.size.height = cellInfo.height
-                    cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 0)
-                })
+                var diff = Double(cellInfo.row - nearestCenter.row)
+
+                // more fluid
+                // dy = (diff < 0 ? -1.0 : 1.0) * 10.0 * CGFloat(pow(4.0, abs(diff)))
+
+                if diff < 0 {
+                    dy = -50.0
+                } else {
+                    dy = +50.0
+                }
+
+                alpha = 0.5
             }
+
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                cellInfo.cell.contentView.bounds.size.height = height  // FIXME
+                cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, dy)
+                cellInfo.cell.alpha = alpha
+            })
         }
     }
 }
