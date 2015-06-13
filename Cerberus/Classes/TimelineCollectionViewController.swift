@@ -8,10 +8,23 @@ class TimelineCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
+        let now = NSDate()
+        var date = now.beginningOfDay
+
+        while date < now.endOfDay {
+            var nextDate = date + 30.minutes
+
             timeArray.append(date.stringFromFormat("HH:mm"))
+
+            if date < now && now < nextDate {
+                timeArray.append(now.stringFromFormat("HH:mm"))
+            }
+
+            date = nextDate
         }
+
         timeArray.append("24:00")
+
         collectionView?.showsVerticalScrollIndicator = false
 
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
@@ -64,6 +77,7 @@ class TimelineCollectionViewController: UICollectionViewController {
             collectionView?.scrollToItemAtIndexPath(centeredIndexPath, atScrollPosition: .CenteredVertically, animated: true)
         }
     }
+
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let (visibles, nearestCenter) = getVisibleCellsAndNearestCenterCell()
 
