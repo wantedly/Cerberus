@@ -82,7 +82,7 @@ final class Calendar {
 
             var currentDateOffset = calStartDate
 
-            if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) {
+            if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
                 for event in matchingEvents {
                     if let startDate = event.startDate, endDate = event.endDate {
                         if startDate < currentDateOffset {
@@ -95,7 +95,7 @@ final class Calendar {
                             self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
                         }
 
-                        let event = Event.fromEKEvent(event as! EKEvent)
+                        let event = Event.fromEKEvent(event)
 
                         if endDate > calEndDate {
                             event.endDate = calEndDate

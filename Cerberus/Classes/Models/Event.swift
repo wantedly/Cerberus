@@ -29,21 +29,19 @@ final class Event {
             endDate:   eventOfEventKit.endDate
         )
 
-        if let attendees = eventOfEventKit.attendees {
+        if let attendees = eventOfEventKit.attendees as? [EKParticipant] {
             for attendee in attendees {
-                if let a = attendee as? EKParticipant {
-                    switch a.participantType.value {
-                    case EKParticipantTypePerson.value:
-                        if a.participantStatus.value != EKParticipantStatusDeclined.value {
-                            if let name = a.name, email = a.URL.resourceSpecifier {
-                                event.attendees.append(User(name: name, email: email))
-                            }
+                switch attendee.participantType.value {
+                case EKParticipantTypePerson.value:
+                    if attendee.participantStatus.value != EKParticipantStatusDeclined.value {
+                        if let name = attendee.name, email = attendee.URL.resourceSpecifier {
+                            event.attendees.append(User(name: name, email: email))
                         }
-
-                    default:
-                        // just ignore
-                        println(a.participantType)
                     }
+
+                default:
+                    // just ignore
+                    println(attendee.participantType)
                 }
             }
         }
