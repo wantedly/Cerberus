@@ -85,6 +85,8 @@ class EventsCollectionViewController: UICollectionViewController {
         var cellInfos = [EventCellInfo]()
         var nearestCenter: EventCellInfo!
 
+        let eventsCollectionViewFlowLayout = self.collectionViewLayout as! EventsCollectionViewFlowLayout
+
         for indexPath in self.collectionView!.indexPathsForVisibleItems() {
             let cell     = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
             let cellRect = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
@@ -116,8 +118,10 @@ class EventsCollectionViewController: UICollectionViewController {
         for cellInfo in cellInfos {
             cellInfo.cell.hidden = false
 
+            let event = self.calendar.events[cellInfo.row]
+
             var dy: CGFloat     = 0.0
-            var height: CGFloat = cellInfo.cell.frame.height
+            var height: CGFloat = eventsCollectionViewFlowLayout.sizeForEvent(event).height
             var alpha: CGFloat  = 0.0
 
             if cellInfo.cell == nearestCenter.cell {
@@ -139,7 +143,7 @@ class EventsCollectionViewController: UICollectionViewController {
             }
 
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                cellInfo.cell.contentView.bounds.size.height = height  // FIXME
+                cellInfo.cell.bounds.size.height = height
                 cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, dy)
                 cellInfo.cell.alpha = alpha
             })
