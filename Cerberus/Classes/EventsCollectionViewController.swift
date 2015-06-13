@@ -129,12 +129,7 @@ class EventsCollectionViewController: UICollectionViewController {
                 height += 100
                 alpha = 1.0
             } else {
-                var diff = Double(cellInfo.row - nearestCenter.row)
-
-                // more fluid
-                // dy = (diff < 0 ? -1.0 : 1.0) * 10.0 * CGFloat(pow(4.0, abs(diff)))
-
-                if diff < 0 {
+                if cellInfo.row < nearestCenter.row {
                     dy = -50.0
                 } else {
                     dy = +50.0
