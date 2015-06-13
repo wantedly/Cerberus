@@ -7,8 +7,6 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var wrapperView: UIView!
     @IBOutlet weak var userAvatarsCollectionView: UICollectionView!
-    @IBOutlet weak var topOffsetConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomOffsetConstraint: NSLayoutConstraint!
 
     var eventModel: Event? {
         didSet { update() }
