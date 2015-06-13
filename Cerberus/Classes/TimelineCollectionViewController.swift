@@ -8,6 +8,15 @@ class TimelineCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        generateTimeLabels()
+
+        collectionView?.showsVerticalScrollIndicator = false
+
+        let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
+        self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
+    }
+
+    private func generateTimeLabels() {
         let now = NSDate()
         var date = now.beginningOfDay
 
@@ -24,11 +33,6 @@ class TimelineCollectionViewController: UICollectionViewController {
         }
 
         timeArray.append("24:00")
-
-        collectionView?.showsVerticalScrollIndicator = false
-
-        let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
-        self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
     }
 
     override func viewDidAppear(animated: Bool) {
