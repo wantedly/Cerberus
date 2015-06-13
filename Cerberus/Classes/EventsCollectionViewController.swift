@@ -84,6 +84,13 @@ class EventsCollectionViewController: UICollectionViewController {
 
         var nearestCenter: (cell: UICollectionViewCell?, deviation: CGFloat) = (nil, CGFloat.infinity)
 
+        var cellInfos: [(
+            cell: UICollectionViewCell,
+            y: CGFloat,
+            height: CGFloat,
+            deviation: CGFloat
+        )] = []
+
         for indexPath in visibleIndexPaths {
             let cell = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
             let cellRect = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
@@ -104,25 +111,28 @@ class EventsCollectionViewController: UICollectionViewController {
                 nearestCenter.deviation = deviation
                 nearestCenter.cell = cell
             }
+
+            let cellInfo = (
+                cell:      cell,
+                y:         centerY,
+                height:    height,
+                deviation: deviation
+            )
+            cellInfos.append(cellInfo)
         }
 
-        for indexPath in visibleIndexPaths {
-            let cell = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
-            cell.hidden = false
+        for cellInfo in cellInfos {
+            cellInfo.cell.hidden = false
 
-            let cellRect  = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
-            let y = cellRect.origin.y + cellRect.height / 2
-            let deviation = y / collectionViewHeight - 0.5
-
-            if cell == nearestCenter.cell {
-                cell.transform = CGAffineTransformMakeScale(1.5, 1.5)
+            if cellInfo.cell == nearestCenter.cell {
+                cellInfo.cell.transform = CGAffineTransformMakeTranslation(20, 0)
             } else {
-                cell.transform = CGAffineTransformMakeScale(1, 1)
+                cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 0)
             }
 
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                println(nearestCenter.deviation - y)
-                //cell.transform = CGAffineTransformMakeTranslation(0, 100 * (deviation - nearestCenter.deviation))
+                // println(nearestCenter.deviation - y)
+                // cell.transform = CGAffineTransformMakeTranslation(0, 100 * (cellInfo.deviation - nearestCenter.deviation))
             })
         }
     }
