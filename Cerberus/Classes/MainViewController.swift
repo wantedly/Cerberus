@@ -79,10 +79,6 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     // MARK: Key Value Observing
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        if keyPath != contentOffsetKeyPath {
-            return
-        }
-
         var anotherCollectionViewController: UICollectionViewController?
 
         switch context {
@@ -91,7 +87,11 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         case &kvoContextForTimelineCollectionViewController:
             anotherCollectionViewController = self.eventsCollectionViewController
         default:
-            break
+            return
+        }
+
+        if keyPath != contentOffsetKeyPath {
+            return
         }
 
         if let collectionView = object as? UICollectionView, anotherCollectionView = anotherCollectionViewController?.collectionView {
