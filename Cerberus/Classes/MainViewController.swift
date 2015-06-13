@@ -8,10 +8,10 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     weak var eventsCollectionViewController: EventsCollectionViewController?
     var calendarChooser: EKCalendarChooser!
 
-    private var kvoContextForTimelineCollectionViewController = "KVOContext"
-    private var kvoContextForEventsCollectionViewController = "KVOContext"
+    private var kvoContextForTimelineCollectionViewController = "kvoContextForTimelineCollectionViewController"
+    private var kvoContextForEventsCollectionViewController = "kvoContextForEventsCollectionViewController"
 
-    let contentOffsetKeyPath = "contentOffset"
+    private let contentOffsetKeyPath = "contentOffset"
 
     deinit {
         self.timelineCollectionViewController?.removeObserver(self, forKeyPath: contentOffsetKeyPath)
