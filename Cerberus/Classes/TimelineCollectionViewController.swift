@@ -99,16 +99,11 @@ class TimelineCollectionViewController: UICollectionViewController {
             var alpha: CGFloat  = 0.0
 
             if cell == nearestCenter.cell {
-                height += 100
+                height += TimelineHeight
                 alpha = 1.0
                 cell.makeLabelBold()
             } else {
-                if cellInfo.row < nearestCenter.row {
-                    dy = -50.0
-                } else {
-                    dy = +50.0
-                }
-
+                dy = (cellInfo.row < nearestCenter.row ? -1 : +1) * TimelineHeight / 2
                 alpha = 0.5
                 cell.makeLabelNormal()
             }
