@@ -27,6 +27,7 @@
 		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AE345E931B2392F4000C5284 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE345E921B2392F4000C5284 /* UIColor+Hex.swift */; };
 		AE59FB421B23460800BBCDA0 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59FB411B23460800BBCDA0 /* String+MD5.swift */; };
+		AE7E1AE81B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E1AE71B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift */; };
 		AEA4FD091B230DBE008F3BC1 /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEA4FD081B230DBE008F3BC1 /* EventCollectionViewCell.xib */; };
 		AEDC9A9B1B22BB1800A2EEE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9A1B22BB1800A2EEE9 /* User.swift */; };
 		AEDC9A9D1B22BBDB00A2EEE9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */; };
@@ -72,6 +73,7 @@
 		AE59FB411B23460800BBCDA0 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		AE59FB431B23465F00BBCDA0 /* Cerberus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cerberus-Bridging-Header.h"; sourceTree = "<group>"; };
 		AE59FB4B1B237D8700BBCDA0 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		AE7E1AE71B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewController+NearestCenterCell.swift"; sourceTree = "<group>"; };
 		AEA4FD081B230DBE008F3BC1 /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
 		AEDC9A9A1B22BB1800A2EEE9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEDC9A9C1B22BBDB00A2EEE9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				AE59FB411B23460800BBCDA0 /* String+MD5.swift */,
 				AE345E921B2392F4000C5284 /* UIColor+Hex.swift */,
+				AE7E1AE71B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				AEDC9A9D1B22BBDB00A2EEE9 /* Event.swift in Sources */,
 				AEDC9A9F1B22BC0000A2EEE9 /* Calendar.swift in Sources */,
 				AE59FB421B23460800BBCDA0 /* String+MD5.swift in Sources */,
+				AE7E1AE81B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift in Sources */,
 				4B3BBAAA1B22B6BB002211E5 /* EventsCollectionViewController.swift in Sources */,
 				4B9D0C101B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift in Sources */,
 				4B3BBAAE1B22BDE9002211E5 /* StoryboardIdentifiers.swift in Sources */,

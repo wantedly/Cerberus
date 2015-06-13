@@ -6,8 +6,6 @@ import EasyAnimation
 
 class EventsCollectionViewController: UICollectionViewController {
 
-    private typealias EventCellInfo = (cell: UICollectionViewCell, row: Int, height: CGFloat, deviation: CGFloat)
-
     var calendar: Calendar!
 
     override func viewDidLoad() {
@@ -80,43 +78,11 @@ class EventsCollectionViewController: UICollectionViewController {
     }
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        let collectionViewHeight = self.collectionView!.bounds.height
-        let collectionViewY = self.collectionView!.frame.origin.y
-
-        var cellInfos = [EventCellInfo]()
-        var nearestCenter: EventCellInfo!
+        let (visibles, nearestCenter) = getVisibleCellsAndNearestCenterCell()
 
         let eventsCollectionViewFlowLayout = self.collectionViewLayout as! EventsCollectionViewFlowLayout
 
-        for indexPath in self.collectionView!.indexPathsForVisibleItems() {
-            let cell     = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
-            let cellRect = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
-
-            var height = cellRect.height
-            var y      = cellRect.origin.y
-
-            if y < collectionViewY {
-                height -= collectionViewY - y
-                y       = 0
-            }
-
-            let deviation = (y + height / 2) / collectionViewHeight - 0.5
-
-            let cellInfo: EventCellInfo = (
-                cell:      cell,
-                row:       indexPath.row,
-                height:    height,
-                deviation: deviation
-            )
-
-            cellInfos.append(cellInfo)
-
-            if abs(nearestCenter?.deviation ?? CGFloat.infinity) > abs(deviation) {
-                nearestCenter = cellInfo
-            }
-        }
-
-        for cellInfo in cellInfos {
+        for cellInfo in visibles {
             cellInfo.cell.hidden = false
 
             let event = self.calendar.events[cellInfo.row]
