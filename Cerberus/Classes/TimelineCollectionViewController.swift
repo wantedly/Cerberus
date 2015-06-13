@@ -8,14 +8,20 @@ class TimelineCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
-            timeArray.append(date.stringFromFormat("HH:mm"))
-        }
-        timeArray.append("24:00")
+        generateTimeLabels()
+
         collectionView?.showsVerticalScrollIndicator = false
 
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
+    }
+
+    private func generateTimeLabels() {
+        for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
+            timeArray.append(date.stringFromFormat("HH:mm"))
+        }
+
+        timeArray.append("24:00")
     }
 
     override func viewDidAppear(animated: Bool) {
