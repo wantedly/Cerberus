@@ -5,6 +5,8 @@ import Timepiece
 
 class EventsCollectionViewController: UICollectionViewController {
 
+    private typealias EventCellInfo = (cell: UICollectionViewCell!, row: Int, height: CGFloat, deviation: CGFloat)
+
     var calendar: Calendar!
 
     override func viewDidLoad() {
@@ -82,14 +84,8 @@ class EventsCollectionViewController: UICollectionViewController {
         let collectionViewHeight = self.collectionView!.bounds.height
         let collectionViewY = self.collectionView!.frame.origin.y
 
-        var nearestCenter: (cell: UICollectionViewCell?, deviation: CGFloat) = (nil, CGFloat.infinity)
-
-        var cellInfos: [(
-            cell: UICollectionViewCell,
-            y: CGFloat,
-            height: CGFloat,
-            deviation: CGFloat
-        )] = []
+        var cellInfos = [EventCellInfo]()
+        var nearestCenter: (row: Int, deviation: CGFloat) = (0, CGFloat.infinity)
 
         for indexPath in visibleIndexPaths {
             let cell = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
@@ -103,18 +99,16 @@ class EventsCollectionViewController: UICollectionViewController {
                 y = 0
             }
 
-            var centerY = y + height / 2
-
-            let deviation = centerY / collectionViewHeight - 0.5
+            let deviation = (y + height / 2) / collectionViewHeight - 0.5
 
             if abs(nearestCenter.deviation) > abs(deviation) {
+                nearestCenter.row       = indexPath.row
                 nearestCenter.deviation = deviation
-                nearestCenter.cell = cell
             }
 
-            let cellInfo = (
+            let cellInfo: EventCellInfo = (
                 cell:      cell,
-                y:         centerY,
+                row:       indexPath.row,
                 height:    height,
                 deviation: deviation
             )
@@ -124,16 +118,21 @@ class EventsCollectionViewController: UICollectionViewController {
         for cellInfo in cellInfos {
             cellInfo.cell.hidden = false
 
-            if cellInfo.cell == nearestCenter.cell {
-                cellInfo.cell.transform = CGAffineTransformMakeTranslation(20, 0)
+            if cellInfo.row == nearestCenter.row {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    // println(nearestCenter.deviation - y)
+                    // cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 100 * (cellInfo.deviation - nearestCenter.deviation))
+                    // cellInfo.cell.contentView.bounds.size.height = cellInfo.height + 100
+                    cellInfo.cell.transform = CGAffineTransformMakeTranslation(20, 0)
+                })
             } else {
-                cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 0)
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    // println(nearestCenter.deviation - y)
+                    // cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 100 * (cellInfo.deviation - nearestCenter.deviation))
+                    //cellInfo.cell.contentView.bounds.size.height = cellInfo.height
+                    cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, 0)
+                })
             }
-
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                // println(nearestCenter.deviation - y)
-                // cell.transform = CGAffineTransformMakeTranslation(0, 100 * (cellInfo.deviation - nearestCenter.deviation))
-            })
         }
     }
 }
