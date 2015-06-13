@@ -75,4 +75,55 @@ class EventsCollectionViewController: UICollectionViewController {
         let event = self.calendar.events[indexPath.row]
         return eventsCollectionViewFlowLayout.sizeForEvent(event)
     }
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        var visibleIndexPaths = self.collectionView!.indexPathsForVisibleItems()
+
+        let collectionViewHeight = self.collectionView!.bounds.height
+        let collectionViewY = self.collectionView!.frame.origin.y
+
+        var nearestCenter: (cell: UICollectionViewCell?, deviation: CGFloat) = (nil, CGFloat.infinity)
+
+        for indexPath in visibleIndexPaths {
+            let cell = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
+            let cellRect = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
+
+            var y = cellRect.origin.y
+            var height = cellRect.height
+
+            if y < collectionViewY {
+                height -= collectionViewY - y
+                y = 0
+            }
+
+            var centerY = y + height / 2
+
+            let deviation = centerY / collectionViewHeight - 0.5
+
+            if abs(nearestCenter.deviation) > abs(deviation) {
+                nearestCenter.deviation = deviation
+                nearestCenter.cell = cell
+            }
+        }
+
+        for indexPath in visibleIndexPaths {
+            let cell = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
+            cell.hidden = false
+
+            let cellRect  = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
+            let y = cellRect.origin.y + cellRect.height / 2
+            let deviation = y / collectionViewHeight - 0.5
+
+            if cell == nearestCenter.cell {
+                cell.transform = CGAffineTransformMakeScale(1.5, 1.5)
+            } else {
+                cell.transform = CGAffineTransformMakeScale(1, 1)
+            }
+
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                println(nearestCenter.deviation - y)
+                //cell.transform = CGAffineTransformMakeTranslation(0, 100 * (deviation - nearestCenter.deviation))
+            })
+        }
+    }
 }
