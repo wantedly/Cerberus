@@ -6,23 +6,20 @@ final class Event {
     var startDate: NSDate
     var endDate: NSDate
 
-    var attendees: [User]! = []
-    let available: Bool
+    var attendees = [User]()
+    private var available = false
 
-    init(title: String, startDate: NSDate, endDate: NSDate, available: Bool = false) {
+    init(title: String, startDate: NSDate, endDate: NSDate) {
         self.title     = title
         self.startDate = startDate
         self.endDate   = endDate
-        self.available = available
     }
 
-    func span() -> Int {
-        var end = endDate.hour * 60 + endDate.minute
-        if end == 0 {
-            end = 24 * 60
-        }
-        let start = startDate.hour * 60 + startDate.minute
-        return end - start
+    init(startDate: NSDate, endDate: NSDate) {
+        self.title     = "Available"
+        self.startDate = startDate
+        self.endDate   = endDate
+        self.available = true
     }
 
     class func fromEKEvent(eventOfEventKit: EKEvent) -> Event {
@@ -54,14 +51,16 @@ final class Event {
         return event
     }
 
-    class func createEmptyEvent(#startDate: NSDate, endDate: NSDate) -> Event {
-        let event = self(
-            title:     "Available",
-            startDate: startDate,
-            endDate:   endDate,
-            available: true
-        )
+    func isAvailable() -> Bool {
+        return self.available
+    }
 
-        return event
+    func span() -> Int {
+        var end = endDate.hour * 60 + endDate.minute
+        if end == 0 {
+            end = 24 * 60
+        }
+        let start = startDate.hour * 60 + startDate.minute
+        return end - start
     }
 }

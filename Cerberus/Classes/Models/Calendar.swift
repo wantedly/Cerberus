@@ -9,14 +9,13 @@ enum CalendarAuthorizationStatus {
 
 final class Calendar {
 
+    var date: NSDate
+
     private let eventStore: EKEventStore!
     private let calendar: NSCalendar!
+    private var selectedCalendars: [EKCalendar]?
 
-    var events: [Event]!
-
-    var date: NSDate!
-
-    var selectedCalendars: [EKCalendar]?
+    var events: [Event]
 
     init() {
         self.events = []
@@ -93,7 +92,7 @@ final class Calendar {
                         }
 
                         if currentDateOffset < startDate {
-                            self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: startDate))
+                            self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
                         }
 
                         let event = Event.fromEKEvent(event as! EKEvent)
@@ -110,7 +109,7 @@ final class Calendar {
             }
 
             if currentDateOffset < calEndDate {
-                self.events.append(Event.createEmptyEvent(startDate: currentDateOffset, endDate: calEndDate))
+                self.events.append(Event(startDate: currentDateOffset, endDate: calEndDate))
             }
         }
     }

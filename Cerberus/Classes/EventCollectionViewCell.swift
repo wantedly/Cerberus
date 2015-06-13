@@ -41,7 +41,7 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
 
             self.titleLabel.text = event.title
 
-            if event.available {
+            if event.isAvailable() {
                 self.timeLabel.text = nil
                 self.wrapperView.backgroundColor = UIColor(hex: 0x6cc644, alpha: 0.1)
                 self.wrapperView.layer.borderColor = UIColor(hex: 0x6cc644, alpha: 0.7).CGColor
