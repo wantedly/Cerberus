@@ -83,7 +83,9 @@ class EventsCollectionViewController: UICollectionViewController {
         let eventsCollectionViewFlowLayout = self.collectionViewLayout as! EventsCollectionViewFlowLayout
 
         for cellInfo in visibles {
-            cellInfo.cell.hidden = false
+            let cell = cellInfo.cell as! EventCollectionViewCell
+
+            cell.hidden = false
 
             let event = self.calendar.events[cellInfo.row]
 
@@ -91,7 +93,7 @@ class EventsCollectionViewController: UICollectionViewController {
             var height: CGFloat = eventsCollectionViewFlowLayout.sizeForEvent(event).height
             var alpha: CGFloat  = 0.0
 
-            if cellInfo.cell == nearestCenter.cell {
+            if cell == nearestCenter.cell {
                 height += 100
                 alpha = 1.0
             } else {
@@ -110,9 +112,9 @@ class EventsCollectionViewController: UICollectionViewController {
                 initialSpringVelocity: 0.0,
                 options: .CurveEaseInOut,
                 animations: { () -> Void in
-                    cellInfo.cell.bounds.size.height = height
-                    cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, dy)
-                    cellInfo.cell.alpha = alpha
+                    cell.bounds.size.height = height
+                    cell.transform = CGAffineTransformMakeTranslation(0, dy)
+                    cell.alpha = alpha
                 },
                 completion: nil
             )
