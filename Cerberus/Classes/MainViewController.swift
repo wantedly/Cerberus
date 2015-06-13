@@ -64,9 +64,9 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
 
     func calendarChooserSelectionDidChange(calendarChooser: EKCalendarChooser!) {
         var calendars: [EKCalendar] = []
-        
-        for calendar in calendarChooser.selectedCalendars {
-            calendars.append(calendar as! EKCalendar)
+
+        if let selectedCalendarsSet = calendarChooser.selectedCalendars as? Set<EKCalendar> {
+            calendars = Array(selectedCalendarsSet)
         }
 
         NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: calendars)
