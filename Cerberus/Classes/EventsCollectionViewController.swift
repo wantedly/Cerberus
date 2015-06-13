@@ -138,11 +138,18 @@ class EventsCollectionViewController: UICollectionViewController {
                 alpha = 0.5
             }
 
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-                cellInfo.cell.bounds.size.height = height
-                cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, dy)
-                cellInfo.cell.alpha = alpha
-            }, completion: nil)
+            UIView.animateWithDuration(0.6,
+                delay: 0.0,
+                usingSpringWithDamping: 0.5,
+                initialSpringVelocity: 0.0,
+                options: .CurveEaseInOut,
+                animations: { () -> Void in
+                    cellInfo.cell.bounds.size.height = height
+                    cellInfo.cell.transform = CGAffineTransformMakeTranslation(0, dy)
+                    cellInfo.cell.alpha = alpha
+                },
+                completion: nil
+            )
         }
     }
 }
