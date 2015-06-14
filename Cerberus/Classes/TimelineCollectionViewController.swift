@@ -26,7 +26,7 @@ class TimelineCollectionViewController: UICollectionViewController {
             timeArray.append(date.stringFromFormat("HH:mm"))
 
             if date < now && now < nextDate {
-                timeArray.append(now.stringFromFormat("HH:mm"))
+                // timeArray.append(now.stringFromFormat("HH:mm"))  // TODO
             }
 
             date = nextDate
