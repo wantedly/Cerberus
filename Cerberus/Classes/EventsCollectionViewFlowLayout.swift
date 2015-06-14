@@ -11,7 +11,8 @@ class EventsCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 
     func sizeForEvent(event: Event) -> CGSize {
-        let span = CGFloat(min(max(30, event.span()), 5 * 30))
+        let span = CGFloat(event.span())
+        // let span = CGFloat(min(max(30, event.span()), 5 * 30))  // TODO
 
         let width = collectionView!.bounds.width
         let height = (TimelineHeight / 30) * span - EventInterval
