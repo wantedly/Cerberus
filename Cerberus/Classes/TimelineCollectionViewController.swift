@@ -14,6 +14,8 @@ class TimelineCollectionViewController: UICollectionViewController {
 
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
+
+        NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
     }
 
     private func generateTimeLabels() {
@@ -36,9 +38,7 @@ class TimelineCollectionViewController: UICollectionViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
-        let date = NSDate()
-        let newIndex = NSIndexPath(forItem: (date.hour * 60 + date.minute) / 30, inSection: 0)
-        self.collectionView?.scrollToItemAtIndexPath(newIndex, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
+        scrollToCurrentTime()
     }
 
     // MARK: UICollectionViewDataSource
@@ -82,6 +82,12 @@ class TimelineCollectionViewController: UICollectionViewController {
         }
     }
 
+    private func scrollToCurrentTime() {
+        let date = NSDate()
+        let newIndex = NSIndexPath(forItem: (date.hour * 60 + date.minute) / 30, inSection: 0)
+        self.collectionView?.scrollToItemAtIndexPath(newIndex, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
+    }
+
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let (visibles, nearestCenter) = getVisibleCellsAndNearestCenterCell()
 
@@ -123,4 +129,9 @@ class TimelineCollectionViewController: UICollectionViewController {
         }
     }
 
+    // MARK: timer
+
+    func handleTimer(timer: NSTimer) {
+        scrollToCurrentTime()
+    }
 }
