@@ -9,9 +9,10 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
     var calendarChooser: EKCalendarChooser!
 
     private var kvoContextForTimelineCollectionViewController = "kvoContextForTimelineCollectionViewController"
-    private var kvoContextForEventsCollectionViewController = "kvoContextForEventsCollectionViewController"
+    private var kvoContextForEventsCollectionViewController   = "kvoContextForEventsCollectionViewController"
 
     private let contentOffsetKeyPath = "contentOffset"
+    private let contentSizeKeyPath   = "contentSize"
 
     deinit {
         self.timelineCollectionViewController?.removeObserver(self, forKeyPath: contentOffsetKeyPath)
@@ -22,10 +23,28 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         switch segue.destinationViewController {
         case let timelineCollectionViewController as TimelineCollectionViewController:
             self.timelineCollectionViewController = timelineCollectionViewController
-            self.timelineCollectionViewController?.collectionView?.addObserver(self, forKeyPath: contentOffsetKeyPath, options: .New, context: &kvoContextForTimelineCollectionViewController)
+            self.timelineCollectionViewController?.collectionView?.addObserver(self,
+                forKeyPath: contentOffsetKeyPath,
+                options:    .New,
+                context:    &kvoContextForTimelineCollectionViewController
+            )
+            self.timelineCollectionViewController?.collectionView?.addObserver(self,
+                forKeyPath: contentSizeKeyPath,
+                options:    .New,
+                context:    &kvoContextForTimelineCollectionViewController
+            )
         case let eventsCollectionViewController as EventsCollectionViewController:
             self.eventsCollectionViewController = eventsCollectionViewController
-            self.eventsCollectionViewController?.collectionView?.addObserver(self, forKeyPath: contentOffsetKeyPath, options: .New, context: &kvoContextForEventsCollectionViewController)
+            self.eventsCollectionViewController?.collectionView?.addObserver(self,
+                forKeyPath: contentOffsetKeyPath,
+                options:    .New,
+                context:    &kvoContextForEventsCollectionViewController
+            )
+            self.eventsCollectionViewController?.collectionView?.addObserver(self,
+                forKeyPath: contentSizeKeyPath,
+                options:    .New,
+                context:    &kvoContextForEventsCollectionViewController
+            )
         default:
             break
         }
@@ -94,18 +113,29 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
             return
         }
 
-        if keyPath != contentOffsetKeyPath {
-            return
-        }
+        switch keyPath {
+        case contentOffsetKeyPath:
+            if let anotherCollectionView = anotherCollectionViewController?.collectionView {
+                if let point = change["new"] as? NSValue {
+                    let y = point.CGPointValue().y
 
-        if let anotherCollectionView = anotherCollectionViewController?.collectionView {
-            if let point = change["new"] as? NSValue {
-                let y = point.CGPointValue().y
-
-                if anotherCollectionView.contentOffset.y != y {
-                    anotherCollectionView.contentOffset.y = y
+                    if anotherCollectionView.contentOffset.y != y {
+                        anotherCollectionView.contentOffset.y = y
+                    }
                 }
             }
+
+        case contentSizeKeyPath:
+            if let collectionView = object as? UICollectionView, anotherCollectionView = anotherCollectionViewController?.collectionView {
+                if let point = change["new"] as? NSValue {
+                    let height = point.CGSizeValue().height
+
+                    println("one: \(height), other: \(anotherCollectionView.contentSize.height)")
+                }
+            }
+
+        default:
+            break
         }
     }
 }
