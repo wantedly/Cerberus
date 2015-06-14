@@ -50,6 +50,9 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
 
     func setNavbarTitle(date: NSDate = NSDate()) {
         self.title = date.stringFromFormat("EEEE, MMMM d, yyyy")
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 24.0)!
+        ]
     }
 
     func presentCalendarChooser() {

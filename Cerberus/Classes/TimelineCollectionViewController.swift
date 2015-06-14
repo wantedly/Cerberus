@@ -17,8 +17,19 @@ class TimelineCollectionViewController: UICollectionViewController {
     }
 
     private func generateTimeLabels() {
-        for (var date = NSDate().beginningOfDay; date < NSDate().endOfDay; date = date + 30.minutes) {
+        let now = NSDate()
+        var date = now.beginningOfDay
+
+        while date < now.endOfDay {
+            var nextDate = date + 30.minutes
+
             timeArray.append(date.stringFromFormat("HH:mm"))
+
+            if date < now && now < nextDate {
+                // timeArray.append(now.stringFromFormat("HH:mm"))  // TODO
+            }
+
+            date = nextDate
         }
 
         timeArray.append("24:00")
@@ -70,4 +81,46 @@ class TimelineCollectionViewController: UICollectionViewController {
             collectionView?.scrollToItemAtIndexPath(centeredIndexPath, atScrollPosition: .CenteredVertically, animated: true)
         }
     }
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let (visibles, nearestCenter) = getVisibleCellsAndNearestCenterCell()
+
+        let timelineCollectionViewFlowLayout = self.collectionViewLayout as! TimelineCollectionViewFlowLayout
+
+        for cellInfo in visibles {
+            let cell = cellInfo.cell as! TimeCollectionViewCell
+
+            cell.hidden = false
+
+            let time = self.timeArray[cellInfo.row]
+
+            var dy: CGFloat     = 0.0
+            var height: CGFloat = timelineCollectionViewFlowLayout.sizeForTimeline().height
+            var alpha: CGFloat  = 0.0
+
+            if cell == nearestCenter.cell {
+                height += TimelineHeight
+                alpha = 1.0
+                cell.makeLabelBold()
+            } else {
+                dy = (cellInfo.row < nearestCenter.row ? -1 : +1) * TimelineHeight / 2
+                alpha = 0.5
+                cell.makeLabelNormal()
+            }
+
+            UIView.animateWithDuration(0.6,
+                delay: 0.0,
+                usingSpringWithDamping: 0.5,
+                initialSpringVelocity: 0.0,
+                options: .CurveEaseInOut,
+                animations: { () -> Void in
+                    cell.bounds.size.height = height
+                    cell.transform = CGAffineTransformMakeTranslation(0, dy)
+                    cell.alpha = alpha
+                },
+                completion: nil
+            )
+        }
+    }
+
 }
