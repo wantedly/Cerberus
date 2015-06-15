@@ -9,7 +9,6 @@ let EventInterval: CGFloat = EventPadding * 2
 
 enum NotifictionNames : String {
     case CalendarModelDidChangeEventNotification                       = "CalendarModelDidChangeEventNotification"
-    case CalendarModelDidReceiveForceFetchEventIfNecessaryNotification = "CalendarModelDidReceiveForceFetchEventIfNecessaryNotification"
     case CalendarModelDidChooseCalendarNotification                    = "CalendarModelDidChooseCalendarNotification"
     case TimelineCollectionViewControllerDidUpdateTimelineNotification = "TimelineCollectionViewControllerDidUpdateTimelineNotification"
 }

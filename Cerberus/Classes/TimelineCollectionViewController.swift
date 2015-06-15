@@ -149,6 +149,5 @@ class TimelineCollectionViewController: UICollectionViewController {
 
     func handleTimer(timer: NSTimer) {
         scrollToCurrentTime()
-        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.CalendarModelDidReceiveForceFetchEventIfNecessaryNotification.rawValue, object: nil)
     }
 }

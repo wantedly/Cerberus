@@ -17,6 +17,8 @@ final class Calendar {
 
     var events: [Event]
 
+    private var timer: NSTimer?
+
     init() {
         self.events = []
         self.eventStore = EKEventStore()
@@ -25,11 +27,14 @@ final class Calendar {
 
         self.date = NSDate()
 
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
+
         registerNotificationObservers()
     }
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        self.timer?.invalidate()
     }
 
     private func registerNotificationObservers() {
@@ -38,12 +43,6 @@ final class Calendar {
         notificationCenter.addObserver(self,
             selector: "didChooseCalendarNotification:",
             name:     NotifictionNames.CalendarModelDidChooseCalendarNotification.rawValue,
-            object:   nil
-        )
-
-        notificationCenter.addObserver(self,
-            selector: "didReceiveForceFetchEventIfNecessaryNotification:",
-            name:     NotifictionNames.CalendarModelDidReceiveForceFetchEventIfNecessaryNotification.rawValue,
             object:   nil
         )
 
@@ -66,7 +65,7 @@ final class Calendar {
     }
 
     @objc
-    func didReceiveForceFetchEventIfNecessaryNotification(notification: NSNotification) {
+    func onTimerTick(timer: NSTimer) {
         let date = NSDate()
 
         if self.date.day == date.day {
