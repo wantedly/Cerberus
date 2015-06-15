@@ -30,6 +30,12 @@ final class Calendar {
             name:     NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue,
             object:   nil
         )
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "didChangeEventNotification:",
+            name:     EKEventStoreChangedNotification,
+            object:   nil
+        )
     }
 
     deinit {
@@ -39,6 +45,11 @@ final class Calendar {
     @objc
     func didChooseCalendarNotification(notification: NSNotification) {
         self.selectedCalendars = notification.object as? [EKCalendar]
+    }
+
+    @objc
+    func didChangeEventNotification(notification: NSNotification) {
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.CalendarModelDidChangeEventNotification.rawValue, object: nil)
     }
 
     func isAuthorized() -> Bool {
