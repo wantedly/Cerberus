@@ -36,8 +36,7 @@ class EventsCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: XibNames.EventCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.EventCell.rawValue)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "eventStoreChanged:", name: EKEventStoreChangedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didChooseCalendarNotification:", name: NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEventChange:", name: NotifictionNames.CalendarModelDidChangeEventNotification.rawValue, object: nil)
     }
 
     deinit {
@@ -47,15 +46,12 @@ class EventsCollectionViewController: UICollectionViewController {
     // MARK: Update calendar events
 
     func updateCalendarEvents() {
-        self.calendar?.update()
         self.collectionView?.reloadData()
+
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.TimelineCollectionViewControllerDidUpdateTimelineNotification.rawValue, object: nil)
     }
 
-    func eventStoreChanged(notification: NSNotification) {
-        updateCalendarEvents()
-    }
-
-    func didChooseCalendarNotification(notification: NSNotification) {
+    func didEventChange(notification: NSNotification) {
         updateCalendarEvents()
     }
 

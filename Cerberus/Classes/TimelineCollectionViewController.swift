@@ -4,7 +4,9 @@ import Timepiece
 class TimelineCollectionViewController: UICollectionViewController {
 
     var timeArray = [String]()
-    var timer: NSTimer?
+
+    private var timer: NSTimer?
+    private let timerTickIntervalSec = 60.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +18,18 @@ class TimelineCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "didUpdateTimelineNotification:",
+            name:     NotifictionNames.TimelineCollectionViewControllerDidUpdateTimelineNotification.rawValue,
+            object:   nil
+        )
     }
 
     deinit {
         self.timer?.invalidate()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     private func generateTimeLabels() {
@@ -40,6 +49,10 @@ class TimelineCollectionViewController: UICollectionViewController {
         }
 
         timeArray.append("24:00")
+    }
+
+    func didUpdateTimelineNotification(notification: NSNotification) {
+        scrollToCurrentTime()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -136,7 +149,7 @@ class TimelineCollectionViewController: UICollectionViewController {
 
     // MARK: timer
 
-    func handleTimer(timer: NSTimer) {
+    func onTimerTick(timer: NSTimer) {
         scrollToCurrentTime()
     }
 }

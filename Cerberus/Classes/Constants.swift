@@ -8,5 +8,7 @@ let EventPadding: CGFloat = 5
 let EventInterval: CGFloat = EventPadding * 2
 
 enum NotifictionNames : String {
-    case MainViewControllerDidChooseCalendarNotification = "MainViewControllerDidChooseCalendarNotification"
+    case CalendarModelDidChangeEventNotification                       = "CalendarModelDidChangeEventNotification"
+    case CalendarModelDidChooseCalendarNotification                    = "CalendarModelDidChooseCalendarNotification"
+    case TimelineCollectionViewControllerDidUpdateTimelineNotification = "TimelineCollectionViewControllerDidUpdateTimelineNotification"
 }
