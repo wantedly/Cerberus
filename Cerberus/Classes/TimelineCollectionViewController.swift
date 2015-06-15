@@ -19,14 +19,15 @@ class TimelineCollectionViewController: UICollectionViewController {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didUpdateTimeline:",
-            name:     NotifictionNames.TimelineCollectionViewControllerDidUpdateTimeline.rawValue,
+            selector: "didUpdateTimelineNotification:",
+            name:     NotifictionNames.TimelineCollectionViewControllerDidUpdateTimelineNotification.rawValue,
             object:   nil
         )
     }
 
     deinit {
         self.timer?.invalidate()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     private func generateTimeLabels() {
@@ -48,7 +49,7 @@ class TimelineCollectionViewController: UICollectionViewController {
         timeArray.append("24:00")
     }
 
-    func didUpdateTimeline(notification: NSNotification) {
+    func didUpdateTimelineNotification(notification: NSNotification) {
         scrollToCurrentTime()
     }
 
@@ -148,5 +149,6 @@ class TimelineCollectionViewController: UICollectionViewController {
 
     func handleTimer(timer: NSTimer) {
         scrollToCurrentTime()
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.CalendarModelDidReceiveForceFetchEventIfNecessaryNotification.rawValue, object: nil)
     }
 }

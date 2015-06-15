@@ -25,31 +25,56 @@ final class Calendar {
 
         self.date = NSDate()
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didChooseCalendarNotification:",
-            name:     NotifictionNames.MainViewControllerDidChooseCalendarNotification.rawValue,
-            object:   nil
-        )
-
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didChangeEventNotification:",
-            name:     EKEventStoreChangedNotification,
-            object:   nil
-        )
+        registerNotificationObservers()
     }
 
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    private func registerNotificationObservers() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+
+        notificationCenter.addObserver(self,
+            selector: "didChooseCalendarNotification:",
+            name:     NotifictionNames.CalendarModelDidChooseCalendarNotification.rawValue,
+            object:   nil
+        )
+
+        notificationCenter.addObserver(self,
+            selector: "didReceiveForceFetchEventIfNecessaryNotification:",
+            name:     NotifictionNames.CalendarModelDidReceiveForceFetchEventIfNecessaryNotification.rawValue,
+            object:   nil
+        )
+
+        notificationCenter.addObserver(self,
+            selector: "didChangeEventNotification:",
+            name:     EKEventStoreChangedNotification,
+            object:   nil
+        )
+    }
+
     @objc
     func didChooseCalendarNotification(notification: NSNotification) {
         self.selectedCalendars = notification.object as? [EKCalendar]
+        self.update()
     }
 
     @objc
     func didChangeEventNotification(notification: NSNotification) {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.CalendarModelDidChangeEventNotification.rawValue, object: nil)
+    }
+
+    @objc
+    func didReceiveForceFetchEventIfNecessaryNotification(notification: NSNotification) {
+        let date = NSDate()
+
+        if self.date.day == date.day {
+            return
+        }
+
+        self.date = date
+        self.update()
     }
 
     func isAuthorized() -> Bool {
@@ -123,6 +148,8 @@ final class Calendar {
                 self.events.append(Event(startDate: currentDateOffset, endDate: calEndDate))
             }
         }
+
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.CalendarModelDidChangeEventNotification.rawValue, object: nil)
     }
 
 }
