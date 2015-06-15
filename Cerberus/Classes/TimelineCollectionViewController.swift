@@ -4,7 +4,9 @@ import Timepiece
 class TimelineCollectionViewController: UICollectionViewController {
 
     var timeArray = [String]()
-    var timer: NSTimer?
+
+    private var timer: NSTimer?
+    private let timerTickIntervalSec = 60.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +18,7 @@ class TimelineCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
 
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didUpdateTimelineNotification:",

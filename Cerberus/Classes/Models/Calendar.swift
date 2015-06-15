@@ -18,6 +18,7 @@ final class Calendar {
     var events: [Event]
 
     private var timer: NSTimer?
+    private let timerTickIntervalSec = 60.0
 
     init() {
         self.events = []
@@ -27,7 +28,7 @@ final class Calendar {
 
         self.date = NSDate()
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
 
         registerNotificationObservers()
     }
