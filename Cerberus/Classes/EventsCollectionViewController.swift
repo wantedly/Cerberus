@@ -49,6 +49,8 @@ class EventsCollectionViewController: UICollectionViewController {
     func updateCalendarEvents() {
         self.calendar?.update()
         self.collectionView?.reloadData()
+
+        NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.TimelineCollectionViewControllerDidUpdateTimeline.rawValue, object: nil)
     }
 
     func eventStoreChanged(notification: NSNotification) {

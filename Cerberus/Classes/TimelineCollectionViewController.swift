@@ -17,6 +17,12 @@ class TimelineCollectionViewController: UICollectionViewController {
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
 
         self.timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "didUpdateTimeline:",
+            name:     NotifictionNames.TimelineCollectionViewControllerDidUpdateTimeline.rawValue,
+            object:   nil
+        )
     }
 
     deinit {
@@ -40,6 +46,10 @@ class TimelineCollectionViewController: UICollectionViewController {
         }
 
         timeArray.append("24:00")
+    }
+
+    func didUpdateTimeline(notification: NSNotification) {
+        scrollToCurrentTime()
     }
 
     override func viewDidAppear(animated: Bool) {
