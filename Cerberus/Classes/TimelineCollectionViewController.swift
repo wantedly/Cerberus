@@ -18,7 +18,7 @@ class TimelineCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "handleTimer:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
 
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didUpdateTimelineNotification:",
@@ -149,7 +149,7 @@ class TimelineCollectionViewController: UICollectionViewController {
 
     // MARK: timer
 
-    func handleTimer(timer: NSTimer) {
+    func onTimerTick(timer: NSTimer) {
         scrollToCurrentTime()
     }
 }
