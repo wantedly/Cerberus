@@ -69,10 +69,6 @@ final class Calendar {
     func onTimerTick(timer: NSTimer) {
         let date = NSDate()
 
-        if self.date.day == date.day {
-            return
-        }
-
         self.date = date
         self.update()
     }
