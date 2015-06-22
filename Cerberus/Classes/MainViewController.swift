@@ -38,6 +38,8 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named: "background"), forBarMetrics: UIBarMetrics.Default)
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(24)]
         updateNavigationBarTitle()
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationSignificantTimeChange:", name: UIApplicationSignificantTimeChangeNotification, object: nil)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -46,6 +48,12 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         if self.calendarChooser == nil {
             presentCalendarChooser()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: Private
@@ -80,6 +88,12 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName(NotifictionNames.CalendarModelDidChooseCalendarNotification.rawValue, object: calendars)
 
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: UIApplicationNotification
+    
+    func applicationSignificantTimeChange(notification: NSNotification) {
+        updateNavigationBarTitle()
     }
 
     // MARK: Key Value Observing
