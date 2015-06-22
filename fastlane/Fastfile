@@ -1,0 +1,15 @@
+fastlane_version "1.5.0"
+
+desc "Release a new beta version on TestFlight"
+lane :deploy do
+  ensure_git_status_clean
+
+  increment_build_number
+  commit_version_bump
+
+  ipa configuration: "Release"
+  testflight
+
+  push_to_git_remote
+  clean_build_artifacts
+end

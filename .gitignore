@@ -28,6 +28,10 @@ Pods/
 
 Carthage/Build
 
+# fastlane
+#
+fastlane/report.xml
+
 # Ruby
 #
 .ruby-version
