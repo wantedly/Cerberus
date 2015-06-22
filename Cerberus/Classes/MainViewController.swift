@@ -1,6 +1,7 @@
 import UIKit
 import EventKit
 import EventKitUI
+import Timepiece
 
 class MainViewController: UIViewController, EKCalendarChooserDelegate {
 
@@ -33,11 +34,10 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if let navCtrl = self.navigationController {
-            let bgImage = UIImage(named: "background")
-            navCtrl.navigationBar.setBackgroundImage(bgImage, forBarMetrics: UIBarMetrics.Default)
-        }
-        setNavbarTitle()
+
+        navigationController?.navigationBar.setBackgroundImage(UIImage(named: "background"), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(24)]
+        updateNavigationBarTitle()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -48,14 +48,14 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         }
     }
 
-    func setNavbarTitle(date: NSDate = NSDate()) {
-        self.title = date.stringFromFormat("EEEE, MMMM d, yyyy")
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 24.0)!
-        ]
+    // MARK: Private
+
+    private func updateNavigationBarTitle() {
+        let now = NSDate()
+        title = now.stringFromFormat("EEEE, MMMM d, yyyy")
     }
 
-    func presentCalendarChooser() {
+    private func presentCalendarChooser() {
         self.calendarChooser = EKCalendarChooser(
             selectionStyle: EKCalendarChooserSelectionStyleSingle,
             displayStyle:   EKCalendarChooserDisplayAllCalendars,
@@ -67,6 +67,8 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         let navigationController = UINavigationController(rootViewController: self.calendarChooser)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
+
+    // MARK: EKCalendarChooserDelegate
 
     func calendarChooserSelectionDidChange(calendarChooser: EKCalendarChooser!) {
         var calendars: [EKCalendar] = []
