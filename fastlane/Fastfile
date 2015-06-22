@@ -8,7 +8,7 @@ lane :deploy do
   commit_version_bump
 
   ipa configuration: "Release"
-  testflight
+  testflight skip_deploy: true
 
   push_to_git_remote
   clean_build_artifacts
