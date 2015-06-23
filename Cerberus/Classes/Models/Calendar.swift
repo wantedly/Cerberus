@@ -67,9 +67,9 @@ final class Calendar {
 
     @objc
     func onTimerTick(timer: NSTimer) {
-        let date = NSDate()
+        self.eventStore.refreshSourcesIfNecessary()
 
-        self.date = date
+        self.date = NSDate()
         self.update()
     }
 
