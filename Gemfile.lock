@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/paulsamuels/SBConstants.git
-  revision: 0f04238338a0ffcd9a1f07e8601ef60c7a188673
-  branch: hotfix-28-add-xib-support
-  specs:
-    sbconstants (1.1.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -209,6 +202,7 @@ GEM
     retriable (1.4.1)
     rouge (1.10.1)
     rubyzip (1.1.7)
+    sbconstants (1.1.2)
     scan (0.3.0)
       fastlane_core (>= 0.25.3, < 1.0.0)
       slack-notifier (~> 1.3)
@@ -274,7 +268,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   fastlane
-  sbconstants!
+  sbconstants
 
 BUNDLED WITH
-   1.10.4
+   1.10.6
