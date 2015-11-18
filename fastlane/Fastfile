@@ -1,4 +1,4 @@
-fastlane_version "1.5.0"
+fastlane_version "1.39.0"
 
 desc "Release a new beta version on TestFlight"
 lane :deploy do
