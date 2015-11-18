@@ -24,7 +24,7 @@
 		4B9D0C121B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D0C111B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib */; };
 		4B9D0C141B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D0C131B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift */; };
 		8B79AD0C1B241CC10057A7B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79AD0B1B241CC10057A7B6 /* MainViewController.swift */; };
-		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; };
 		AE345E931B2392F4000C5284 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE345E921B2392F4000C5284 /* UIColor+Hex.swift */; };
 		AE59FB421B23460800BBCDA0 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59FB411B23460800BBCDA0 /* String+MD5.swift */; };
 		AE7E1AE81B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E1AE71B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift */; };
