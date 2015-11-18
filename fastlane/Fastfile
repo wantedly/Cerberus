@@ -1,20 +1,22 @@
 fastlane_version "1.39.0"
 
+before_all do
+  ensure_git_status_clean
+end
+
 desc "Release a new beta version on TestFlight"
 lane :deploy do
-  ensure_git_status_clean
-
   increment_build_number
 
-  gym(
-    scheme: "Cerberus",
-    configuration: "Release"
-  )
+  gym scheme: "Cerberus", configuration: "Release"
+  testflight skip_submission: true
 
-  testflight
+  clean_build_artifacts
 
   commit_version_bump
   push_to_git_remote
+end
 
-  clean_build_artifacts
+error do |lane, exception|
+  reset_git_repo
 end
