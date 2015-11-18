@@ -5,11 +5,16 @@ lane :deploy do
   ensure_git_status_clean
 
   increment_build_number
+
+  gym(
+    scheme: "Cerberus",
+    configuration: "Release"
+  )
+
+  testflight
+
   commit_version_bump
-
-  ipa configuration: "Release"
-  testflight skip_deploy: true
-
   push_to_git_remote
+
   clean_build_artifacts
 end
