@@ -1,6 +1,6 @@
 PODS:
   - AsyncSwift (1.7.4)
-  - EasyAnimation (0.6.2)
+  - EasyAnimation (1.0.5)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
@@ -8,16 +8,16 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift (~> 1.7.4)
-  - EasyAnimation
+  - EasyAnimation (~> 1.0.5)
   - SDWebImage
   - Timepiece (~> 0.5.0)
 
 SPEC CHECKSUMS:
   AsyncSwift: cecffe40af6e09558ed25dd71fabf04836b5eaf4
-  EasyAnimation: 2b80c59c4d7d019fdd32d7ff5d5161356746ef15
+  EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   Timepiece: c8360276f0aa935bfb0e53f8ed38abe41c93b5b4
 
-PODFILE CHECKSUM: 5aa608b4c163d7961f2fc911cfeb3a996e10c9ec
+PODFILE CHECKSUM: 968d4ac6a8691f014f6f658fb9f85792377ff158
 
 COCOAPODS: 1.1.1
