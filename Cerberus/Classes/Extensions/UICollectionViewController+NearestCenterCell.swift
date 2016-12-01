@@ -11,7 +11,7 @@ extension UICollectionViewController {
         var nearestCenter: VisibleCellInfo!
 
         for indexPath in self.collectionView!.indexPathsForVisibleItems() {
-            let cell     = self.collectionView!.cellForItemAtIndexPath(indexPath as! NSIndexPath)!
+            let cell     = self.collectionView!.cellForItemAtIndexPath(indexPath )!
             let cellRect = self.collectionView!.convertRect(cell.frame, toView: self.collectionView?.superview)
 
             var height = cellRect.height

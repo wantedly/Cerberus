@@ -297,9 +297,11 @@
 					4B3BBA711B22954B002211E5 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 42Z77KT2BJ;
+						LastSwiftMigration = 0810;
 					};
 					4B3BBA861B22954C002211E5 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = 4B3BBA711B22954B002211E5;
 					};
 				};
@@ -555,6 +557,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cerberus/Classes/Cerberus-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -569,6 +572,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cerberus/Classes/Cerberus-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -587,6 +591,7 @@
 				INFOPLIST_FILE = CerberusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cerberus.app/Cerberus";
 			};
 			name = Debug;
@@ -602,6 +607,7 @@
 				INFOPLIST_FILE = CerberusTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cerberus.app/Cerberus";
 			};
 			name = Release;

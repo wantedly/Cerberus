@@ -29,14 +29,14 @@ class EventsCollectionViewController: UICollectionViewController {
                 }
 
             case .Success:
-                println("Authorized")
+                print("Authorized")
             }
         }
 
         let nib = UINib(nibName: XibNames.EventCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.EventCell.rawValue)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEventChange:", name: NotifictionNames.CalendarModelDidChangeEventNotification.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventsCollectionViewController.didEventChange(_:)), name: NotifictionNames.CalendarModelDidChangeEventNotification.rawValue, object: nil)
     }
 
     deinit {

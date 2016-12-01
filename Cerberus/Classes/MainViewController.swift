@@ -39,7 +39,7 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(24)]
         updateNavigationBarTitle()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationSignificantTimeChange:", name: UIApplicationSignificantTimeChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIApplicationDelegate.applicationSignificantTimeChange(_:)), name: UIApplicationSignificantTimeChangeNotification, object: nil)
     }
 
     override func viewDidAppear(animated: Bool) {

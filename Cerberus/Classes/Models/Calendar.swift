@@ -28,7 +28,7 @@ final class Calendar {
 
         self.date = NSDate()
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: #selector(Calendar.onTimerTick(_:)), userInfo: nil, repeats: true)
 
         registerNotificationObservers()
     }
@@ -42,13 +42,13 @@ final class Calendar {
         let notificationCenter = NSNotificationCenter.defaultCenter()
 
         notificationCenter.addObserver(self,
-            selector: "didChooseCalendarNotification:",
+            selector: #selector(Calendar.didChooseCalendarNotification(_:)),
             name:     NotifictionNames.CalendarModelDidChooseCalendarNotification.rawValue,
             object:   nil
         )
 
         notificationCenter.addObserver(self,
-            selector: "didChangeEventNotification:",
+            selector: #selector(Calendar.didChangeEventNotification(_:)),
             name:     EKEventStoreChangedNotification,
             object:   nil
         )

@@ -18,10 +18,10 @@ class TimelineCollectionViewController: UICollectionViewController {
         let nib = UINib(nibName: XibNames.TimeCollectionViewCell.rawValue, bundle: nil)
         self.collectionView?.registerNib(nib, forCellWithReuseIdentifier: CollectionViewCellreuseIdentifier.TimeCell.rawValue)
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: "onTimerTick:", userInfo: nil, repeats: true)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(timerTickIntervalSec, target: self, selector: #selector(TimelineCollectionViewController.onTimerTick(_:)), userInfo: nil, repeats: true)
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didUpdateTimelineNotification:",
+            selector: #selector(TimelineCollectionViewController.didUpdateTimelineNotification(_:)),
             name:     NotifictionNames.TimelineCollectionViewControllerDidUpdateTimelineNotification.rawValue,
             object:   nil
         )
