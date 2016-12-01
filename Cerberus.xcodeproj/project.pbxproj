@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		395ECA8A48F90C4A5354E62F /* Pods_Cerberus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 877828893163F79CD9CEE125 /* Pods_Cerberus.framework */; };
 		4704B73E1B241FD3006005F4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704B73D1B241FD3006005F4 /* Constants.swift */; };
 		4B3BBA7D1B22954B002211E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B3BBA7B1B22954B002211E5 /* Main.storyboard */; };
 		4B3BBA7F1B22954B002211E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3BBA7E1B22954B002211E5 /* Images.xcassets */; };
@@ -24,7 +25,6 @@
 		4B9D0C121B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D0C111B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib */; };
 		4B9D0C141B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D0C131B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift */; };
 		8B79AD0C1B241CC10057A7B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79AD0B1B241CC10057A7B6 /* MainViewController.swift */; };
-		A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B304EBEE3FD8D6E3DE34819 /* Pods.framework */; };
 		AE345E931B2392F4000C5284 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE345E921B2392F4000C5284 /* UIColor+Hex.swift */; };
 		AE59FB421B23460800BBCDA0 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE59FB411B23460800BBCDA0 /* String+MD5.swift */; };
 		AE7E1AE81B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E1AE71B2C572900EE69A5 /* UICollectionViewController+NearestCenterCell.swift */; };
@@ -46,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		2B304EBEE3FD8D6E3DE34819 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DF2DAFFBE44472E4C77EA01 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4704B73D1B241FD3006005F4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B3BBA721B22954B002211E5 /* Cerberus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerberus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3BBA761B22954B002211E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,8 +66,10 @@
 		4B9D0C0F1B23EF0F004FCC34 /* TimelineCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		4B9D0C111B23F8CA004FCC34 /* UserAvatarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAvatarCollectionViewCell.xib; sourceTree = "<group>"; };
 		4B9D0C131B23FB40004FCC34 /* UserAvatarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvatarCollectionViewCell.swift; sourceTree = "<group>"; };
-		59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		78B2E770AE17993040DDF951 /* Pods-Cerberus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cerberus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cerberus/Pods-Cerberus.debug.xcconfig"; sourceTree = "<group>"; };
+		877828893163F79CD9CEE125 /* Pods_Cerberus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cerberus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B79AD0B1B241CC10057A7B6 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A33CC68A9BF41299A685B859 /* Pods-Cerberus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cerberus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cerberus/Pods-Cerberus.release.xcconfig"; sourceTree = "<group>"; };
 		AE345E921B2392F4000C5284 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		AE59FB411B23460800BBCDA0 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		AE59FB431B23465F00BBCDA0 /* Cerberus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cerberus-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -85,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A585EE5E526D9D916C694739 /* Pods.framework in Frameworks */,
+				395ECA8A48F90C4A5354E62F /* Pods_Cerberus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +105,7 @@
 			children = (
 				AE59FB4B1B237D8700BBCDA0 /* libc++.dylib */,
 				2B304EBEE3FD8D6E3DE34819 /* Pods.framework */,
+				877828893163F79CD9CEE125 /* Pods_Cerberus.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -114,8 +116,8 @@
 				4B3BBA741B22954B002211E5 /* Cerberus */,
 				4B3BBA8A1B22954C002211E5 /* CerberusTests */,
 				4B3BBA731B22954B002211E5 /* Products */,
-				73992369331423281B34B01D /* Pods */,
 				1C493396E2A7AFEFD7A7EC65 /* Frameworks */,
+				5A6259472300BE98D6907B2B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,11 +215,11 @@
 			name = Events;
 			sourceTree = "<group>";
 		};
-		73992369331423281B34B01D /* Pods */ = {
+		5A6259472300BE98D6907B2B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */,
-				3DF2DAFFBE44472E4C77EA01 /* Pods.release.xcconfig */,
+				78B2E770AE17993040DDF951 /* Pods-Cerberus.debug.xcconfig */,
+				A33CC68A9BF41299A685B859 /* Pods-Cerberus.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -249,12 +251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B3BBA911B22954C002211E5 /* Build configuration list for PBXNativeTarget "Cerberus" */;
 			buildPhases = (
-				67F7C864F63FD55C13C89AEF /* Check Pods Manifest.lock */,
+				21529A2475A823AEE8D9AF7A /* [CP] Check Pods Manifest.lock */,
 				4B3BBA6E1B22954B002211E5 /* Sources */,
 				4B3BBA6F1B22954B002211E5 /* Frameworks */,
 				4B3BBA701B22954B002211E5 /* Resources */,
-				28A33548038200F3CB0DBEF5 /* Embed Pods Frameworks */,
-				840EBB901FE309DF7982ABA0 /* Copy Pods Resources */,
+				FAE214B07A72954C9719C54A /* [CP] Embed Pods Frameworks */,
+				090C367C681E4AC072246798 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -345,49 +347,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		28A33548038200F3CB0DBEF5 /* Embed Pods Frameworks */ = {
+		090C367C681E4AC072246798 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cerberus/Pods-Cerberus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		67F7C864F63FD55C13C89AEF /* Check Pods Manifest.lock */ = {
+		21529A2475A823AEE8D9AF7A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		840EBB901FE309DF7982ABA0 /* Copy Pods Resources */ = {
+		FAE214B07A72954C9719C54A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cerberus/Pods-Cerberus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -544,7 +546,7 @@
 		};
 		4B3BBA921B22954C002211E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59FA82490015FC1BF9DC46CE /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 78B2E770AE17993040DDF951 /* Pods-Cerberus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cerberus/Info.plist;
@@ -558,7 +560,7 @@
 		};
 		4B3BBA931B22954C002211E5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DF2DAFFBE44472E4C77EA01 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A33CC68A9BF41299A685B859 /* Pods-Cerberus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cerberus/Info.plist;
