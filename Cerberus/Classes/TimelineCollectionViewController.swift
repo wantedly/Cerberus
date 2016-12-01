@@ -37,7 +37,7 @@ class TimelineCollectionViewController: UICollectionViewController {
         var date = now.beginningOfDay
 
         while date < now.endOfDay {
-            var nextDate = date + 30.minutes
+            let nextDate = date + 30.minutes
 
             timeArray.append(date.stringFromFormat("HH:mm"))
 
@@ -116,7 +116,7 @@ class TimelineCollectionViewController: UICollectionViewController {
 
             cell.hidden = false
 
-            let time = self.timeArray[cellInfo.row]
+            _ = self.timeArray[cellInfo.row]
 
             var dy: CGFloat     = 0.0
             var height: CGFloat = timelineCollectionViewFlowLayout.sizeForTimeline().height
