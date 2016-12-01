@@ -4,20 +4,20 @@ PODS:
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
-  - Timepiece (0.3.3)
+  - Timepiece (0.5.0)
 
 DEPENDENCIES:
   - AsyncSwift (~> 1.7.4)
   - EasyAnimation
   - SDWebImage
-  - Timepiece
+  - Timepiece (~> 0.5.0)
 
 SPEC CHECKSUMS:
   AsyncSwift: cecffe40af6e09558ed25dd71fabf04836b5eaf4
   EasyAnimation: 2b80c59c4d7d019fdd32d7ff5d5161356746ef15
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
-  Timepiece: 30ef04f74337fcb1bef2ff91cfe964184d894d12
+  Timepiece: c8360276f0aa935bfb0e53f8ed38abe41c93b5b4
 
-PODFILE CHECKSUM: e050e94390bb736b173bda16086e7131c462c22f
+PODFILE CHECKSUM: 5aa608b4c163d7961f2fc911cfeb3a996e10c9ec
 
 COCOAPODS: 1.1.1
