@@ -114,31 +114,30 @@ final class Calendar {
 
             var currentDateOffset = calStartDate
 
-            if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
-                for event in matchingEvents {
-                    let startDate = event.startDate
-                    let endDate = event.endDate
-                    
-                    if startDate < currentDateOffset {
-                        continue
-                    } else if startDate >= calEndDate {
-                        break
-                    }
-                    
-                    if currentDateOffset < startDate {
-                        self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
-                    }
-                    
-                    let event = Event(fromEKEvent: event)
-                    
-                    if endDate > calEndDate {
-                        event.endDate = calEndDate
-                    }
-                    
-                    self.events.append(event)
-                    
-                    currentDateOffset = endDate
+            let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate)
+            for event in matchingEvents {
+                let startDate = event.startDate
+                let endDate = event.endDate
+                
+                if startDate < currentDateOffset {
+                    continue
+                } else if startDate >= calEndDate {
+                    break
                 }
+                
+                if currentDateOffset < startDate {
+                    self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
+                }
+                
+                let event = Event(fromEKEvent: event)
+                
+                if endDate > calEndDate {
+                    event.endDate = calEndDate
+                }
+                
+                self.events.append(event)
+                
+                currentDateOffset = endDate
             }
 
             if currentDateOffset < calEndDate {
