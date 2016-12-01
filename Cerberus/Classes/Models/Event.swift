@@ -27,11 +27,11 @@ final class Event {
         self.startDate = eventOfEventKit.startDate
         self.endDate   = eventOfEventKit.endDate
 
-        if let attendees = eventOfEventKit.attendees as? [EKParticipant] {
+        if let attendees = eventOfEventKit.attendees {
             for attendee in attendees {
-                switch attendee.participantType.value {
-                case EKParticipantTypePerson.value:
-                    if attendee.participantStatus.value != EKParticipantStatusDeclined.value {
+                switch attendee.participantType {
+                case .Person:
+                    if attendee.participantStatus != .Declined {
                         if let name = attendee.name, email = attendee.URL.resourceSpecifier {
                             self.attendees.append(User(name: name, email: email))
                         }

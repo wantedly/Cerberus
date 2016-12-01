@@ -74,7 +74,7 @@ final class Calendar {
     }
 
     func isAuthorized() -> Bool {
-        let status: EKAuthorizationStatus = EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent)
+        let status: EKAuthorizationStatus = EKEventStore.authorizationStatusForEntityType(.Event)
 
         return status == .Authorized
     }
@@ -86,7 +86,7 @@ final class Calendar {
             return
         }
         
-        self.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: { [weak self] (granted, error) -> Void in
+        self.eventStore.requestAccessToEntityType(.Event, completion: { [weak self] (granted, error) -> Void in
             if granted {
                 self?.fetchEvents()
                 completion?(status: .Success)
@@ -116,27 +116,28 @@ final class Calendar {
 
             if let matchingEvents = self.eventStore.eventsMatchingPredicate(predicate) as? [EKEvent] {
                 for event in matchingEvents {
-                    if let startDate = event.startDate, endDate = event.endDate {
-                        if startDate < currentDateOffset {
-                            continue
-                        } else if startDate >= calEndDate {
-                            break
-                        }
-
-                        if currentDateOffset < startDate {
-                            self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
-                        }
-
-                        let event = Event(fromEKEvent: event)
-
-                        if endDate > calEndDate {
-                            event.endDate = calEndDate
-                        }
-
-                        self.events.append(event)
-
-                        currentDateOffset = endDate
+                    let startDate = event.startDate
+                    let endDate = event.endDate
+                    
+                    if startDate < currentDateOffset {
+                        continue
+                    } else if startDate >= calEndDate {
+                        break
                     }
+                    
+                    if currentDateOffset < startDate {
+                        self.events.append(Event(startDate: currentDateOffset, endDate: startDate))
+                    }
+                    
+                    let event = Event(fromEKEvent: event)
+                    
+                    if endDate > calEndDate {
+                        event.endDate = calEndDate
+                    }
+                    
+                    self.events.append(event)
+                    
+                    currentDateOffset = endDate
                 }
             }
 

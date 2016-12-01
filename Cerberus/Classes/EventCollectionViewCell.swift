@@ -44,7 +44,7 @@ class EventCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource,
                 self.titleLabel.textColor = UIColor(hex: 0x6cc644, alpha: 1.0)
             } else {
                 let time = [event.startDate, event.endDate].map { $0.stringFromFormat("HH:mm") }
-                self.timeLabel.text = join(" - ", time)
+                self.timeLabel.text = time.joinWithSeparator(" - ")
 
                 self.wrapperView.backgroundColor = UIColor(hex: 0xffffff, alpha: 0.1)
                 self.wrapperView.layer.borderColor = UIColor(hex: 0xffffff, alpha: 0.3).CGColor

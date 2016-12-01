@@ -65,9 +65,9 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
 
     private func presentCalendarChooser() {
         self.calendarChooser = EKCalendarChooser(
-            selectionStyle: EKCalendarChooserSelectionStyleSingle,
-            displayStyle:   EKCalendarChooserDisplayAllCalendars,
-            entityType:     EKEntityTypeEvent,
+            selectionStyle: .Single,
+            displayStyle:   .AllCalendars,
+            entityType:     .Event,
             eventStore:     EKEventStore()
         )
         self.calendarChooser.delegate = self
@@ -98,7 +98,7 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
 
     // MARK: Key Value Observing
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         var anotherCollectionViewController: UICollectionViewController?
 
         switch context {
@@ -115,7 +115,7 @@ class MainViewController: UIViewController, EKCalendarChooserDelegate {
         }
 
         if let anotherCollectionView = anotherCollectionViewController?.collectionView {
-            if let point = change["new"] as? NSValue {
+            if let point = change?["new"] as? NSValue {
                 let y = point.CGPointValue().y
 
                 if anotherCollectionView.contentOffset.y != y {
