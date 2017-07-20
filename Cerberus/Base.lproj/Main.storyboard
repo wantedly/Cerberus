@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vsb-0h-hdu">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="yDu-wL-0Vb">
+            <objects>
+                <navigationController id="vsb-0h-hdu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B2X-uQ-ApA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="YKI-ee-B3G" kind="relationship" relationship="rootViewController" id="dez-Uv-AwB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbJ-ht-2qE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-73" y="119"/>
+        </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="wV5-aY-s9v">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="YKI-ee-B3G" customClass="CalendarViewController" customModule="Cerberus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ceT-MQ-kJs"/>
+                        <viewControllerLayoutGuide type="bottom" id="iWc-e4-I5o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b0D-FE-aOA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="mzC-JJ-LEU">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wJM-RX-zOA">
+                                <rect key="frame" x="0.0" y="64" width="280" height="960"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="jcd-tT-xeN"/>
+                                </constraints>
+                                <collectionViewLayout key="collectionViewLayout" id="Yjs-Nb-FQt" customClass="TimesViewLayout" customModule="Cerberus" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimeCell" id="ZwD-A6-udF" customClass="TimeCell" customModule="Cerberus" customModuleProvider="target">
+                                        <rect key="frame" x="39.5" y="0.0" width="201" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="201" height="93"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFd-Ck-NxJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="201" height="92"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="80"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="wFd-Ck-NxJ" firstAttribute="centerY" secondItem="ZwD-A6-udF" secondAttribute="centerY" id="Ip0-0V-v51"/>
+                                            <constraint firstItem="wFd-Ck-NxJ" firstAttribute="centerX" secondItem="ZwD-A6-udF" secondAttribute="centerX" id="mkr-lF-vC7"/>
+                                        </constraints>
+                                        <size key="customSize" width="201" height="93"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="wFd-Ck-NxJ" id="q9b-aI-Jgf"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="YKI-ee-B3G" id="zp1-8x-2ln"/>
+                                    <outlet property="delegate" destination="YKI-ee-B3G" id="klU-EB-AdI"/>
+                                </connections>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-G7-oHd">
+                                <rect key="frame" x="280" y="64" width="488" height="960"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewLayout key="collectionViewLayout" id="wYJ-hu-LFg" customClass="EventsViewLayout" customModule="Cerberus" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventCell" id="I2I-6c-BtO" customClass="EventCell" customModule="Cerberus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="114" height="79"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="114" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwM-bF-TWG">
+                                                    <rect key="frame" x="14" y="14" width="87" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00-00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-ed-LXo">
+                                                    <rect key="frame" x="14" y="46" width="87" height="19"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="eHG-ed-LXo" secondAttribute="trailing" constant="14" id="7jK-dR-Wur"/>
+                                            <constraint firstItem="eHG-ed-LXo" firstAttribute="top" secondItem="TwM-bF-TWG" secondAttribute="bottom" constant="8" id="NlK-8N-4m3"/>
+                                            <constraint firstItem="TwM-bF-TWG" firstAttribute="leading" secondItem="I2I-6c-BtO" secondAttribute="leading" constant="14" id="S94-Nk-xav"/>
+                                            <constraint firstAttribute="trailing" secondItem="TwM-bF-TWG" secondAttribute="trailing" constant="14" id="c2J-ky-0hh"/>
+                                            <constraint firstItem="eHG-ed-LXo" firstAttribute="leading" secondItem="I2I-6c-BtO" secondAttribute="leading" constant="14" id="ewX-DR-zjR"/>
+                                            <constraint firstItem="TwM-bF-TWG" firstAttribute="top" secondItem="I2I-6c-BtO" secondAttribute="top" constant="14" id="rYc-Zj-u18"/>
+                                        </constraints>
+                                        <size key="customSize" width="114" height="79"/>
+                                        <connections>
+                                            <outlet property="timeRangeLabel" destination="eHG-ed-LXo" id="Y9F-pb-riF"/>
+                                            <outlet property="titleLabel" destination="TwM-bF-TWG" id="E4R-bx-LKx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iWc-e4-I5o" firstAttribute="top" secondItem="jI9-G7-oHd" secondAttribute="bottom" id="BjZ-rh-imA"/>
+                            <constraint firstAttribute="trailing" secondItem="jI9-G7-oHd" secondAttribute="trailing" id="CFt-w0-RdY"/>
+                            <constraint firstAttribute="trailing" secondItem="mzC-JJ-LEU" secondAttribute="trailing" id="I5f-IQ-8VP"/>
+                            <constraint firstItem="iWc-e4-I5o" firstAttribute="top" secondItem="mzC-JJ-LEU" secondAttribute="bottom" id="Ijp-kR-tMd"/>
+                            <constraint firstItem="wJM-RX-zOA" firstAttribute="leading" secondItem="b0D-FE-aOA" secondAttribute="leading" id="SxD-HR-Hsi"/>
+                            <constraint firstItem="iWc-e4-I5o" firstAttribute="top" secondItem="wJM-RX-zOA" secondAttribute="bottom" id="Ukc-FP-qEf"/>
+                            <constraint firstItem="jI9-G7-oHd" firstAttribute="top" secondItem="ceT-MQ-kJs" secondAttribute="bottom" id="dJB-CH-4X9"/>
+                            <constraint firstItem="jI9-G7-oHd" firstAttribute="leading" secondItem="wJM-RX-zOA" secondAttribute="trailing" id="g0X-4Z-hVQ"/>
+                            <constraint firstItem="wJM-RX-zOA" firstAttribute="top" secondItem="ceT-MQ-kJs" secondAttribute="bottom" id="iZe-5U-W9p"/>
+                            <constraint firstItem="mzC-JJ-LEU" firstAttribute="leading" secondItem="b0D-FE-aOA" secondAttribute="leading" id="lZk-jL-Z3W"/>
+                            <constraint firstItem="mzC-JJ-LEU" firstAttribute="top" secondItem="b0D-FE-aOA" secondAttribute="top" id="nTE-iL-gL3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2uc-vM-69H">
+                        <barButtonItem key="leftBarButtonItem" title="Calendars" id="hlx-BA-L5U"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendarsButtonItem" destination="hlx-BA-L5U" id="S5O-HV-Fen"/>
+                        <outlet property="eventsView" destination="jI9-G7-oHd" id="83p-Pz-l23"/>
+                        <outlet property="eventsViewLayout" destination="wYJ-hu-LFg" id="DJ5-Br-MoN"/>
+                        <outlet property="timesView" destination="wJM-RX-zOA" id="d1v-zP-kO9"/>
+                        <outlet property="timesViewLayout" destination="Yjs-Nb-FQt" id="6E5-Vi-xBG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8I1-yX-rXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="616.40625" y="118.94531249999999"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Background" width="768" height="1024"/>
+    </resources>
+</document>
