@@ -35,7 +35,7 @@ class CalendarViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        updateTimesViewLayoutIfNeeded()
+        invalidateTimesViewLayoutIfNeeded(animated: false)
     }
     
     private func setupNavigationBar() {
@@ -71,10 +71,10 @@ extension CalendarViewController: UICollectionViewDataSource {
 extension CalendarViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         eventsView.contentOffset = scrollView.contentOffset
-        updateTimesViewLayoutIfNeeded()
+        invalidateTimesViewLayoutIfNeeded(animated: true)
     }
     
-    func updateTimesViewLayoutIfNeeded() {
+    func invalidateTimesViewLayoutIfNeeded(animated: Bool) {
         let indexPaths = timesView.indexPathsForVisibleItems.sorted()
         if indexPaths.isEmpty {
             return
@@ -84,9 +84,15 @@ extension CalendarViewController: UIScrollViewDelegate {
         if timesViewLayout.centerIndexPath != centerIndexPath {
             timesViewLayout.centerIndexPath = centerIndexPath
             
-            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, animations: {
+            let actions = {
                 self.timesViewLayout.invalidateLayout()
-            })
+            }
+            
+            if animated {
+                UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, animations: actions)
+            } else {
+                actions()
+            }
         }
     }
 }
