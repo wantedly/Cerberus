@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vsb-0h-hdu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vsb-0h-hdu">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -82,7 +82,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-G7-oHd">
                                 <rect key="frame" x="280" y="64" width="488" height="960"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <collectionViewLayout key="collectionViewLayout" id="wYJ-hu-LFg" customClass="EventsViewLayout" customModule="Cerberus" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="YrJ-rw-5CA" customClass="EventsViewLayout" customModule="Cerberus" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventCell" id="I2I-6c-BtO" customClass="EventCell" customModule="Cerberus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="114" height="79"/>
@@ -92,13 +92,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwM-bF-TWG">
-                                                    <rect key="frame" x="14" y="14" width="87" height="24"/>
+                                                    <rect key="frame" x="14" y="14" width="86" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00-00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-ed-LXo">
-                                                    <rect key="frame" x="14" y="46" width="87" height="19"/>
+                                                    <rect key="frame" x="14" y="46" width="86" height="19"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -143,7 +143,7 @@
                     <connections>
                         <outlet property="calendarsButtonItem" destination="hlx-BA-L5U" id="S5O-HV-Fen"/>
                         <outlet property="eventsView" destination="jI9-G7-oHd" id="83p-Pz-l23"/>
-                        <outlet property="eventsViewLayout" destination="wYJ-hu-LFg" id="DJ5-Br-MoN"/>
+                        <outlet property="eventsViewLayout" destination="YrJ-rw-5CA" id="z3m-A9-sZE"/>
                         <outlet property="timesView" destination="wJM-RX-zOA" id="d1v-zP-kO9"/>
                         <outlet property="timesViewLayout" destination="Yjs-Nb-FQt" id="6E5-Vi-xBG"/>
                     </connections>

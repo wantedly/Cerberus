@@ -7,8 +7,8 @@ class EventsViewLayout: UICollectionViewLayout {
         static let contentInsets = UIEdgeInsets(top: TimesViewLayout.Metric.itemTranslationY, left: 25, bottom: TimesViewLayout.Metric.itemTranslationY, right: 25)
     }
     
-    var events: [Event]?
-        
+    var dataSource: EventsViewDataSource?
+            
     override var collectionViewContentSize: CGSize {
         guard let collectionView = collectionView else {
             return .zero
@@ -20,7 +20,7 @@ class EventsViewLayout: UICollectionViewLayout {
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let collectionView = collectionView, let event = events?[indexPath.row] else {
+        guard let collectionView = collectionView, let event = dataSource?[indexPath] else {
             return nil
         }
         
@@ -30,14 +30,14 @@ class EventsViewLayout: UICollectionViewLayout {
             frame.origin.x = Metric.contentInsets.left
             frame.origin.y = EventsViewLayout.y(of: event.startTime) + Metric.interitemSpacing
             frame.size.width = collectionView.bounds.width - Metric.contentInsets.left - Metric.contentInsets.right
-            frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing * 2
+            frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing / 2
             return frame
         }()
         return attributes
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let numberOfItems = collectionView?.numberOfItems(inSection: 0) else {
+        guard let numberOfItems = dataSource?.sectionModels.first?.items.count else {
             return nil
         }
         return (0..<numberOfItems).flatMap { self.layoutAttributesForItem(at: IndexPath(item: $0, section: 0)) }
