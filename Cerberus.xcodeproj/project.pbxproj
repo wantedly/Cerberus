@@ -13,6 +13,7 @@
 		4B0B24E61F1FC51A0090C53A /* EventsViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0B24E51F1FC51A0090C53A /* EventsViewLayout.swift */; };
 		4B3F284E1F1F158700344192 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F284D1F1F158700344192 /* Event.swift */; };
 		4B3F285A1F1F305500344192 /* EKEventStore+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F28591F1F305500344192 /* EKEventStore+Rx.swift */; };
+		4B5659D91F263F9200D3B114 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5659D81F263F9200D3B114 /* RxDataSources.framework */; };
 		4B600AA71F1898C0006A0432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600AA61F1898C0006A0432 /* AppDelegate.swift */; };
 		4B600AA91F1898C0006A0432 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600AA81F1898C0006A0432 /* CalendarViewController.swift */; };
 		4B600AAC1F1898C0006A0432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B600AAA1F1898C0006A0432 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		4B0B24E51F1FC51A0090C53A /* EventsViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewLayout.swift; sourceTree = "<group>"; };
 		4B3F284D1F1F158700344192 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		4B3F28591F1F305500344192 /* EKEventStore+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Rx.swift"; sourceTree = "<group>"; };
+		4B5659D81F263F9200D3B114 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
 		4B600AA31F1898C0006A0432 /* Cerberus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerberus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B600AA61F1898C0006A0432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B600AA81F1898C0006A0432 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B5659D91F263F9200D3B114 /* RxDataSources.framework in Frameworks */,
 				4B600AFF1F1E2D9E006A0432 /* RxCocoa.framework in Frameworks */,
 				4B600B001F1E2D9E006A0432 /* RxSwift.framework in Frameworks */,
 			);
@@ -131,6 +134,7 @@
 		4B600AFC1F1E2D9E006A0432 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B5659D81F263F9200D3B114 /* RxDataSources.framework */,
 				4B600AFD1F1E2D9E006A0432 /* RxCocoa.framework */,
 				4B600AFE1F1E2D9E006A0432 /* RxSwift.framework */,
 			);
@@ -276,11 +280,13 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxDatasources.framework",
 			);
 			name = "Copy Frameworks";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDatasources.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
