@@ -31,7 +31,7 @@ class CalendarViewController: UIViewController {
         
         eventsViewLayout.dataSource = eventsViewDataSource
         
-        let viewModel = CalendarViewModel(calendarService: CalendarService())
+        let viewModel = CalendarViewModel(calendarService: CalendarService(), wireframe: Wireframe(rootViewController: self))
         
         calendarsButtonItem.rx.tap
             .bind(to: viewModel.calendersButtonItemDidTap)

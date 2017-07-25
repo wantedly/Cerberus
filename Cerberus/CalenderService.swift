@@ -16,12 +16,7 @@ class CalendarService {
     }
     
     func requestAccessToEvent() -> Observable<Bool> {
-        let status = EKEventStore.authorizationStatus(for: .event)
-        if status == .notDetermined {
-            return eventStore.rx.requestAccess(to: .event)
-        } else {
-            return .just(status == .authorized)
-        }
+        return eventStore.rx.requestAccess(to: .event)
     }
     
     func chooseCalendarForEvent() -> Observable<[EKCalendar]> {

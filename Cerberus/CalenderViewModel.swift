@@ -12,9 +12,12 @@ class CalendarViewModel {
     // Output
     let eventSections: Observable<[EventSection]>
     
-    init(calendarService: CalendarService) {
+    init(calendarService: CalendarService, wireframe: Wireframe) {
         let choosedCalendars = calendersButtonItemDidTap
-            .flatMapLatest { _ in calendarService.requestAccessToEvent() }
+            .flatMapLatest {
+                calendarService.requestAccessToEvent()
+                    .do(onError: { wireframe.prompt(for: $0) })
+            }
             .flatMapLatest { _ in calendarService.chooseCalendarForEvent() }
             .shareReplay(1)
         
