@@ -25,8 +25,9 @@ class CalendarViewModel {
         
         let loadedCalendars = Observable
             .merge(
-                NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil).map { _ in },
-                NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: calendarService.eventStore).map { _ in }
+                NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: calendarService.eventStore).map { _ in },
+                NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive).map { _ in },
+                NotificationCenter.default.rx.notification(.UIApplicationSignificantTimeChange).map { _ in }
             )
             .startWith(Void())
             .flatMapLatest {

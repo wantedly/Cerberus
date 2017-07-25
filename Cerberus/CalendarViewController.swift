@@ -22,6 +22,7 @@ class CalendarViewController: UIViewController {
         
         setupNavigationBar()
         setupGestureRecognizer()
+        updateDateOfTitle()
         
         eventsViewDataSource.configureCell = { _, collectionView, indexPath, event in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCell", for: indexPath) as! EventCell
@@ -38,6 +39,7 @@ class CalendarViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.eventSections
+            .do(onNext: { [weak self] _ in self?.updateDateOfTitle() })
             .bind(to: eventsView.rx.items(dataSource: eventsViewDataSource))
             .disposed(by: disposeBag)
     }
@@ -52,16 +54,18 @@ class CalendarViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named: "NavigationBarBackground"), for: .default)
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 28)]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        dateFormatter.timeStyle = .none
-        navigationItem.title = dateFormatter.string(from: Date())
     }
     
     private func setupGestureRecognizer() {
         view.addGestureRecognizer(timesView.panGestureRecognizer)
         eventsView.isScrollEnabled = false
+    }
+    
+    private func updateDateOfTitle() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .none
+        navigationItem.title = dateFormatter.string(from: Date())
     }
 }
 
