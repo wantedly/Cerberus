@@ -1,3 +1,4 @@
+import EventKit
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -18,15 +19,37 @@ class CalendarViewModel {
                 calendarService.requestAccessToEvent()
                     .do(onError: { wireframe.prompt(for: $0) })
             }
-            .flatMapLatest { _ in calendarService.chooseCalendarForEvent() }
-            .shareReplay(1)
+            .flatMapLatest { _ in
+                calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
+            }
+        
+        let loadedCalendars = Observable
+            .merge(
+                NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil).map { _ in },
+                NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: calendarService.eventStore).map { _ in }
+            )
+            .startWith(Void())
+            .flatMapLatest {
+                calendarService.requestAccessToEvent()
+                    .flatMap { granted -> Observable<Void> in
+                        granted ? .just() : .empty()
+                    }
+                    .do(onError: { wireframe.prompt(for: $0) })
+            }
+            .flatMap { () -> Observable<[EKCalendar]> in
+                if let savedCalendars = calendarService.loadCalendars() {
+                    return .just(savedCalendars)
+                } else {
+                    return calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
+                }
+            }
         
         eventSections = Observable
-            .merge(
+            .merge (
                 choosedCalendars,
-                calendarService.eventStoreChanged.withLatestFrom(choosedCalendars)
+                loadedCalendars
             )
             .flatMap { calendarService.fetchTodayEvents(from: $0) }
             .map { [EventSection(model: (), items: $0)] }
-    }    
+    }
 }

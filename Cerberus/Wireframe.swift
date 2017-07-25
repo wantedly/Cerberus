@@ -4,7 +4,7 @@ import RxCocoa
 
 class Wireframe {
     
-    private weak var rootViewController: UIViewController?
+    weak var rootViewController: UIViewController?
     
     init(rootViewController: UIViewController) {
         self.rootViewController = rootViewController

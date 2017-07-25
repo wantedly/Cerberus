@@ -15,5 +15,6 @@ extension UserDefaults {
     
     func set<T>(value: T?, for key: UserDefaultsKeys.Key<T>) {
         set(value, forKey: key.rawValue)
+        synchronize()
     }
 }

@@ -5,27 +5,42 @@ import RxCocoa
 
 class CalendarService {
     
-    private let eventStore = EKEventStore()
+    let eventStore = EKEventStore()
     
     struct Constant {
         static let minimumMinutesOfEmptyEvent = 5
     }
-    
-    var eventStoreChanged: Observable<Void> {
-        return NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: eventStore).map { _ in }
-    }
-    
+        
     func requestAccessToEvent() -> Observable<Bool> {
         return eventStore.rx.requestAccess(to: .event)
     }
     
-    func chooseCalendarForEvent() -> Observable<[EKCalendar]> {
+    func presentCalendarChooserForEvent(in viewController: UIViewController?) -> Observable<[EKCalendar]> {
         let calendarChooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: eventStore)
         calendarChooser.showsDoneButton = true
         
-        return calendarChooser.rx.present(in: UIApplication.shared.keyWindow?.rootViewController)
+        if let savedCalendars = CalendarService.loadCalendars(with: eventStore) {
+            calendarChooser.selectedCalendars = Set(savedCalendars)
+        }
+        
+        return calendarChooser.rx.present(in: viewController)
             .flatMap { $0.rx.selectionDidChange }
-            .map { _ in Array(calendarChooser.selectedCalendars) }
+            .map { Array(calendarChooser.selectedCalendars) }
+            .do(onNext: { CalendarService.saveCalendars($0) })
+    }
+    
+    func loadCalendars() -> [EKCalendar]? {
+        return CalendarService.loadCalendars(with: eventStore)
+    }
+    
+    private static func loadCalendars(with eventStore: EKEventStore) -> [EKCalendar]? {
+        let calendarIdentifiers = UserDefaults.standard.value(for: UserDefaultsKeys.calendarIdentifiers)
+        return calendarIdentifiers?.flatMap { eventStore.calendar(withIdentifier: $0) }
+    }
+    
+    private static func saveCalendars(_ calendars: [EKCalendar]) {
+        let calendarIdentifiers = calendars.map { $0.calendarIdentifier }
+        UserDefaults.standard.set(value: calendarIdentifiers, for: UserDefaultsKeys.calendarIdentifiers)
     }
     
     func fetchTodayEvents(from calendars: [EKCalendar]) -> Observable<[Event]> {
