@@ -6,6 +6,7 @@ class CalendarViewModel {
     
     // Input
     let calendersButtonItemDidTap = PublishSubject<Void>()
+    let significantTimeChange = PublishSubject<Void>()
     
     // Output
     let events: Observable<[Event]>
@@ -24,7 +25,7 @@ class CalendarViewModel {
             .merge(
                 NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: calendarService.eventStore).map { _ in },
                 NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive).map { _ in },
-                NotificationCenter.default.rx.notification(.UIApplicationSignificantTimeChange).map { _ in }
+                significantTimeChange
             )
             .startWith(Void())
             .flatMapLatest {
