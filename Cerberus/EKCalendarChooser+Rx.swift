@@ -41,6 +41,11 @@ extension Reactive where Base: EKCalendarChooser {
     
     func present(in parent: UIViewController?) -> Observable<EKCalendarChooser> {
         return Observable.create { [weak parent] observer in
+            guard let parent = parent else {
+                observer.on(.completed)
+                return Disposables.create()
+            }
+            
             let calendarChooser = self.base
             let navigationController = UINavigationController(rootViewController: calendarChooser)
 
@@ -49,36 +54,16 @@ extension Reactive where Base: EKCalendarChooser {
                     calendarChooser.rx.didFinish,
                     calendarChooser.rx.didCancel
                 )
-                .subscribe(onNext: { [weak navigationController] in
-                    guard let navigationController = navigationController else {
-                        return
+                .subscribe(onNext: {
+                    navigationController.dismiss(animated: true) {
+                        observer.on(.completed)
                     }
-                    dismissViewController(navigationController, animated: true)
                 })
             
-            guard let parent = parent else {
-                return Disposables.create()
-            }
-            
             parent.present(navigationController, animated: true)
-            observer.onNext(calendarChooser)
+            observer.on(.next(calendarChooser))
             
-            return Disposables.create(dismissDisposable, Disposables.create {
-                dismissViewController(navigationController, animated: true)
-            })
+            return dismissDisposable
         }
-    }
-}
-
-private func dismissViewController(_ viewController: UIViewController, animated: Bool) {
-    if viewController.isBeingDismissed || viewController.isBeingPresented {
-        DispatchQueue.main.async {
-            dismissViewController(viewController, animated: animated)
-        }
-        return
-    }
-    
-    if viewController.presentingViewController != nil {
-        viewController.dismiss(animated: animated)
     }
 }
