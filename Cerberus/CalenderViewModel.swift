@@ -1,9 +1,6 @@
 import EventKit
 import RxSwift
 import RxCocoa
-import RxDataSources
-
-typealias EventSection = SectionModel<Void, Event>
 
 class CalendarViewModel {
     
@@ -11,7 +8,7 @@ class CalendarViewModel {
     let calendersButtonItemDidTap = PublishSubject<Void>()
     
     // Output
-    let eventSections: Observable<[EventSection]>
+    let events: Observable<[Event]>
     
     init(calendarService: CalendarService, wireframe: Wireframe) {
         let choosedCalendars = calendersButtonItemDidTap
@@ -45,12 +42,11 @@ class CalendarViewModel {
                 }
             }
         
-        eventSections = Observable
+        events = Observable
             .merge (
                 choosedCalendars,
                 loadedCalendars
             )
             .flatMap { calendarService.fetchTodayEvents(from: $0) }
-            .map { [EventSection(model: (), items: $0)] }
     }
 }

@@ -7,7 +7,7 @@ class EventsViewLayout: UICollectionViewLayout {
         static let contentInsets = UIEdgeInsets(top: TimesViewLayout.Metric.itemTranslationY, left: 25, bottom: TimesViewLayout.Metric.itemTranslationY, right: 25)
     }
     
-    var dataSource: EventsViewDataSource?
+    private var layoutAttributes = [UICollectionViewLayoutAttributes]()
             
     override var collectionViewContentSize: CGSize {
         guard let collectionView = collectionView else {
@@ -20,27 +20,30 @@ class EventsViewLayout: UICollectionViewLayout {
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let collectionView = collectionView, let event = dataSource?[indexPath] else {
-            return nil
-        }
-        
-        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-        attributes.frame = {
-            var frame: CGRect = .zero
-            frame.origin.x = Metric.contentInsets.left
-            frame.origin.y = EventsViewLayout.y(of: event.startTime) + Metric.interitemSpacing
-            frame.size.width = collectionView.bounds.width - Metric.contentInsets.left - Metric.contentInsets.right
-            frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing / 2
-            return frame
-        }()
-        return attributes
+        return layoutAttributes[indexPath.item]
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let numberOfItems = dataSource?.sectionModels.first?.items.count else {
-            return nil
+        return layoutAttributes
+    }
+    
+    func updateLayoutAttributes(with events: [Event]) {
+        guard let collectionView = collectionView else {
+            return
         }
-        return (0..<numberOfItems).flatMap { self.layoutAttributesForItem(at: IndexPath(item: $0, section: 0)) }
+        
+        layoutAttributes = events.enumerated().map { index, event in
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
+            attributes.frame = {
+                var frame: CGRect = .zero
+                frame.origin.x = Metric.contentInsets.left
+                frame.origin.y = EventsViewLayout.y(of: event.startTime) + Metric.interitemSpacing
+                frame.size.width = collectionView.bounds.width - Metric.contentInsets.left - Metric.contentInsets.right
+                frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing / 2
+                return frame
+            }()
+            return attributes
+        }
     }
     
     static func time(of y: CGFloat) -> Time {

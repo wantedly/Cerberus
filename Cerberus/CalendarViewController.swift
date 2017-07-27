@@ -1,9 +1,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RxDataSources
-
-typealias EventsViewDataSource = RxCollectionViewSectionedReloadDataSource<EventSection>
 
 class CalendarViewController: UIViewController {
 
@@ -12,8 +9,6 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var timesViewLayout: TimesViewLayout!
     @IBOutlet weak var eventsView: UICollectionView!
     @IBOutlet weak var eventsViewLayout: EventsViewLayout!
-    
-    let eventsViewDataSource = EventsViewDataSource()
     
     private let disposeBag = DisposeBag()
     
@@ -24,23 +19,20 @@ class CalendarViewController: UIViewController {
         setupGestureRecognizer()
         updateDateOfTitle()
         
-        eventsViewDataSource.configureCell = { _, collectionView, indexPath, event in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCell", for: indexPath) as! EventCell
-            cell.update(with: event)
-            return cell
-        }
-        
-        eventsViewLayout.dataSource = eventsViewDataSource
-        
         let viewModel = CalendarViewModel(calendarService: CalendarService(), wireframe: Wireframe(rootViewController: self))
         
         calendarsButtonItem.rx.tap
             .bind(to: viewModel.calendersButtonItemDidTap)
             .disposed(by: disposeBag)
         
-        viewModel.eventSections
-            .do(onNext: { [weak self] _ in self?.updateDateOfTitle() })
-            .bind(to: eventsView.rx.items(dataSource: eventsViewDataSource))
+        viewModel.events
+            .do(onNext: { [weak self] events in
+                self?.eventsViewLayout.updateLayoutAttributes(with: events)
+                self?.updateDateOfTitle()
+            })
+            .bind(to: eventsView.rx.items(cellIdentifier: "EventCell", cellType: EventCell.self)) { _, event, cell in
+                cell.update(with: event)
+            }
             .disposed(by: disposeBag)
     }
     
