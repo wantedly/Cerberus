@@ -25,12 +25,17 @@ class CalendarViewController: UIViewController {
             .bind(to: viewModel.calendersButtonItemDidTap)
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive)
+            .map { _ in }
+            .bind(to: viewModel.applicationDidBecomeActive)
+            .disposed(by: disposeBag)
+        
         NotificationCenter.default.rx.notification(.UIApplicationSignificantTimeChange)
             .map { _ in }
             .do(onNext: {[weak self] in
                 self?.updateDateOfTitle()
             })
-            .bind(to: viewModel.significantTimeChange)
+            .bind(to: viewModel.applicationSignificantTimeChange)
             .disposed(by: disposeBag)
         
         viewModel.events

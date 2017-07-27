@@ -5,12 +5,16 @@ import RxCocoa
 
 class CalendarService {
     
-    let eventStore = EKEventStore()
-    
     struct Constant {
         static let minimumMinutesOfEmptyEvent = 5
     }
-        
+    
+    private let eventStore = EKEventStore()
+    
+    var eventStoreChanged: Observable<Void> {
+        return NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: eventStore).map { _ in }
+    }
+    
     func requestAccessToEvent() -> Observable<Bool> {
         return eventStore.rx.requestAccess(to: .event)
     }

@@ -6,41 +6,39 @@ class CalendarViewModel {
     
     // Input
     let calendersButtonItemDidTap = PublishSubject<Void>()
-    let significantTimeChange = PublishSubject<Void>()
+    let applicationDidBecomeActive = PublishSubject<Void>()
+    let applicationSignificantTimeChange = PublishSubject<Void>()
     
     // Output
     let events: Observable<[Event]>
     
     init(calendarService: CalendarService, wireframe: Wireframe) {
         let choosedCalendars = calendersButtonItemDidTap
-            .flatMapLatest {
+            .flatMapFirst {
                 calendarService.requestAccessToEvent()
                     .do(onError: { wireframe.prompt(for: $0) })
-            }
-            .flatMapLatest { _ in
-                calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
+                    .flatMap { _ in
+                        // Presents a calendar chooser to show a error message even if the requesting access is denied.
+                        calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
+                    }
             }
         
         let loadedCalendars = Observable
             .merge(
-                NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: calendarService.eventStore).map { _ in },
-                NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive).map { _ in },
-                significantTimeChange
+                .just(), // Emits an event immediately.
+                applicationDidBecomeActive,
+                applicationSignificantTimeChange,
+                calendarService.eventStoreChanged
             )
-            .startWith(Void())
-            .flatMapLatest {
+            .flatMapFirst {
                 calendarService.requestAccessToEvent()
-                    .flatMap { granted -> Observable<Void> in
-                        granted ? .just() : .empty()
-                    }
                     .do(onError: { wireframe.prompt(for: $0) })
-            }
-            .flatMap { () -> Observable<[EKCalendar]> in
-                if let savedCalendars = calendarService.loadCalendars() {
-                    return .just(savedCalendars)
-                } else {
-                    return calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
-                }
+                    .flatMap { granted -> Observable<[EKCalendar]> in
+                        if let savedCalendars = calendarService.loadCalendars(), granted {
+                            return .just(savedCalendars)
+                        }
+                        return .empty()
+                    }
             }
         
         events = Observable
