@@ -19,18 +19,29 @@ class CalendarService {
         return eventStore.rx.requestAccess(to: .event)
     }
     
-    func presentCalendarChooserForEvent(in viewController: UIViewController?) -> Observable<[EKCalendar]> {
-        let calendarChooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: eventStore)
-        calendarChooser.showsDoneButton = true
-        
-        if let savedCalendars = CalendarService.loadCalendars(with: eventStore) {
-            calendarChooser.selectedCalendars = Set(savedCalendars)
+    func presentCalendarChooserForEvent(in parent: UIViewController?) -> Observable<[EKCalendar]> {
+        return Observable.create { observer in
+            let calendarChooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: self.eventStore)
+            calendarChooser.showsDoneButton = true
+            
+            if let savedCalendars = CalendarService.loadCalendars(with: self.eventStore) {
+                calendarChooser.selectedCalendars = Set(savedCalendars)
+            }
+            
+            let presentDisposable = calendarChooser.rx.present(in: parent)
+                .subscribe(onCompleted: {
+                    observer.on(.completed)
+                })
+            
+            let changeDisposable = calendarChooser.rx.selectionDidChange
+                .map { Array(calendarChooser.selectedCalendars) }
+                .do(onNext: { CalendarService.saveCalendars($0) })
+                .subscribe(onNext: { calendars in
+                    observer.on(.next(calendars))
+                })
+            
+            return Disposables.create(presentDisposable, changeDisposable)
         }
-        
-        return calendarChooser.rx.present(in: viewController)
-            .flatMap { $0.rx.selectionDidChange }
-            .map { Array(calendarChooser.selectedCalendars) }
-            .do(onNext: { CalendarService.saveCalendars($0) })
     }
     
     func loadCalendars() -> [EKCalendar]? {
