@@ -15,6 +15,10 @@
 		4B3F285A1F1F305500344192 /* EKEventStore+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F28591F1F305500344192 /* EKEventStore+Rx.swift */; };
 		4B482ABD1F274C8000C8D049 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B482ABC1F274C8000C8D049 /* UserDefaults+Extensions.swift */; };
 		4B482ABF1F27668D00C8D049 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B482ABE1F27668D00C8D049 /* Wireframe.swift */; };
+		4B4EBF821F2B909A003ED97A /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4EBF811F2B909A003ED97A /* Quick.framework */; };
+		4B4EBF841F2B90A5003ED97A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4EBF831F2B90A5003ED97A /* Nimble.framework */; };
+		4B4EBF861F2B9130003ED97A /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B4EBF811F2B909A003ED97A /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B4EBF871F2B9136003ED97A /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4B4EBF831F2B90A5003ED97A /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B600AA71F1898C0006A0432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600AA61F1898C0006A0432 /* AppDelegate.swift */; };
 		4B600AA91F1898C0006A0432 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600AA81F1898C0006A0432 /* CalendarViewController.swift */; };
 		4B600AAC1F1898C0006A0432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B600AAA1F1898C0006A0432 /* Main.storyboard */; };
@@ -40,6 +44,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4B4EBF851F2B90EF003ED97A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4B4EBF871F2B9136003ED97A /* Nimble.framework in CopyFiles */,
+				4B4EBF861F2B9130003ED97A /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4B0B24D91F1EB5650090C53A /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		4B0B24DB1F1EBA040090C53A /* TimesViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesViewLayout.swift; sourceTree = "<group>"; };
@@ -49,6 +67,8 @@
 		4B3F28591F1F305500344192 /* EKEventStore+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Rx.swift"; sourceTree = "<group>"; };
 		4B482ABC1F274C8000C8D049 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		4B482ABE1F27668D00C8D049 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
+		4B4EBF811F2B909A003ED97A /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		4B4EBF831F2B90A5003ED97A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		4B600AA31F1898C0006A0432 /* Cerberus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerberus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B600AA61F1898C0006A0432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B600AA81F1898C0006A0432 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4EBF841F2B90A5003ED97A /* Nimble.framework in Frameworks */,
+				4B4EBF821F2B909A003ED97A /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +160,8 @@
 		4B600AFC1F1E2D9E006A0432 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B4EBF831F2B90A5003ED97A /* Nimble.framework */,
+				4B4EBF811F2B909A003ED97A /* Quick.framework */,
 				4B600AFD1F1E2D9E006A0432 /* RxCocoa.framework */,
 				4B600AFE1F1E2D9E006A0432 /* RxSwift.framework */,
 			);
@@ -204,6 +228,7 @@
 				4B600AB31F1898C0006A0432 /* Sources */,
 				4B600AB41F1898C0006A0432 /* Frameworks */,
 				4B600AB51F1898C0006A0432 /* Resources */,
+				4B4EBF851F2B90EF003ED97A /* CopyFiles */,
 			);
 			buildRules = (
 			);
