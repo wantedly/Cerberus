@@ -75,7 +75,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="YKI-ee-B3G" id="zp1-8x-2ln"/>
+                                    <outlet property="dataSource" destination="Le2-RZ-zsl" id="qQa-mc-hKT"/>
                                     <outlet property="delegate" destination="YKI-ee-B3G" id="klU-EB-AdI"/>
                                 </connections>
                             </collectionView>
@@ -149,6 +149,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8I1-yX-rXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Le2-RZ-zsl" customClass="TimesViewDataSource" customModule="Cerberus" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="616.40625" y="118.94531249999999"/>
         </scene>

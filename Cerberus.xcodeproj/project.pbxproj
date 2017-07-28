@@ -27,6 +27,7 @@
 		4B600B061F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B051F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift */; };
 		4B600B081F1EF537006A0432 /* CalenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B071F1EF537006A0432 /* CalenderViewModel.swift */; };
 		4BCDCBFB1F20350800E246A7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDCBFA1F20350800E246A7 /* EventCell.swift */; };
+		4BF7E0731F2B3F3A00E4AB3F /* TimesViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		4B600B051F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKCalendarChooser+Rx.swift"; sourceTree = "<group>"; };
 		4B600B071F1EF537006A0432 /* CalenderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderViewModel.swift; sourceTree = "<group>"; };
 		4BCDCBFA1F20350800E246A7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		4BCDCBF81F2033AC00E246A7 /* Times */ = {
 			isa = PBXGroup;
 			children = (
+				4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */,
 				4B0B24DB1F1EBA040090C53A /* TimesViewLayout.swift */,
 				4B0B24DD1F1EBAA10090C53A /* TimeCell.swift */,
 				4B0B24D91F1EB5650090C53A /* Time.swift */,
@@ -307,6 +310,7 @@
 				4B600AA91F1898C0006A0432 /* CalendarViewController.swift in Sources */,
 				4BCDCBFB1F20350800E246A7 /* EventCell.swift in Sources */,
 				4B600AA71F1898C0006A0432 /* AppDelegate.swift in Sources */,
+				4BF7E0731F2B3F3A00E4AB3F /* TimesViewDataSource.swift in Sources */,
 				4B600B061F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift in Sources */,
 				4B600B081F1EF537006A0432 /* CalenderViewModel.swift in Sources */,
 				4B482ABF1F27668D00C8D049 /* Wireframe.swift in Sources */,
