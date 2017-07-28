@@ -13,39 +13,28 @@ class CalendarViewModel {
     let events: Observable<[Event]>
     
     init(calendarService: CalendarService, wireframe: Wireframe) {
-        let choosedCalendars = calendersButtonItemDidTap
-            .flatMapFirst {
-                calendarService.requestAccessToEvent()
-                    .do(onError: { wireframe.prompt(for: $0) })
-                    .flatMap { _ in
-                        // Presents a calendar chooser to show a error message even if the requesting access is denied.
-                        calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
-                    }
-            }
-        
-        let loadedCalendars = Observable
+        events = Observable
             .merge(
-                .just(), // Emits an event immediately.
-                applicationDidBecomeActive,
-                applicationSignificantTimeChange,
-                calendarService.eventStoreChanged
+                calendersButtonItemDidTap.map { true },
+                Observable.merge(
+                    .just(), // Emits an event immediately.
+                    applicationDidBecomeActive,
+                    applicationSignificantTimeChange,
+                    calendarService.eventStoreChanged
+                ).map { false }
             )
-            .flatMapFirst {
+            .flatMapFirst { skipLoad in
                 calendarService.requestAccessToEvent()
                     .do(onError: { wireframe.prompt(for: $0) })
                     .flatMap { granted -> Observable<[EKCalendar]> in
-                        if let savedCalendars = calendarService.loadCalendars(), granted {
+                        if let savedCalendars = calendarService.loadCalendars(), !skipLoad && granted {
                             return .just(savedCalendars)
                         }
-                        return .empty()
+                        
+                        // Presents a calendar chooser to show a error message even if the requesting access is denied.
+                        return calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
                     }
             }
-        
-        events = Observable
-            .merge (
-                choosedCalendars,
-                loadedCalendars
-            )
             .flatMap { calendarService.fetchTodayEvents(from: $0) }
     }
 }
