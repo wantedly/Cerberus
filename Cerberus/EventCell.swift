@@ -1,21 +1,21 @@
 import UIKit
 
 class EventCell: UICollectionViewCell {
-    
+
     struct Color {
         static let green = UIColor(colorLiteralRed: 108/255.0, green: 198/255.0, blue: 68/255.0, alpha: 1)
     }
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeRangeLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         layer.borderWidth = 0.5
         layer.cornerRadius = 3
     }
-    
+
     func update(with event: Event) {
         switch event.type {
         case let .normal(title):

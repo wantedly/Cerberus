@@ -17,18 +17,18 @@ extension Event {
         startDate = start
         endDate = end
     }
-    
+
     init(_ event: EKEvent) {
         type = .normal(event.title)
         startDate = event.startDate
         endDate = event.endDate
     }
-    
+
     var startTime: Time {
         return Time(startDate)
     }
-    
+
     var endTime: Time {
         return Time(endDate)
-    }    
+    }
 }

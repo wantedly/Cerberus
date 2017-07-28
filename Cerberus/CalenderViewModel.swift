@@ -3,15 +3,15 @@ import RxSwift
 import RxCocoa
 
 class CalendarViewModel {
-    
+
     // Input
     let calendersButtonItemDidTap = PublishSubject<Void>()
     let applicationDidBecomeActive = PublishSubject<Void>()
     let applicationSignificantTimeChange = PublishSubject<Void>()
-    
+
     // Output
     let events: Observable<[Event]>
-    
+
     init(calendarService: CalendarService, wireframe: Wireframe) {
         events = Observable
             .merge(
@@ -30,7 +30,7 @@ class CalendarViewModel {
                         if let savedCalendars = calendarService.loadCalendars(), !skipLoad && granted {
                             return .just(savedCalendars)
                         }
-                        
+
                         // Presents a calendar chooser to show a error message even if the requesting access is denied.
                         return calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
                     }
