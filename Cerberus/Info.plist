@@ -42,6 +42,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Choose what calenders you want to see in the app.</string>
+	<string>Choose what calendars you want to see in the app.</string>
 </dict>
 </plist>

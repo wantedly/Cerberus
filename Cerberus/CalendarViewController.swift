@@ -22,7 +22,7 @@ class CalendarViewController: UIViewController {
         let viewModel = CalendarViewModel(calendarService: CalendarService(), wireframe: Wireframe(rootViewController: self))
 
         calendarsButtonItem.rx.tap
-            .bind(to: viewModel.calendersButtonItemDidTap)
+            .bind(to: viewModel.calendarsButtonItemDidTap)
             .disposed(by: disposeBag)
 
         NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive)
