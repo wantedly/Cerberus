@@ -6,6 +6,10 @@ import RxCocoa
 class CalendarService {
 
     struct Constant {
+        static let chooserSelectionStyle: EKCalendarChooserSelectionStyle = .single
+        static let chooserDisplayStyle: EKCalendarChooserDisplayStyle = .allCalendars
+        static let chooserShouldShowDoneButton = true
+
         static let minimumMinutesOfEmptyEvent = 5
     }
 
@@ -20,8 +24,8 @@ class CalendarService {
     }
 
     var calendarChooserForEvent: EKCalendarChooser {
-        let chooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: eventStore)
-        chooser.showsDoneButton = true
+        let chooser = EKCalendarChooser(selectionStyle: Constant.chooserSelectionStyle, displayStyle: Constant.chooserDisplayStyle, entityType: .event, eventStore: eventStore)
+        chooser.showsDoneButton = Constant.chooserShouldShowDoneButton
         return chooser
     }
 
