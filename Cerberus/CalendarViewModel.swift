@@ -1,6 +1,5 @@
 import EventKit
 import RxSwift
-import RxCocoa
 
 class CalendarViewModel {
 
@@ -32,7 +31,7 @@ class CalendarViewModel {
                         }
 
                         // Presents a calendar chooser to show a error message even if the requesting access is denied.
-                        return calendarService.presentCalendarChooserForEvent(in: wireframe.rootViewController)
+                        return CalendarService.chooseCalendars(with: calendarService.calendarChooser, in: wireframe.rootViewController, defaultCalendars: calendarService.loadCalendars())
                     }
             }
             .flatMap { calendarService.fetchTodayEvents(from: $0) }

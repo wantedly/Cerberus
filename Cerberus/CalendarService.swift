@@ -19,23 +19,26 @@ class CalendarService {
         return eventStore.rx.requestAccess(to: .event)
     }
 
-    func presentCalendarChooserForEvent(in parent: UIViewController?) -> Observable<[EKCalendar]> {
-        return Observable.create { observer in
-            let calendarChooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: self.eventStore)
-            calendarChooser.showsDoneButton = true
+    var calendarChooser: EKCalendarChooser {
+        let chooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: eventStore)
+        chooser.showsDoneButton = true
+        return chooser
+    }
 
-            if let savedCalendars = CalendarService.loadCalendars(with: self.eventStore) {
-                calendarChooser.selectedCalendars = Set(savedCalendars)
+    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: [EKCalendar]?) -> Observable<[EKCalendar]> {
+        return Observable.create { observer in
+            if let defaultCalendars = defaultCalendars {
+                chooser.selectedCalendars = Set(defaultCalendars)
             }
 
-            let presentDisposable = calendarChooser.rx.present(in: parent)
+            let presentDisposable = chooser.rx.present(in: parent)
                 .subscribe(onCompleted: {
                     observer.on(.completed)
                 })
 
-            let changeDisposable = calendarChooser.rx.selectionDidChange
-                .map { Array(calendarChooser.selectedCalendars) }
-                .do(onNext: { CalendarService.saveCalendars($0) })
+            let changeDisposable = chooser.rx.selectionDidChange
+                .map { Array(chooser.selectedCalendars) }
+                .do(onNext: { saveCalendars($0) })
                 .subscribe(onNext: { calendars in
                     observer.on(.next(calendars))
                 })
