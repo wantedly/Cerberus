@@ -29,7 +29,7 @@ class CalendarService {
         return chooser
     }
 
-    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>?) -> Observable<Set<EKCalendar>> {
+    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>? = nil) -> Observable<Set<EKCalendar>> {
         return Observable.create { observer in
             if let defaultCalendars = defaultCalendars {
                 chooser.selectedCalendars = defaultCalendars

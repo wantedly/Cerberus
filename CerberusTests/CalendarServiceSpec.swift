@@ -41,7 +41,7 @@ class CalendarServiceSpec: QuickSpec {
             it("emits calendars of the calendar chooser with a selection event") {
                 var calendars = Set<EKCalendar>()
 
-                CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController, defaultCalendars: nil)
+                CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController)
                     .subscribe(onNext: { calendars = $0 })
                     .disposed(by: disposeBag)
                 calendarChooser.delegate!.calendarChooserSelectionDidChange!(calendarChooser)
@@ -52,7 +52,7 @@ class CalendarServiceSpec: QuickSpec {
             it("completes with a finish event") {
                 var completed = false
 
-                CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController, defaultCalendars: nil)
+                CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController)
                     .subscribe(onCompleted: { completed = true })
                     .disposed(by: disposeBag)
                 calendarChooser.delegate!.calendarChooserDidFinish!(calendarChooser)
