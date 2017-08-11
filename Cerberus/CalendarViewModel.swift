@@ -29,13 +29,14 @@ class CalendarViewModel {
             .flatMapFirst { skipLoad in
                 calendarService.requestAccessToEvent()
                     .do(onError: { wireframe.prompt(for: $0) })
-                    .flatMap { granted -> Observable<[EKCalendar]> in
+                    .flatMap { granted -> Observable<Set<EKCalendar>> in
                         if let savedCalendars = calendarService.loadCalendars(), !skipLoad && granted {
                             return .just(savedCalendars)
                         }
 
                         // Presents a calendar chooser to show a error message even if the requesting access is denied.
-                        return CalendarService.chooseCalendars(with: calendarService.calendarChooser, in: wireframe.rootViewController, defaultCalendars: calendarService.loadCalendars())
+                        return CalendarService.chooseCalendars(with: calendarService.calendarChooserForEvent, in: wireframe.rootViewController, defaultCalendars: calendarService.loadCalendars())
+                            .do(onNext: { CalendarService.saveCalendars($0) })
                     }
                     .flatMap { calendarService.fetchTodayEvents(from: $0) }
             }

@@ -24,12 +24,12 @@
 		4B600AAC1F1898C0006A0432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B600AAA1F1898C0006A0432 /* Main.storyboard */; };
 		4B600AAE1F1898C0006A0432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B600AAD1F1898C0006A0432 /* Assets.xcassets */; };
 		4B600AB11F1898C0006A0432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B600AAF1F1898C0006A0432 /* LaunchScreen.storyboard */; };
-		4B600ABC1F1898C0006A0432 /* CerberusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600ABB1F1898C0006A0432 /* CerberusTests.swift */; };
 		4B600AFF1F1E2D9E006A0432 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B600AFD1F1E2D9E006A0432 /* RxCocoa.framework */; };
 		4B600B001F1E2D9E006A0432 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B600AFE1F1E2D9E006A0432 /* RxSwift.framework */; };
 		4B600B031F1EDDD1006A0432 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B021F1EDDD1006A0432 /* CalendarService.swift */; };
 		4B600B061F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B051F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift */; };
 		4B600B081F1EF537006A0432 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B071F1EF537006A0432 /* CalendarViewModel.swift */; };
+		4BC804E91F3DF62C00F1DD2F /* CalendarServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC804E81F3DF62C00F1DD2F /* CalendarServiceSpec.swift */; };
 		4BCDCBFB1F20350800E246A7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDCBFA1F20350800E246A7 /* EventCell.swift */; };
 		4BF7E0731F2B3F3A00E4AB3F /* TimesViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -77,13 +77,13 @@
 		4B600AB01F1898C0006A0432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B600AB21F1898C0006A0432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B600AB71F1898C0006A0432 /* CerberusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CerberusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B600ABB1F1898C0006A0432 /* CerberusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerberusTests.swift; sourceTree = "<group>"; };
 		4B600ABD1F1898C0006A0432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B600AFD1F1E2D9E006A0432 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		4B600AFE1F1E2D9E006A0432 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		4B600B021F1EDDD1006A0432 /* CalendarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		4B600B051F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKCalendarChooser+Rx.swift"; sourceTree = "<group>"; };
 		4B600B071F1EF537006A0432 /* CalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		4BC804E81F3DF62C00F1DD2F /* CalendarServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarServiceSpec.swift; sourceTree = "<group>"; };
 		4BCDCBFA1F20350800E246A7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +151,7 @@
 		4B600ABA1F1898C0006A0432 /* CerberusTests */ = {
 			isa = PBXGroup;
 			children = (
-				4B600ABB1F1898C0006A0432 /* CerberusTests.swift */,
+				4BC804E81F3DF62C00F1DD2F /* CalendarServiceSpec.swift */,
 				4B600ABD1F1898C0006A0432 /* Info.plist */,
 			);
 			path = CerberusTests;
@@ -364,7 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B600ABC1F1898C0006A0432 /* CerberusTests.swift in Sources */,
+				4BC804E91F3DF62C00F1DD2F /* CalendarServiceSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

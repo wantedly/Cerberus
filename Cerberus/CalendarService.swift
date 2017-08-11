@@ -19,16 +19,16 @@ class CalendarService {
         return eventStore.rx.requestAccess(to: .event)
     }
 
-    var calendarChooser: EKCalendarChooser {
+    var calendarChooserForEvent: EKCalendarChooser {
         let chooser = EKCalendarChooser(selectionStyle: .single, displayStyle: .allCalendars, entityType: .event, eventStore: eventStore)
         chooser.showsDoneButton = true
         return chooser
     }
 
-    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: [EKCalendar]?) -> Observable<[EKCalendar]> {
+    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>?) -> Observable<Set<EKCalendar>> {
         return Observable.create { observer in
             if let defaultCalendars = defaultCalendars {
-                chooser.selectedCalendars = Set(defaultCalendars)
+                chooser.selectedCalendars = defaultCalendars
             }
 
             let presentDisposable = chooser.rx.present(in: parent)
@@ -37,8 +37,7 @@ class CalendarService {
                 })
 
             let changeDisposable = chooser.rx.selectionDidChange
-                .map { Array(chooser.selectedCalendars) }
-                .do(onNext: { saveCalendars($0) })
+                .map { chooser.selectedCalendars }
                 .subscribe(onNext: { calendars in
                     observer.on(.next(calendars))
                 })
@@ -47,21 +46,24 @@ class CalendarService {
         }
     }
 
-    func loadCalendars() -> [EKCalendar]? {
+    func loadCalendars() -> Set<EKCalendar>? {
         return CalendarService.loadCalendars(with: eventStore)
     }
 
-    private static func loadCalendars(with eventStore: EKEventStore) -> [EKCalendar]? {
+    static func loadCalendars(with eventStore: EKEventStore) -> Set<EKCalendar>? {
         let calendarIdentifiers = UserDefaults.standard.value(for: UserDefaultsKeys.calendarIdentifiers)
-        return calendarIdentifiers?.flatMap { eventStore.calendar(withIdentifier: $0) }
+        if let calendars = calendarIdentifiers?.flatMap({ eventStore.calendar(withIdentifier: $0) }) {
+            return Set(calendars)
+        }
+        return nil
     }
 
-    private static func saveCalendars(_ calendars: [EKCalendar]) {
+    static func saveCalendars(_ calendars: Set<EKCalendar>) {
         let calendarIdentifiers = calendars.map { $0.calendarIdentifier }
         UserDefaults.standard.set(value: calendarIdentifiers, for: UserDefaultsKeys.calendarIdentifiers)
     }
 
-    func fetchTodayEvents(from calendars: [EKCalendar]) -> Observable<[Event]> {
+    func fetchTodayEvents(from calendars: Set<EKCalendar>) -> Observable<[Event]> {
         guard let startDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()) else {
             return .empty()
         }
@@ -70,7 +72,7 @@ class CalendarService {
             return .empty()
         }
 
-        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
+        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: Array(calendars))
         let calendarEvents = eventStore.events(matching: predicate)
         let events = CalendarService.makeEvents(from: calendarEvents, start: startDate, end: endDate)
         return .just(events)
