@@ -3,7 +3,24 @@ import EventKitUI
 import RxSwift
 import RxCocoa
 
-class CalendarService {
+protocol CalendarServiceType {
+    var eventStoreChanged: Observable<Void> { get }
+    var calendarChooserForEvent: EKCalendarChooser { get }
+
+    func requestAccessToEvent() -> Observable<Bool>
+    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>?) -> Observable<Set<EKCalendar>>
+    func loadCalendars() -> Set<EKCalendar>?
+    static func saveCalendars(_ calendars: Set<EKCalendar>)
+    func fetchTodayEvents(from calendars: Set<EKCalendar>) -> Observable<[Event]>
+}
+
+extension CalendarServiceType {
+    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>? = nil) -> Observable<Set<EKCalendar>> {
+        return chooseCalendars(with: chooser, in: parent, defaultCalendars: defaultCalendars)
+    }
+}
+
+class CalendarService: CalendarServiceType {
 
     struct Constant {
         static let chooserSelectionStyle: EKCalendarChooserSelectionStyle = .single
@@ -19,17 +36,17 @@ class CalendarService {
         return NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: eventStore).map { _ in }
     }
 
-    func requestAccessToEvent() -> Observable<Bool> {
-        return eventStore.rx.requestAccess(to: .event)
-    }
-
     var calendarChooserForEvent: EKCalendarChooser {
         let chooser = EKCalendarChooser(selectionStyle: Constant.chooserSelectionStyle, displayStyle: Constant.chooserDisplayStyle, entityType: .event, eventStore: eventStore)
         chooser.showsDoneButton = Constant.chooserShouldShowDoneButton
         return chooser
     }
 
-    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>? = nil) -> Observable<Set<EKCalendar>> {
+    func requestAccessToEvent() -> Observable<Bool> {
+        return eventStore.rx.requestAccess(to: .event)
+    }
+
+    static func chooseCalendars(with chooser: EKCalendarChooser, in parent: UIViewController?, defaultCalendars: Set<EKCalendar>?) -> Observable<Set<EKCalendar>> {
         return Observable.create { observer in
             if let defaultCalendars = defaultCalendars {
                 chooser.selectedCalendars = defaultCalendars

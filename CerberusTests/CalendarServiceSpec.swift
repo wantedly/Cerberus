@@ -16,7 +16,7 @@ class CalendarServiceSpec: QuickSpec {
 
         describe("chooseCalendars(with:in:defaultCalendars:)") {
             var window: UIWindow!
-            var calendarChooser: EKCalendarChooser!
+            var calendarChooser: MockCalendarChooser!
             var disposeBag: DisposeBag!
 
             beforeEach {
@@ -28,18 +28,17 @@ class CalendarServiceSpec: QuickSpec {
             }
 
             it("sets calendars passed by an argument") {
-                let calendarChooser = MockCalendarChooser()
-                let expectedCalendars = Set([EKCalendar(for: .event, eventStore: EKEventStore())])
+                let calendars = Set([EKCalendar(for: .event, eventStore: EKEventStore())])
 
-                CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController, defaultCalendars: expectedCalendars)
+                CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController, defaultCalendars: calendars)
                     .subscribe()
                     .disposed(by: disposeBag)
 
-                expect(calendarChooser.setCalendars).toEventually(equal(expectedCalendars), timeout: 3)
+                expect(calendarChooser.setCalendars).toEventually(equal(calendars), timeout: 3)
             }
 
             it("emits calendars of the calendar chooser with a selection event") {
-                var calendars = Set<EKCalendar>()
+                var calendars: Set<EKCalendar>?
 
                 CalendarService.chooseCalendars(with: calendarChooser, in: window.rootViewController)
                     .subscribe(onNext: { calendars = $0 })
@@ -60,15 +59,5 @@ class CalendarServiceSpec: QuickSpec {
                 expect(completed).toEventually(beTrue(), timeout: 3)
             }
         }
-    }
-}
-
-class MockCalendarChooser: EKCalendarChooser {
-    private static let calendars = Set([EKCalendar(for: .event, eventStore: EKEventStore())])
-    var setCalendars: Set<EKCalendar>?
-
-    override var selectedCalendars: Set<EKCalendar> {
-        get { return MockCalendarChooser.calendars }
-        set { setCalendars = newValue }
     }
 }

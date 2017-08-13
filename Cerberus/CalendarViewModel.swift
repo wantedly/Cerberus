@@ -12,7 +12,7 @@ class CalendarViewModel {
     // Output
     let events: Observable<[Event]>
 
-    init(calendarService: CalendarService, wireframe: Wireframe) {
+    init(calendarService: CalendarServiceType, wireframe: WireframeType) {
         events = Observable
             .merge(
                 Observable
@@ -33,15 +33,15 @@ class CalendarViewModel {
                     .flatMap { granted -> Observable<Set<EKCalendar>> in
                         if !granted {
                             // Presents a calendar chooser to show a error message.
-                            return CalendarService.chooseCalendars(with: calendarService.calendarChooserForEvent, in: wireframe.rootViewController)
+                            return type(of: calendarService).chooseCalendars(with: calendarService.calendarChooserForEvent, in: wireframe.rootViewController)
                         }
 
                         if let savedCalendars = calendarService.loadCalendars(), shouldLoadAutomaticallyIfSaved {
                             return .just(savedCalendars)
                         }
-                        
-                        return CalendarService.chooseCalendars(with: calendarService.calendarChooserForEvent, in: wireframe.rootViewController, defaultCalendars: calendarService.loadCalendars())
-                            .do(onNext: { CalendarService.saveCalendars($0) })
+
+                        return type(of: calendarService).chooseCalendars(with: calendarService.calendarChooserForEvent, in: wireframe.rootViewController, defaultCalendars: calendarService.loadCalendars())
+                            .do(onNext: { type(of: calendarService).saveCalendars($0) })
                     }
             }
             .flatMap { calendarService.fetchTodayEvents(from: $0) }

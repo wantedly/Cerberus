@@ -29,7 +29,12 @@
 		4B600B031F1EDDD1006A0432 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B021F1EDDD1006A0432 /* CalendarService.swift */; };
 		4B600B061F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B051F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift */; };
 		4B600B081F1EF537006A0432 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B600B071F1EF537006A0432 /* CalendarViewModel.swift */; };
+		4B99DA081F40B2B7009523F6 /* MockCalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99DA071F40B2B7009523F6 /* MockCalendarService.swift */; };
+		4B99DA0A1F40B345009523F6 /* MockWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99DA091F40B345009523F6 /* MockWireframe.swift */; };
+		4B99DA0C1F40B3D9009523F6 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99DA0B1F40B3D9009523F6 /* MockError.swift */; };
+		4B99DA0E1F40B44C009523F6 /* MockCalendarChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B99DA0D1F40B44C009523F6 /* MockCalendarChooser.swift */; };
 		4BC804E91F3DF62C00F1DD2F /* CalendarServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC804E81F3DF62C00F1DD2F /* CalendarServiceSpec.swift */; };
+		4BC804EB1F3E6E6200F1DD2F /* CalendarViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC804EA1F3E6E6200F1DD2F /* CalendarViewModelSpec.swift */; };
 		4BCDCBFB1F20350800E246A7 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDCBFA1F20350800E246A7 /* EventCell.swift */; };
 		4BF7E0731F2B3F3A00E4AB3F /* TimesViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -83,7 +88,12 @@
 		4B600B021F1EDDD1006A0432 /* CalendarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		4B600B051F1EE4B7006A0432 /* EKCalendarChooser+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKCalendarChooser+Rx.swift"; sourceTree = "<group>"; };
 		4B600B071F1EF537006A0432 /* CalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		4B99DA071F40B2B7009523F6 /* MockCalendarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarService.swift; sourceTree = "<group>"; };
+		4B99DA091F40B345009523F6 /* MockWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWireframe.swift; sourceTree = "<group>"; };
+		4B99DA0B1F40B3D9009523F6 /* MockError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		4B99DA0D1F40B44C009523F6 /* MockCalendarChooser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockCalendarChooser.swift; sourceTree = "<group>"; };
 		4BC804E81F3DF62C00F1DD2F /* CalendarServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarServiceSpec.swift; sourceTree = "<group>"; };
+		4BC804EA1F3E6E6200F1DD2F /* CalendarViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModelSpec.swift; sourceTree = "<group>"; };
 		4BCDCBFA1F20350800E246A7 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		4BF7E0721F2B3F3A00E4AB3F /* TimesViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +161,8 @@
 		4B600ABA1F1898C0006A0432 /* CerberusTests */ = {
 			isa = PBXGroup;
 			children = (
+				4B99DA061F40AF71009523F6 /* Mocks */,
+				4BC804EA1F3E6E6200F1DD2F /* CalendarViewModelSpec.swift */,
 				4BC804E81F3DF62C00F1DD2F /* CalendarServiceSpec.swift */,
 				4B600ABD1F1898C0006A0432 /* Info.plist */,
 			);
@@ -166,6 +178,17 @@
 				4B600AFE1F1E2D9E006A0432 /* RxSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B99DA061F40AF71009523F6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4B99DA071F40B2B7009523F6 /* MockCalendarService.swift */,
+				4B99DA091F40B345009523F6 /* MockWireframe.swift */,
+				4B99DA0D1F40B44C009523F6 /* MockCalendarChooser.swift */,
+				4B99DA0B1F40B3D9009523F6 /* MockError.swift */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 		4BCDCBF71F20323800E246A7 /* Extensions */ = {
@@ -365,6 +388,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC804E91F3DF62C00F1DD2F /* CalendarServiceSpec.swift in Sources */,
+				4B99DA0C1F40B3D9009523F6 /* MockError.swift in Sources */,
+				4B99DA081F40B2B7009523F6 /* MockCalendarService.swift in Sources */,
+				4B99DA0A1F40B345009523F6 /* MockWireframe.swift in Sources */,
+				4BC804EB1F3E6E6200F1DD2F /* CalendarViewModelSpec.swift in Sources */,
+				4B99DA0E1F40B44C009523F6 /* MockCalendarChooser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

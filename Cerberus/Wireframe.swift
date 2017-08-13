@@ -2,7 +2,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class Wireframe {
+protocol WireframeType {
+    weak var rootViewController: UIViewController? { get }
+
+    @discardableResult
+    func prompt(for error: Error) -> Observable<Void>
+}
+
+class Wireframe: WireframeType {
 
     weak var rootViewController: UIViewController?
 
@@ -10,7 +17,6 @@ class Wireframe {
         self.rootViewController = rootViewController
     }
 
-    @discardableResult
     func prompt(for error: Error) -> Observable<Void> {
         return Observable.create { observer in
             let alertView = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
