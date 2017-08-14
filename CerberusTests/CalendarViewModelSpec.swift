@@ -3,6 +3,7 @@ import Nimble
 import EventKit
 import EventKitUI
 import RxSwift
+import RxCocoa
 
 @testable import Cerberus
 
@@ -39,7 +40,7 @@ class CalendarViewModelSpec: QuickSpec {
                     }
 
                     calendarViewModel.events
-                        .subscribe()
+                        .drive()
                         .disposed(by: disposeBag)
 
                     expect(passedError).toEventually(beIdenticalTo(error))
@@ -59,7 +60,7 @@ class CalendarViewModelSpec: QuickSpec {
                     }
 
                     calendarViewModel.events
-                        .subscribe()
+                        .drive()
                         .disposed(by: disposeBag)
 
                     expect(called).toEventually(beTrue())
@@ -86,7 +87,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
 
                         expect(called).toEventually(beFalse())
@@ -100,7 +101,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
 
                         expect(fetchedCalendars).toEventually(equal(savedCalendars))
@@ -120,7 +121,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
 
                         expect(called).toEventually(beTrue())
@@ -135,7 +136,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
 
                         expect(savedCalendars).toEventually(equal(choosedCalendars))
@@ -151,7 +152,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
 
                         expect(fetchedCalendars).toEventually(equal(choosedCalendars))
@@ -180,7 +181,7 @@ class CalendarViewModelSpec: QuickSpec {
                     }
 
                     calendarViewModel.events
-                        .subscribe()
+                        .drive()
                         .disposed(by: disposeBag)
                     calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -201,7 +202,7 @@ class CalendarViewModelSpec: QuickSpec {
                     }
 
                     calendarViewModel.events
-                        .subscribe()
+                        .drive()
                         .disposed(by: disposeBag)
                     calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -231,7 +232,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
                         calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -248,7 +249,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
                         calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -266,7 +267,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
                         calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -289,7 +290,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
                         calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -306,7 +307,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
                         calendarViewModel.calendarsButtonItemDidTap.on(.next())
 
@@ -323,7 +324,7 @@ class CalendarViewModelSpec: QuickSpec {
                         }
 
                         calendarViewModel.events
-                            .subscribe()
+                            .drive()
                             .disposed(by: disposeBag)
                         calendarViewModel.calendarsButtonItemDidTap.on(.next())
 

@@ -42,7 +42,7 @@ class CalendarViewController: UIViewController {
             .do(onNext: { [weak self] events in
                 self?.eventsViewLayout.updateLayoutAttributes(with: events)
             })
-            .bind(to: eventsView.rx.items(cellIdentifier: "EventCell", cellType: EventCell.self)) { _, event, cell in
+            .drive(eventsView.rx.items(cellIdentifier: "EventCell", cellType: EventCell.self)) { _, event, cell in
                 cell.update(with: event)
             }
             .disposed(by: disposeBag)

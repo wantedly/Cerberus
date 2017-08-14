@@ -1,6 +1,7 @@
 import EventKit
 import EventKitUI
 import RxSwift
+import RxCocoa
 
 class CalendarViewModel {
 
@@ -10,7 +11,7 @@ class CalendarViewModel {
     let applicationSignificantTimeChange = PublishSubject<Void>()
 
     // Output
-    let events: Observable<[Event]>
+    let events: Driver<[Event]>
 
     init(calendarService: CalendarServiceType, wireframe: WireframeType, shouldStartImmediately: Bool = true) {
         events = Observable
@@ -45,5 +46,6 @@ class CalendarViewModel {
                     }
             }
             .flatMap { calendarService.fetchTodayEvents(from: $0) }
+            .asDriver(onErrorDriveWith: .empty())
     }
 }
