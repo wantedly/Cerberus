@@ -19,8 +19,8 @@ class MockCalendarService: CalendarServiceType {
     var loadedCalendarsClosure: () -> Set<EKCalendar>? = { return nil }
     func loadCalendars() -> Set<EKCalendar>? { return loadedCalendarsClosure() }
 
-    static var savedCalendarsClosure: (_ calendars: Set<EKCalendar>) -> Void = { _ in }
-    static func saveCalendars(_ calendars: Set<EKCalendar>) { savedCalendarsClosure(calendars) }
+    static var saveCalendarsClosure: (_ calendars: Set<EKCalendar>) -> Void = { _ in }
+    static func saveCalendars(_ calendars: Set<EKCalendar>) { saveCalendarsClosure(calendars) }
 
     var fetchTodayEventsClosure: (_ calendars: Set<EKCalendar>) -> Observable<[Cerberus.Event]> = { _ in return .empty() }
     func fetchTodayEvents(from calendars: Set<EKCalendar>) -> Observable<[Cerberus.Event]> { return fetchTodayEventsClosure(calendars) }

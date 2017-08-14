@@ -12,12 +12,12 @@ class CalendarViewModel {
     // Output
     let events: Observable<[Event]>
 
-    init(calendarService: CalendarServiceType, wireframe: WireframeType) {
+    init(calendarService: CalendarServiceType, wireframe: WireframeType, shouldStartImmediately: Bool = true) {
         events = Observable
             .merge(
                 Observable
                     .merge(
-                        .just(), // Emits an event immediately.
+                        shouldStartImmediately ? .just() : .empty(),
                         applicationDidBecomeActive,
                         applicationSignificantTimeChange,
                         calendarService.eventStoreChanged
