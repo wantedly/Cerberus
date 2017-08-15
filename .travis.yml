@@ -1,9 +1,12 @@
 language: objective-c
 osx_image: xcode8.3
 
+env:
+  - FL_CARTHAGE_USE_BINARIES=false
+
 cache:
   directories:
-  - Carthage
+    - Carthage
 
 script:
   - fastlane test
