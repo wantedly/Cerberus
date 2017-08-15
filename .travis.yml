@@ -1,0 +1,8 @@
+language: objective-c
+osx_image: xcode8.3
+
+cache:
+  - Carthage
+
+script:
+  - fastlane test
