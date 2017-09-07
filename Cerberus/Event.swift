@@ -5,6 +5,12 @@ enum EventType {
     case empty
 }
 
+enum EventPosition {
+    case past
+    case future
+    case current
+}
+
 struct Event {
     let type: EventType
     let startDate: Date
@@ -30,5 +36,17 @@ extension Event {
 
     var endTime: Time {
         return Time(endDate)
+    }
+
+    var position: EventPosition {
+        let now = Date()
+        switch (startDate, endDate) {
+        case let (startDate, _) where startDate < now:
+            return .past
+        case let (_, endDate) where endDate > now:
+            return .future
+        default:
+            return .current
+        }
     }
 }
