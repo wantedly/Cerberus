@@ -3,13 +3,10 @@ import UIKit
 class TimesViewLayout: UICollectionViewLayout {
 
     struct Metric {
-        static let sizeForItem = CGSize(width: 200, height: 100)
-        static let itemTranslationY = sizeForItem.height / 2
-        static let contentHeight: CGFloat = sizeForItem.height * CGFloat(Time.timesOfDay.count) + itemTranslationY * 2
+        static let sizeForItem = CGSize(width: 200, height: 150)
+        static let contentHeight: CGFloat = sizeForItem.height * CGFloat(Time.timesOfDay.count)
         static let contentInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 40)
     }
-
-    var centerIndexPath: IndexPath?
 
     override var collectionViewContentSize: CGSize {
         guard let collectionView = collectionView else {
@@ -26,17 +23,10 @@ class TimesViewLayout: UICollectionViewLayout {
         attributes.frame = {
             var frame: CGRect = .zero
             frame.origin.x = Metric.contentInsets.left
-            frame.origin.y = Metric.itemTranslationY + Metric.sizeForItem.height * CGFloat(indexPath.row)
+            frame.origin.y = Metric.sizeForItem.height * CGFloat(indexPath.row)
             frame.size = Metric.sizeForItem
             return frame
         }()
-        if let centerIndexPath = centerIndexPath {
-            if centerIndexPath == indexPath {
-                attributes.transform = .identity
-            } else {
-                attributes.transform.ty = centerIndexPath.row > indexPath.row ? -Metric.itemTranslationY : Metric.itemTranslationY
-            }
-        }
         return attributes
     }
 

@@ -4,7 +4,7 @@ class EventsViewLayout: UICollectionViewLayout {
 
     struct Metric {
         static let interitemSpacing: CGFloat = 10
-        static let contentInsets = UIEdgeInsets(top: TimesViewLayout.Metric.itemTranslationY, left: 25, bottom: TimesViewLayout.Metric.itemTranslationY, right: 25)
+        static let contentInsets = UIEdgeInsets(top: TimesViewLayout.Metric.sizeForItem.height / 2, left: 25, bottom: TimesViewLayout.Metric.sizeForItem.height / 2, right: 25)
     }
 
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
@@ -37,9 +37,9 @@ class EventsViewLayout: UICollectionViewLayout {
             attributes.frame = {
                 var frame: CGRect = .zero
                 frame.origin.x = Metric.contentInsets.left
-                frame.origin.y = EventsViewLayout.y(of: event.startTime) + Metric.interitemSpacing
+                frame.origin.y = EventsViewLayout.y(of: event.startTime)
                 frame.size.width = collectionView.bounds.width - Metric.contentInsets.left - Metric.contentInsets.right
-                frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing / 2
+                frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing
                 return frame
             }()
             return attributes
