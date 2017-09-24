@@ -66,8 +66,9 @@ class EventCell: UICollectionViewCell {
 
     var event: Event? {
         didSet {
+            eventPosition = event?.position
             updateLabels()
-            updateStyleIfNeeded()
+            updateStyle()
         }
     }
     private var eventPosition: EventPosition?
@@ -77,6 +78,13 @@ class EventCell: UICollectionViewCell {
 
         layer.borderWidth = 0.5
         layer.cornerRadius = 3
+    }
+
+    func updateStyleIfNeeded() {
+        if let event = event, event.position != self.eventPosition {
+            self.eventPosition = event.position
+            updateStyle()
+        }
     }
 
     private func updateLabels() {
@@ -93,14 +101,13 @@ class EventCell: UICollectionViewCell {
         }
     }
 
-    func updateStyleIfNeeded() {
-        guard let event = event, event.position != self.eventPosition else {
+    private func updateStyle() {
+        guard let event = event else {
             return
         }
         titleLabel.textColor = Color.title(for: event)
         timeRangeLabel.textColor = Color.timeRange(for: event)
         backgroundColor = Color.background(for: event)
         layer.borderColor = Color.border(for: event).cgColor
-        self.eventPosition = event.position
     }
 }

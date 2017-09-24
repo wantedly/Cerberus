@@ -6,11 +6,19 @@ class TimeCell: UICollectionViewCell {
 
     var time: Time? {
         didSet {
+            isCurrent = time?.isCurrent
             updateLabels()
-            updateStyleIfNeeded()
+            updateStyle()
         }
     }
     private var isCurrent: Bool?
+
+    func updateStyleIfNeeded() {
+        if let isCurrent = time?.isCurrent, isCurrent != self.isCurrent {
+            self.isCurrent = isCurrent
+            updateStyle()
+        }
+    }
 
     private func updateLabels() {
         guard let time = time else {
@@ -19,11 +27,10 @@ class TimeCell: UICollectionViewCell {
         titleLabel.text = String(format: "%02d:%02d", time.hour, time.minute)
     }
 
-    func updateStyleIfNeeded() {
-        guard let isCurrent = time?.isCurrent, isCurrent != self.isCurrent else {
+    private func updateStyle() {
+        guard let time = time else {
             return
         }
-        titleLabel.alpha = isCurrent ? 1 : 0.4
-        self.isCurrent = isCurrent
+        titleLabel.alpha = time.isCurrent ? 1 : 0.4
     }
 }
