@@ -38,4 +38,10 @@ class TimesViewLayout: UICollectionViewLayout {
         }
         return (start...last).flatMap { self.layoutAttributesForItem(at: IndexPath(item: $0, section: 0)) }
     }
+
+    static func y(of time: Time) -> CGFloat {
+        let distancePerMinute = TimesViewLayout.Metric.sizeForItem.height / CGFloat(Time.strideTime.hour * 60 + Time.strideTime.minute)
+        let minutes = time.hour * 60 + time.minute
+        return TimesViewLayout.Metric.sizeForItem.height / 2 + distancePerMinute * CGFloat(minutes)
+    }
 }

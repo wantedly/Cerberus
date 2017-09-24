@@ -48,6 +48,13 @@ class CalendarViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let currentContentOffsetY = max(min(TimesViewLayout.y(of: Time(Date())) - timesView.bounds.height / 2, timesView.contentSize.height), 0)
+        timesView.setContentOffset(CGPoint(x: 0, y: currentContentOffsetY), animated: true)
+    }
+
     private func setupNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named: "NavigationBarBackground"), for: .default)
         navigationController?.navigationBar.barStyle = .black
@@ -69,6 +76,8 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        eventsView.contentOffset = scrollView.contentOffset
+        if scrollView == timesView {
+            eventsView.contentOffset = scrollView.contentOffset
+        }
     }
 }

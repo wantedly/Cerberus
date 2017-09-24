@@ -4,7 +4,7 @@ class EventsViewLayout: UICollectionViewLayout {
 
     struct Metric {
         static let interitemSpacing: CGFloat = 10
-        static let contentInsets = UIEdgeInsets(top: TimesViewLayout.Metric.sizeForItem.height / 2, left: 25, bottom: TimesViewLayout.Metric.sizeForItem.height / 2, right: 25)
+        static let contentInsets = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
     }
 
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
@@ -37,24 +37,12 @@ class EventsViewLayout: UICollectionViewLayout {
             attributes.frame = {
                 var frame: CGRect = .zero
                 frame.origin.x = Metric.contentInsets.left
-                frame.origin.y = EventsViewLayout.y(of: event.startTime)
+                frame.origin.y = TimesViewLayout.y(of: event.startTime) + Metric.contentInsets.top
                 frame.size.width = collectionView.bounds.width - Metric.contentInsets.left - Metric.contentInsets.right
-                frame.size.height = EventsViewLayout.y(of: event.endTime) - EventsViewLayout.y(of: event.startTime) - Metric.interitemSpacing
+                frame.size.height = TimesViewLayout.y(of: event.endTime) - TimesViewLayout.y(of: event.startTime) - Metric.interitemSpacing
                 return frame
             }()
             return attributes
         }
-    }
-
-    static func time(of y: CGFloat) -> Time {
-        let distancePerMinute = TimesViewLayout.Metric.sizeForItem.height / CGFloat(Time.strideTime.hour * 60 + Time.strideTime.minute)
-        let minutes = Int((y - Metric.contentInsets.top) / distancePerMinute)
-        return Time(hour: minutes / 60, minute: minutes % 60)
-    }
-
-    static func y(of time: Time) -> CGFloat {
-        let distancePerMinute = TimesViewLayout.Metric.sizeForItem.height / CGFloat(Time.strideTime.hour * 60 + Time.strideTime.minute)
-        let minutes = time.hour * 60 + time.minute
-        return distancePerMinute * CGFloat(minutes) + Metric.contentInsets.top
     }
 }
