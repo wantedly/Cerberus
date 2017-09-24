@@ -17,7 +17,7 @@ class CalendarViewController: UIViewController {
 
         setupNavigationBar()
         setupGestureRecognizer()
-        updateDateOfTitle()
+        updateTitle()
 
         let viewModel = CalendarViewModel(calendarService: CalendarService(), wireframe: Wireframe(rootViewController: self))
 
@@ -33,7 +33,7 @@ class CalendarViewController: UIViewController {
         NotificationCenter.default.rx.notification(.UIApplicationSignificantTimeChange)
             .map { _ in }
             .do(onNext: {[weak self] in
-                self?.updateDateOfTitle()
+                self?.updateTitle()
             })
             .bind(to: viewModel.applicationSignificantTimeChange)
             .disposed(by: disposeBag)
@@ -51,8 +51,11 @@ class CalendarViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let currentContentOffsetY = max(min(TimesViewLayout.y(of: Time(Date())) - timesView.bounds.height / 2, timesView.contentSize.height), 0)
-        timesView.setContentOffset(CGPoint(x: 0, y: currentContentOffsetY), animated: true)
+        updateContentOffset(animated: true)
+    }
+
+    @IBAction func handleNowButtonItemTap(_ sender: Any) {
+        updateContentOffset(animated: true)
     }
 
     private func setupNavigationBar() {
@@ -66,11 +69,16 @@ class CalendarViewController: UIViewController {
         eventsView.isScrollEnabled = false
     }
 
-    private func updateDateOfTitle() {
+    private func updateTitle() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
         dateFormatter.timeStyle = .none
         navigationItem.title = dateFormatter.string(from: Date())
+    }
+
+    private func updateContentOffset(animated: Bool) {
+        let currentContentOffsetY = max(min(TimesViewLayout.y(of: Time(Date())) - timesView.bounds.height / 2, timesView.contentSize.height), 0)
+        timesView.setContentOffset(CGPoint(x: 0, y: currentContentOffsetY), animated: animated)
     }
 }
 
