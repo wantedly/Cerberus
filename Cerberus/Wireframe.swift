@@ -21,7 +21,7 @@ class Wireframe: WireframeType {
         return Observable.create { observer in
             let alertView = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                observer.on(.next())
+                observer.on(.next(Void()))
             })
 
             self.rootViewController?.present(alertView, animated: true)

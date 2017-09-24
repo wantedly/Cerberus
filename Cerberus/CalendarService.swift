@@ -103,7 +103,7 @@ class CalendarService: CalendarServiceType {
         var events = [Event]()
         var maximumDate = start
 
-        let sortedEvents = calendarEvents.sorted(by: { $0.0.startDate < $0.1.startDate })
+        let sortedEvents = calendarEvents.sorted(by: { $0.startDate < $1.startDate })
         sortedEvents.forEach { calendarEvent in
             if let minuteDiff = minuteDiff(from: maximumDate, to: calendarEvent.startDate), minuteDiff > Constant.minimumMinutesOfEmptyEvent {
                 events.append(Event(.empty, from: maximumDate, to: calendarEvent.startDate))

@@ -183,7 +183,7 @@ class CalendarViewModelSpec: QuickSpec {
                     calendarViewModel.events
                         .drive()
                         .disposed(by: disposeBag)
-                    calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                    calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                     expect(passedError).toEventually(beIdenticalTo(error))
                 }
@@ -204,7 +204,7 @@ class CalendarViewModelSpec: QuickSpec {
                     calendarViewModel.events
                         .drive()
                         .disposed(by: disposeBag)
-                    calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                    calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                     expect(called).toEventually(beTrue())
                 }
@@ -234,7 +234,7 @@ class CalendarViewModelSpec: QuickSpec {
                         calendarViewModel.events
                             .drive()
                             .disposed(by: disposeBag)
-                        calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                        calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                         expect(called).toEventually(beTrue())
                         expect(passedCalendars).toEventually(equal(savedCalendars))
@@ -251,7 +251,7 @@ class CalendarViewModelSpec: QuickSpec {
                         calendarViewModel.events
                             .drive()
                             .disposed(by: disposeBag)
-                        calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                        calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                         expect(newlySavedCalendars).toNotEventually(equal(savedCalendars))
                         expect(newlySavedCalendars).toEventually(equal(choosedCalendars))
@@ -269,7 +269,7 @@ class CalendarViewModelSpec: QuickSpec {
                         calendarViewModel.events
                             .drive()
                             .disposed(by: disposeBag)
-                        calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                        calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                         expect(fetchedCalendars).toEventually(equal(choosedCalendars))
                     }
@@ -292,7 +292,7 @@ class CalendarViewModelSpec: QuickSpec {
                         calendarViewModel.events
                             .drive()
                             .disposed(by: disposeBag)
-                        calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                        calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                         expect(called).toEventually(beTrue())
                         expect(passedCalendars).toEventually(beNil())
@@ -309,7 +309,7 @@ class CalendarViewModelSpec: QuickSpec {
                         calendarViewModel.events
                             .drive()
                             .disposed(by: disposeBag)
-                        calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                        calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                         expect(savedCalendars).toEventually(equal(choosedCalendars))
                     }
@@ -326,7 +326,7 @@ class CalendarViewModelSpec: QuickSpec {
                         calendarViewModel.events
                             .drive()
                             .disposed(by: disposeBag)
-                        calendarViewModel.calendarsButtonItemDidTap.on(.next())
+                        calendarViewModel.calendarsButtonItemDidTap.on(.next(Void()))
 
                         expect(fetchedCalendars).toEventually(equal(choosedCalendars))
                     }

@@ -18,7 +18,7 @@ class CalendarViewModel {
             .merge(
                 Observable
                     .merge(
-                        shouldStartImmediately ? .just() : .empty(),
+                        shouldStartImmediately ? .just(Void()) : .empty(),
                         applicationDidBecomeActive,
                         applicationSignificantTimeChange,
                         calendarService.eventStoreChanged

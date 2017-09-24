@@ -51,7 +51,7 @@ class CalendarViewController: UIViewController {
     private func setupNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named: "NavigationBarBackground"), for: .default)
         navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 28)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
     }
 
     private func setupGestureRecognizer() {
