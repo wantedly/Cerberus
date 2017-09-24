@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     private var currentTime: Time = Time.now() {
         didSet {
             if currentTime != oldValue {
+                updateCells()
                 updateContentOffset(animated: true)
             }
         }
@@ -56,7 +57,7 @@ class CalendarViewController: UIViewController {
                 self?.eventsViewLayout.updateLayoutAttributes(with: events)
             })
             .drive(eventsView.rx.items(cellIdentifier: "EventCell", cellType: EventCell.self)) { _, event, cell in
-                cell.update(with: event)
+                cell.event = event
             }
             .disposed(by: disposeBag)
     }
@@ -93,6 +94,15 @@ class CalendarViewController: UIViewController {
         navigationItem.title = dateFormatter.string(from: Date())
     }
 
+    private func updateCells() {
+        timesView.visibleCells.forEach { cell in
+            (cell as? TimeCell)?.updateStyleIfNeeded()
+        }
+        eventsView.visibleCells.forEach { cell in
+            (cell as? EventCell)?.updateStyleIfNeeded()
+        }
+    }
+
     private func updateContentOffset(animated: Bool) {
         let currentContentOffsetY = max(min(TimesViewLayout.y(of: currentTime) - timesView.bounds.height / 2, timesView.contentSize.height), 0)
         timesView.setContentOffset(CGPoint(x: 0, y: currentContentOffsetY), animated: animated)
@@ -103,6 +113,17 @@ extension CalendarViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == timesView {
             eventsView.contentOffset = scrollView.contentOffset
+        }
+    }
+}
+
+extension CalendarViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? TimeCell {
+            cell.updateStyleIfNeeded()
+        }
+        if let cell = cell as? EventCell {
+            cell.updateStyleIfNeeded()
         }
     }
 }

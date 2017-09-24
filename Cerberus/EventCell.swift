@@ -64,6 +64,14 @@ class EventCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeRangeLabel: UILabel!
 
+    var event: Event? {
+        didSet {
+            updateLabels()
+            updateStyleIfNeeded()
+        }
+    }
+    private var eventPosition: EventPosition?
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -71,7 +79,10 @@ class EventCell: UICollectionViewCell {
         layer.cornerRadius = 3
     }
 
-    func update(with event: Event) {
+    private func updateLabels() {
+        guard let event = event else {
+            return
+        }
         switch event.type {
         case let .normal(title):
             titleLabel.text = title
@@ -80,10 +91,16 @@ class EventCell: UICollectionViewCell {
             titleLabel.text = "Available"
             timeRangeLabel.text = nil
         }
+    }
 
+    func updateStyleIfNeeded() {
+        guard let event = event, event.position != self.eventPosition else {
+            return
+        }
         titleLabel.textColor = Color.title(for: event)
         timeRangeLabel.textColor = Color.timeRange(for: event)
         backgroundColor = Color.background(for: event)
         layer.borderColor = Color.border(for: event).cgColor
+        self.eventPosition = event.position
     }
 }
