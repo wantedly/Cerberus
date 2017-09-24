@@ -8,12 +8,6 @@ import RxSwift
 
 class CalendarServiceSpec: QuickSpec {
     override func spec() {
-        var calendarService: CalendarService!
-
-        beforeEach {
-            calendarService = CalendarService()
-        }
-
         describe("chooseCalendars(with:in:defaultCalendars:)") {
             var window: UIWindow!
             var calendarChooser: MockCalendarChooser!
