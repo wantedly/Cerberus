@@ -41,12 +41,12 @@ extension Event {
     var position: EventPosition {
         let now = Date()
         switch (startDate, endDate) {
+        case let (startDate, endDate) where startDate <= now && now <= endDate:
+            return .current
         case let (startDate, _) where startDate < now:
             return .past
-        case let (_, endDate) where endDate > now:
-            return .future
         default:
-            return .current
+            return .future
         }
     }
 }
