@@ -115,6 +115,16 @@ extension CalendarViewController: UIScrollViewDelegate {
             eventsView.contentOffset = scrollView.contentOffset
         }
     }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            updateContentOffset(animated: true)
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateContentOffset(animated: true)
+    }
 }
 
 extension CalendarViewController: UICollectionViewDelegate {
