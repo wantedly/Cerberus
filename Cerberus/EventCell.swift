@@ -8,7 +8,7 @@ class EventCell: UICollectionViewCell {
             case .normal:
                 return UIColor.white
             case .empty:
-                return UIColor(colorLiteralRed: 108/255.0, green: 198/255.0, blue: 68/255.0, alpha: 1)
+                return UIColor(red: 108/255.0, green: 198/255.0, blue: 68/255.0, alpha: 1)
             }
         }
 
