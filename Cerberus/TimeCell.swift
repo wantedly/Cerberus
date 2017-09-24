@@ -2,6 +2,11 @@ import UIKit
 
 class TimeCell: UICollectionViewCell {
 
+    struct Font {
+        static let currentTitle = UIFont.monospacedDigitSystemFont(ofSize: 80, weight: .medium)
+        static let title = UIFont.monospacedDigitSystemFont(ofSize: 80, weight: .ultraLight)
+    }
+
     @IBOutlet weak var titleLabel: UILabel!
 
     var time: Time? {
@@ -32,5 +37,6 @@ class TimeCell: UICollectionViewCell {
             return
         }
         titleLabel.alpha = time.isCurrent ? 1 : 0.4
+        titleLabel.font = time.isCurrent ? Font.currentTitle : Font.title
     }
 }

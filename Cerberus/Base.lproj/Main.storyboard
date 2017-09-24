@@ -11,7 +11,6 @@
     <customFonts key="customFonts">
         <array key="HelveticaNeueLights.ttc">
             <string>HelveticaNeue-Thin</string>
-            <string>HelveticaNeue-UltraLight</string>
         </array>
     </customFonts>
     <scenes>
@@ -56,15 +55,15 @@
                                 <collectionViewLayout key="collectionViewLayout" id="Yjs-Nb-FQt" customClass="TimesViewLayout" customModule="Cerberus" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimeCell" id="ZwD-A6-udF" customClass="TimeCell" customModule="Cerberus" customModuleProvider="target">
-                                        <rect key="frame" x="39.5" y="0.0" width="201" height="93"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="201" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFd-Ck-NxJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="201" height="92"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="80"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFd-Ck-NxJ">
+                                                    <rect key="frame" x="38" y="0.0" width="204" height="96"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="80"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -72,9 +71,9 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="wFd-Ck-NxJ" firstAttribute="centerY" secondItem="ZwD-A6-udF" secondAttribute="centerY" id="Ip0-0V-v51"/>
-                                            <constraint firstItem="wFd-Ck-NxJ" firstAttribute="centerX" secondItem="ZwD-A6-udF" secondAttribute="centerX" id="mkr-lF-vC7"/>
+                                            <constraint firstItem="wFd-Ck-NxJ" firstAttribute="centerX" secondItem="ZwD-A6-udF" secondAttribute="centerX" id="Y9n-UR-dFD"/>
                                         </constraints>
-                                        <size key="customSize" width="201" height="93"/>
+                                        <size key="customSize" width="280" height="96"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="wFd-Ck-NxJ" id="q9b-aI-Jgf"/>
                                         </connections>
