@@ -11,6 +11,11 @@ extension Time {
         minute = Calendar.current.component(.minute, from: date)
     }
 
+    static func now() -> Time {
+        let now = Date()
+        return Time(now)
+    }
+
     static let strideTime = Time(hour: 0, minute: 30)
 
     static let timesOfDay: [Time] = {
@@ -23,6 +28,12 @@ extension Time {
     }()
 }
 
+extension Time: Equatable {
+    static func == (lhs: Time, rhs: Time) -> Bool {
+        return lhs.hour == rhs.hour && lhs.minute == rhs.minute
+    }
+}
+
 extension Time: Comparable {
     static func < (lhs: Time, rhs: Time) -> Bool {
         if lhs.hour != rhs.hour {
@@ -30,9 +41,5 @@ extension Time: Comparable {
         } else {
             return lhs.minute < rhs.minute
         }
-    }
-
-    static func == (lhs: Time, rhs: Time) -> Bool {
-        return lhs.hour == rhs.hour && lhs.minute == rhs.minute
     }
 }

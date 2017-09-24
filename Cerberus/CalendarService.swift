@@ -27,10 +27,24 @@ class CalendarService: CalendarServiceType {
         static let chooserDisplayStyle: EKCalendarChooserDisplayStyle = .allCalendars
         static let chooserShouldShowDoneButton = true
 
+        static let refreshInterval: TimeInterval = 30
         static let minimumMinutesOfEmptyEvent = 5
     }
 
-    private let eventStore = EKEventStore()
+    private let eventStore: EKEventStore
+    private var timer: Timer?
+
+    init(eventStore: EKEventStore = EKEventStore()) {
+        self.eventStore = eventStore
+
+        timer = Timer.scheduledTimer(withTimeInterval: Constant.refreshInterval, repeats: true) { [weak self] _ in
+            self?.eventStore.refreshSourcesIfNecessary()
+        }
+    }
+
+    deinit {
+        timer?.invalidate()
+    }
 
     var eventStoreChanged: Observable<Void> {
         return NotificationCenter.default.rx.notification(.EKEventStoreChanged, object: eventStore).map { _ in }

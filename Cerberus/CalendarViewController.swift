@@ -12,6 +12,19 @@ class CalendarViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
+    private var timer: Timer?
+    private var currentTime: Time = Time.now() {
+        didSet {
+            if currentTime != oldValue {
+                updateContentOffset(animated: true)
+            }
+        }
+    }
+
+    deinit {
+        timer?.invalidate()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,6 +65,10 @@ class CalendarViewController: UIViewController {
         super.viewDidAppear(animated)
 
         updateContentOffset(animated: true)
+
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            self?.currentTime = Time.now()
+        }
     }
 
     @IBAction func handleNowButtonItemTap(_ sender: Any) {
@@ -77,7 +94,7 @@ class CalendarViewController: UIViewController {
     }
 
     private func updateContentOffset(animated: Bool) {
-        let currentContentOffsetY = max(min(TimesViewLayout.y(of: Time(Date())) - timesView.bounds.height / 2, timesView.contentSize.height), 0)
+        let currentContentOffsetY = max(min(TimesViewLayout.y(of: currentTime) - timesView.bounds.height / 2, timesView.contentSize.height), 0)
         timesView.setContentOffset(CGPoint(x: 0, y: currentContentOffsetY), animated: animated)
     }
 }
