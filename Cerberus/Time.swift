@@ -16,6 +16,14 @@ extension Time {
         return Time(now)
     }
 
+    var isCurrent: Bool {
+        let now = Date()
+        if let addingDate = Calendar.current.date(byAdding: .minute, value: -Time.strideTime.minute, to: now) {
+            return Time(addingDate) < self && self <= Time(now)
+        }
+        return false
+    }
+
     static let strideTime = Time(hour: 0, minute: 30)
 
     static let timesOfDay: [Time] = {
