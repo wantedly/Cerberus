@@ -28,7 +28,7 @@ class CalendarService: CalendarServiceType {
         static let chooserShouldShowDoneButton = true
 
         static let refreshInterval: TimeInterval = 30
-        static let minimumMinutesOfEmptyEvent = 5
+        static let minimumMinutesOfEmptyEvent = 1
     }
 
     private let eventStore: EKEventStore
@@ -119,13 +119,13 @@ class CalendarService: CalendarServiceType {
 
         let sortedEvents = calendarEvents.sorted(by: { $0.startDate < $1.startDate })
         sortedEvents.forEach { calendarEvent in
-            if let minuteDiff = minuteDiff(from: maximumDate, to: calendarEvent.startDate), minuteDiff > Constant.minimumMinutesOfEmptyEvent {
+            if let minuteDiff = minuteDiff(from: maximumDate, to: calendarEvent.startDate), minuteDiff >= Constant.minimumMinutesOfEmptyEvent {
                 events.append(Event(.empty, from: maximumDate, to: calendarEvent.startDate))
             }
             events.append(Event(calendarEvent))
             maximumDate = max(maximumDate, calendarEvent.endDate)
         }
-        if let minuteDiff = minuteDiff(from: maximumDate, to: end), minuteDiff > Constant.minimumMinutesOfEmptyEvent {
+        if let minuteDiff = minuteDiff(from: maximumDate, to: end), minuteDiff >= Constant.minimumMinutesOfEmptyEvent {
             events.append(Event(.empty, from: maximumDate, to: end))
         }
         return events

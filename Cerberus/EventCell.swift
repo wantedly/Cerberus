@@ -18,6 +18,10 @@ class EventCell: UICollectionViewCell {
                 return base(for: event).withAlphaComponent(0.15)
             case (.normal, .future):
                 return base(for: event).withAlphaComponent(0.6)
+            case (.empty, .past):
+                return base(for: event).withAlphaComponent(0.3)
+            case (.empty, .future):
+                return base(for: event).withAlphaComponent(0.7)
             default:
                 return base(for: event).withAlphaComponent(1)
             }
@@ -61,6 +65,12 @@ class EventCell: UICollectionViewCell {
         }
     }
 
+    struct Metric {
+        static func borderWidth(for event: Event) -> CGFloat {
+            return event.position == .current ? 1 : 0.5
+        }
+    }
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeRangeLabel: UILabel!
 
@@ -76,8 +86,14 @@ class EventCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        layer.borderWidth = 0.5
         layer.cornerRadius = 3
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        titleLabel.isHidden = titleLabel.frame.maxY > bounds.height
+        timeRangeLabel.isHidden = timeRangeLabel.frame.maxY > bounds.height
     }
 
     func updateStyleIfNeeded() {
@@ -109,5 +125,6 @@ class EventCell: UICollectionViewCell {
         timeRangeLabel.textColor = Color.timeRange(for: event)
         backgroundColor = Color.background(for: event)
         layer.borderColor = Color.border(for: event).cgColor
+        layer.borderWidth = Metric.borderWidth(for: event)
     }
 }

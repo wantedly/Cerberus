@@ -3,7 +3,7 @@ import UIKit
 class TimesViewLayout: UICollectionViewLayout {
 
     struct Metric {
-        static let sizeForItem = CGSize(width: 280, height: 150)
+        static let sizeForItem = CGSize(width: 280, height: 200)
         static let contentHeight: CGFloat = sizeForItem.height * CGFloat(Time.timesOfDay.count)
     }
 
