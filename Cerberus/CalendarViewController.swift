@@ -72,10 +72,6 @@ class CalendarViewController: UIViewController {
         }
     }
 
-    @IBAction func handleNowButtonItemTap(_ sender: Any) {
-        updateContentOffset(animated: true)
-    }
-
     private func setupNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(named: "NavigationBarBackground"), for: .default)
         navigationController?.navigationBar.barStyle = .black

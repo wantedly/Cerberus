@@ -147,11 +147,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="2uc-vM-69H">
                         <barButtonItem key="leftBarButtonItem" title="Calendars" id="hlx-BA-L5U"/>
-                        <barButtonItem key="rightBarButtonItem" title="Now" style="done" id="iKz-NL-RWN">
-                            <connections>
-                                <action selector="handleNowButtonItemTap:" destination="YKI-ee-B3G" id="lm2-wE-Fzs"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calendarsButtonItem" destination="hlx-BA-L5U" id="S5O-HV-Fen"/>
