@@ -27,7 +27,7 @@ class CalendarService: CalendarServiceType {
         static let chooserDisplayStyle: EKCalendarChooserDisplayStyle = .allCalendars
         static let chooserShouldShowDoneButton = true
 
-        static let refreshInterval: TimeInterval = 30
+        static let refreshInterval: TimeInterval = 10
         static let minimumMinutesOfEmptyEvent = 1
     }
 
