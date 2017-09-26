@@ -108,7 +108,12 @@ class CalendarService: CalendarServiceType {
         }
 
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: Array(calendars))
-        let calendarEvents = eventStore.events(matching: predicate)
+        let calendarEvents = eventStore.events(matching: predicate).filter { event in
+            if let attendees = event.attendees(of: calendars) {
+                return attendees.map({ $0.participantStatus }).contains(.accepted)
+            }
+            return false
+        }
         let events = CalendarService.makeEvents(from: calendarEvents, start: startDate, end: endDate)
         return .just(events)
     }
@@ -129,6 +134,17 @@ class CalendarService: CalendarServiceType {
             events.append(Event(.empty, from: maximumDate, to: end))
         }
         return events
+    }
+}
+
+private extension EKEvent {
+    func attendees(of calendars: Set<EKCalendar>) -> [EKParticipant]? {
+        return attendees?.filter { attendee in
+            if let name = attendee.name {
+                return calendars.map({ $0.title }).contains(name)
+            }
+            return false
+        }
     }
 }
 
