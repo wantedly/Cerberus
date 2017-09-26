@@ -25,7 +25,7 @@ extension Event {
     }
 
     init(_ event: EKEvent) {
-        type = .normal(event.title)
+        type = .normal(event.title ?? "(No title)")
         startDate = event.startDate
         endDate = event.endDate
     }
