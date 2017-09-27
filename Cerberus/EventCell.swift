@@ -109,7 +109,7 @@ class EventCell: UICollectionViewCell {
         }
         switch event.type {
         case let .normal(title):
-            titleLabel.text = title
+            titleLabel.text = title ?? "(No title)"
             timeRangeLabel.text = String(format: "%02d:%02d-%02d:%02d", event.startTime.hour, event.startTime.minute, event.endTime.hour, event.endTime.minute)
         case .empty:
             titleLabel.text = "Available"

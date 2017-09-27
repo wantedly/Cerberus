@@ -1,7 +1,7 @@
 import EventKit
 
 enum EventType {
-    case normal(String)
+    case normal(String?)
     case empty
 }
 
@@ -25,7 +25,7 @@ extension Event {
     }
 
     init(_ event: EKEvent) {
-        type = .normal(event.title ?? "(No title)")
+        type = .normal(event.title)
         startDate = event.startDate
         endDate = event.endDate
     }
