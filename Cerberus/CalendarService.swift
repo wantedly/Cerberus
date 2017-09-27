@@ -110,9 +110,9 @@ class CalendarService: CalendarServiceType {
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: Array(calendars))
         let calendarEvents = eventStore.events(matching: predicate).filter { event in
             if let attendees = event.attendees(of: calendars) {
-                return attendees.map({ $0.participantStatus }).contains(.accepted)
+                return !attendees.map({ $0.participantStatus }).contains(.declined)
             }
-            return false
+            return true
         }
         let events = CalendarService.makeEvents(from: calendarEvents, start: startDate, end: endDate)
         return .just(events)
